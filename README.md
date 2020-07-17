@@ -3,9 +3,9 @@
 # Installation
 
 ```bash
-npm install aerian-component-library --save
+npm install --save @aerian-studios/aerian-component-library@0.0.1
 # or
-yarn add aerian-component-library
+yarn add @aerian-studios/aerian-component-library@0.0.1
 ```
 
 # Usage
@@ -130,11 +130,11 @@ export default FormComponent;
 ```
 
 ### Props
-| Name             | Type                                                | Default   |
-| :--------------- | :-------------------------------------------------- | :-------- |
-| onSubmitFn       | `(data: Record<string, string | string[]>) => void` | undefined |
-| validationSchema | `Record<string, YupTypes>`                          | undefined |
-| onResetFn?       | `() => void`                                        | undefined |
+| Name             | Type                                                    | Default   |
+| :--------------- | :------------------------------------------------------ | :-------- |
+| onSubmitFn       | ```(data: Record<string, string | string[]>) => void``` | undefined |
+| validationSchema | `Record<string, YupTypes>`                              | undefined |
+| onResetFn?       | `() => void`                                            | undefined |
 
 ## Developing locally 
 <hr />
