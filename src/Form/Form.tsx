@@ -15,7 +15,7 @@ export interface FormProps<T extends object>
   onResetFn?: () => void;
 }
 
-type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<object>;
+export type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<object>;
 
 interface FormContentsProps extends HTMLAttributes<HTMLElement> {}
 

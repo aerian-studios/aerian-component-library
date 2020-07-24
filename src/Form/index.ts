@@ -4,4 +4,4 @@ export {
   FormSelect,
   ControlledElement,
 } from "./FormElements";
-export { Form, FormControls, FormContents } from "./Form";
+export { Form, FormControls, FormContents, YupTypes } from "./Form";
