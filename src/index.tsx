@@ -8,4 +8,7 @@ export {
   ControlledElement,
 } from "./Form";
 
+export { Filter } from "./Filter";
+export { Button } from "./Button";
+
 export { applyTheme } from "./Theme";

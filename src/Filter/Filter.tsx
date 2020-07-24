@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../Button";
+import ContentWrapper from "../ContentWrapper";
 import { Form, FormContents, FormInput, FormSelect, YupTypes } from "../Form";
 
 import styles from "./Filters.module.scss";
@@ -29,7 +30,7 @@ export const Filter: React.FC<Props> = ({
   regions = [],
   statuses = [],
 }) => (
-  <div className={styles.component}>
+  <ContentWrapper>
     <h2 className={styles.title}>Filter</h2>
     <Form onSubmitFn={onSubmitFn} validationSchema={validationSchema}>
       <FormContents className={styles.filterOptions}>
@@ -62,7 +63,7 @@ export const Filter: React.FC<Props> = ({
         </div>
       </FormContents>
     </Form>
-  </div>
+  </ContentWrapper>
 );
 
 export default Filter;

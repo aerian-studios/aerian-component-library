@@ -1,0 +1,10 @@
+@import "../styles/cn/theme.scss";
+
+.component {
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: $c-contentwrapper-shadow;
+  overflow: hidden;
+  padding: 26px 32px 42px 26px;
+  width: 100%;
+}
