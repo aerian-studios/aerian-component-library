@@ -9,8 +9,8 @@ import styles from "./Filters.module.scss";
 interface Props {
   onSubmitFn: (d: FilterData) => void;
   validationSchema?: Record<string, YupTypes>;
-  regions: string[];
-  statuses: string[];
+  regions: SelectOption[];
+  statuses: SelectOption[];
 }
 
 interface FilterData {
@@ -34,23 +34,9 @@ export const Filter: React.FC<Props> = ({
     <h2 className={styles.title}>Filter</h2>
     <Form onSubmitFn={onSubmitFn} validationSchema={validationSchema}>
       <FormContents className={styles.filterOptions}>
-        <FormSelect
-          name="region"
-          label="Region"
-          options={regions.map((region) => ({
-            label: region,
-            value: region,
-          }))}
-        />
+        <FormSelect name="region" label="Region" options={regions} />
 
-        <FormSelect
-          name="status"
-          label="Status"
-          options={statuses.map((status) => ({
-            label: status,
-            value: status,
-          }))}
-        />
+        <FormSelect name="status" label="Status" options={statuses} />
 
         <FormInput name="uuid" label="UUID" placeholder="UUID here..." />
 
