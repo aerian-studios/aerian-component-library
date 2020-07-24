@@ -1,0 +1,44 @@
+@import "../styles/cn/theme.scss";
+
+.primary {
+  @extend %button;
+}
+
+.secondary {
+  @extend %button;
+  background-color: $c-button-secondary-bg;
+  border: 1px solid $c-button-secondary-border;
+  color: $black;
+  &:hover {
+    background-color: $c-button-secondary-hover-bg;
+  }
+  &:active {
+    background-color: $c-button-secondary-hover-bg;
+    border-color: $c-button-secondary-active-border;
+  }
+  &[disabled] {
+    background-color: $c-button-secondary-disabled-bg;
+    border-color: $c-button-secondary-disabled-border;
+    opacity: 0.5;
+  }
+}
+.pagination {
+  @extend %button;
+  background-color: $c-button-secondary-bg;
+  border: 1px solid $c-button-secondary-border;
+  color: $black;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 30px;
+  min-width: 20px;
+}
+.paginationActive {
+  @extend %button;
+  background-color: $c-button-blue;
+  border: 1px solid $c-button-secondary-border;
+  color: $white;
+  margin-left: 10px;
+  margin-right: 10px;
+  max-width: 30px;
+  min-width: 20px;
+}
