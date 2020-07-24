@@ -2,10 +2,8 @@ import React from "react";
 import { Filter } from "../Filter";
 
 export default {
-  title: "IdentFilters",
+  title: "Filter",
 };
-
-const noop = () => {};
 
 export const identFilters = () => (
   <Filter

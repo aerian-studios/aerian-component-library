@@ -1,23 +1,37 @@
 import React from "react";
-import { Form, FormContents, FormInput, FormSelect } from "../Form";
+
+import Button from "../Button";
+import { Form, FormContents, FormInput, FormSelect, YupTypes } from "../Form";
 
 import styles from "./Filters.module.scss";
-// import Button from "../Button";
 
 interface Props {
-  onSubmitFn: (d: any) => void;
+  onSubmitFn: (d: FilterData) => void;
+  validationSchema?: Record<string, YupTypes>;
   regions: string[];
   statuses: string[];
 }
 
+interface FilterData {
+  region: SelectOption;
+  status: SelectOption;
+  uuid: string;
+}
+
+interface SelectOption {
+  label: string;
+  value: string;
+}
+
 export const Filter: React.FC<Props> = ({
   onSubmitFn,
+  validationSchema = {},
   regions = [],
   statuses = [],
 }) => (
   <div className={styles.component}>
     <h2 className={styles.title}>Filter</h2>
-    <Form onSubmitFn={onSubmitFn} validationSchema={{}}>
+    <Form onSubmitFn={onSubmitFn} validationSchema={validationSchema}>
       <FormContents className={styles.filterOptions}>
         <FormSelect
           name="region"
@@ -40,7 +54,7 @@ export const Filter: React.FC<Props> = ({
         <FormInput name="uuid" label="UUID" placeholder="UUID here..." />
 
         <div className={styles.applyContainer}>
-          <button type="submit">Apply</button>
+          <Button type="submit">Apply</Button>
           {/* TODO Get Reset Icon */}
           <button type="reset" className={styles.reset}>
             Reset
