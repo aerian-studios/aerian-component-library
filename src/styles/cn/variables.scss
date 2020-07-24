@@ -1,0 +1,76 @@
+// Basic colours
+$white: white;
+$black: black;
+$black-90: #191919;
+$black-80: #333333;
+$black-60: #666666;
+$black-40: #999999;
+$black-20: #cccccc;
+$black-transparent: rgba(0, 0, 0, 0.85);
+
+$c-text: $black;
+$c-text-80: $black-80;
+$c-text-60: $black-60;
+$c-text-40: $black-40;
+$c-text-20: $black-20;
+
+$grey: #868686;
+$grey-80: #9e9e9e;
+$grey-60: #b6b6b6;
+$grey-40: #cecece;
+$grey-20: #e6e6e6;
+
+// Brand colours
+$rp-red: #cc0033;
+$rp-red-80: #d6335b;
+$rp-red-60: #e06684;
+$rp-red-40: #ea99ad;
+$rp-red-20: #f4ccd6;
+
+$grey-secondary: #f4f4f4;
+$c-main-content-background: $grey-secondary;
+
+$blue-highlight: #edf5fe;
+
+$c-brand-primary: $rp-red;
+$c-brand-primary-80: $rp-red-80;
+$c-brand-primary-60: $rp-red-60;
+$c-brand-primary-40: $rp-red-40;
+$c-brand-primary-20: $rp-red-20;
+
+//buttons
+$c-button-primary: $white;
+$c-button-primary-bg: $c-brand-primary;
+$c-button-primary-hover-bg: $c-brand-primary-80;
+$c-button-primary-disabled-bg: $c-brand-primary-60;
+
+$c-button-secondary: $grey;
+$c-button-secondary-bg: $white;
+$c-button-secondary-border: $grey-40;
+$c-button-secondary-hover-bg: $grey-20;
+$c-button-secondary-hover-border: $grey-40;
+$c-button-secondary-active-border: $grey;
+$c-button-secondary-disabled-border: $grey;
+$c-button-secondary-disabled-bg: $grey-20;
+
+// =====================  Cartoon Network
+$c-boxshad: rgba(0, 0, 0, 0.1);
+$c-title: #333333;
+$c-offwhite: rgba(232, 232, 232, 0.5);
+$c-border: rgba(0, 0, 0, 0.25);
+$c-label: #7a869a;
+
+// Buttons
+$c-button-blue: #195ccf;
+
+// Highlighted Text
+$c-highlight-green: #5bc102;
+$c-highlight-yellow: #fdd351;
+$c-highlight-blue: #65a2ff;
+$c-highlight-pink: #ff7a9b;
+
+// Content Wrapper
+$c-contentwrapper-bg: #f4f4f4;
+
+// Section Header
+$c-sectionheader-border: #cfcfcf;

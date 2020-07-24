@@ -1,0 +1,36 @@
+@import "./contextual.scss";
+
+%button {
+  align-items: center;
+  background-color: #{$c-button-blue};
+  border: none;
+  border-radius: 8px;
+  box-shadow: none;
+  color: #{$c-button-primary};
+  cursor: pointer;
+  display: flex;
+  font-family: "Avenir Next Rounded Std";
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 124px;
+  height: var(--button-height, $defaultButtonHeight);
+  justify-content: center;
+  line-height: 24px;
+  padding: 0 1em;
+  text-align: center;
+
+  &:hover {
+    background-color: $c-button-primary-hover-bg;
+  }
+
+  &:active {
+    background-color: $c-button-primary-hover-bg;
+    box-shadow: none;
+  }
+
+  &[disabled] {
+    background-color: $c-button-primary-disabled-bg;
+    box-shadow: none;
+    cursor: default;
+  }
+}

@@ -1,0 +1,13 @@
+$defaultButtonHeight: 32px;
+$columns: [header-start nav-start content-start] 4fr [header-end nav-end
+  content-end];
+$gutter: 44px;
+
+button {
+  --button-height: #{$defaultButtonHeight};
+}
+
+:root {
+  --gutter: $gutter;
+  --columns: $columns;
+}
