@@ -1,1 +1,1 @@
-export { default, Filter } from "./Filter";
+export { default, Filter, SelectOption, FilterData } from "./Filter";

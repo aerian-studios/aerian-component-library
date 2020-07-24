@@ -8,7 +8,7 @@ export {
   ControlledElement,
 } from "./Form";
 
-export { Filter } from "./Filter";
+export { Filter, SelectOption, FilterData } from "./Filter";
 export { Button } from "./Button";
 export { ContentWrapper } from "./ContentWrapper";
 

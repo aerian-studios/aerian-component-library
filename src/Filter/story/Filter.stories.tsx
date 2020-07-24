@@ -12,7 +12,7 @@ const regions = [
   { label: "Middle East", value: "middle_east" },
 ];
 
-const statues = [
+const statuses = [
   { label: "Consent Received", value: "content_received" },
   { label: "Consent Revoked", value: "consent_revoked" },
   { label: "Previewed", value: "previewd" },
@@ -23,6 +23,6 @@ export const identFilters = () => (
   <Filter
     onSubmitFn={(d) => console.log(d)}
     regions={regions}
-    statuses={statues}
+    statuses={statuses}
   />
 );
