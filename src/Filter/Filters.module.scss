@@ -1,0 +1,54 @@
+@import "../styles/filter/variables.scss";
+
+.component {
+  background-color: $white;
+  border: 1px solid $c-border;
+  box-shadow: 1px 1px 1px 1px $c-boxshad;
+  padding: 26px 32px;
+  width: 100%;
+}
+
+.title {
+  color: $c-title;
+  font-family: "Lubalin";
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 24px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.form {
+  font-family: "Avenir Next Rounded Std";
+  background-color: $c-offwhite;
+}
+
+.filterOptions {
+  --form-contents-background: #{$c-offwhite};
+  --form-contents-padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr) 1.5fr;
+  grid-template-rows: 50% 50%;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.filterTitle {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.applyContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.reset {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: "Avenir Next Rounded Std";
+  font-size: 14px;
+  text-decoration: underline;
+}
