@@ -130,11 +130,11 @@ export default FormComponent;
 ```
 
 ### Props
-| Name             | Type                                                    | Default   |
-| :--------------- | :------------------------------------------------------ | :-------- |
-| onSubmitFn       | ```(data: Record<string, string | string[]>) => void``` | undefined |
-| validationSchema | `Record<string, YupTypes>`                              | undefined |
-| onResetFn?       | `() => void`                                            | undefined |
+| Name             | Type                                                     | Default   |
+| :--------------- | :------------------------------------------------------- | :-------- |
+| onSubmitFn       | `(data: Record<string, string &#124; string[]>) => void` | undefined |
+| validationSchema | `Record<string, YupTypes>`                               | undefined |
+| onResetFn?       | `() => void`                                             | undefined |
 
 ## Developing locally 
 <hr />
