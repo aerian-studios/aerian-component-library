@@ -1,1 +1,1 @@
-export { Form, FormControls, FormContents } from "./Form";
+export { Form, FormControls, FormContents } from "./form";

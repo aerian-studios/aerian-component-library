@@ -6,7 +6,7 @@ import cx from "classnames";
 
 import { FormContext } from "./useFormContext";
 
-import styles from "./Form.module.scss";
+import styles from "./form.module.scss";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
