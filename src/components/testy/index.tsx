@@ -1,0 +1,1 @@
+export { Testy } from "./testy"
