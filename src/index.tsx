@@ -1,4 +1,4 @@
-export { Form, FormContents, FormControls } from "./components/formTemp";
+export { Form, FormContents, FormControls } from "./components/form";
 
 export {
   FormInput,
