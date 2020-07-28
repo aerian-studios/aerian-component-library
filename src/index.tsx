@@ -1,11 +1,10 @@
+export { Form, FormContents, FormControls } from "./components/form";
+
 export {
-  Form,
-  FormContents,
-  FormControls,
   FormInput,
   FormInputGroup,
   FormSelect,
   ControlledElement,
-} from "./form";
+} from "./components/formElements";
 
 export { applyTheme } from "./Theme";
