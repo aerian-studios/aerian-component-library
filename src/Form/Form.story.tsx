@@ -1,23 +1,21 @@
 import React from "react";
 import * as yup from "yup";
-import {
-  Form,
-  FormContents,
-  FormControls,
-  FormInput,
-  FormInputGroup,
-  FormSelect,
-} from "..";
+import { Form, FormContents, FormControls } from ".";
+
+import { FormInput, FormInputGroup, FormSelect } from "../formElements";
 
 import styles from "./FormStory.module.scss";
-import applyTheme from "../../Theme";
+import applyTheme from "../Theme";
 
 export default {
   title: "Form",
 };
 
 const validationSchema = {
-  email: yup.string().email().required(),
+  email: yup
+    .string()
+    .email()
+    .required(),
 };
 
 interface FormInputs {

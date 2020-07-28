@@ -6,6 +6,6 @@ export {
   FormInputGroup,
   FormSelect,
   ControlledElement,
-} from "./Form";
+} from "./form";
 
 export { applyTheme } from "./Theme";
