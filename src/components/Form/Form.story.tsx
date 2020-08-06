@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { Form, FormContents, FormControls } from ".";
 
-import { FormInput, FormInputGroup, FormSelect } from "../formElements";
+import { FormInput, FormInputGroup, FormSelect } from "../FormElements";
 
 import styles from "./formStory.module.scss";
 import applyTheme from "../../Theme";
