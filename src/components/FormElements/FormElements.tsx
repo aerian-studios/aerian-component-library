@@ -5,7 +5,7 @@ import cx from "classnames";
 import ReactSelect from "react-select";
 
 import styles from "./FormElements.module.scss";
-import { useFormContext } from "../form/useFormContext";
+import { useFormContext } from "../Form/useFormContext";
 import { Controller } from "react-hook-form";
 
 interface Props<T = HTMLInputElement> extends HTMLAttributes<T> {

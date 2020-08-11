@@ -4,7 +4,7 @@ import { Form, FormContents, FormControls } from ".";
 
 import { FormInput, FormInputGroup, FormSelect } from "../FormElements";
 
-import styles from "./formStory.module.scss";
+import styles from "./FormStory.module.scss";
 import applyTheme from "../../Theme";
 
 export default {
