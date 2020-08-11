@@ -2,17 +2,8 @@
   "name": "@aerian-studios/aerian-component-library",
   "version": "0.0.2",
   "description": "",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
   "repository": "https://github.com/aerian-studios/aerian-component-library.git",
-  "files": [
-    "build"
-  ],
   "scripts": {
-    "build": "rollup -c",
-    "npm-publish": "rollup -c && yarn publish",
-    "npm-publish:local": "rollup -c && yalc publish",
-    "npm-update:local": "rollup -c && yalc push",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook"
   },
@@ -54,18 +45,9 @@
     "react-hook-form": "^6.0.1",
     "react-select": "^3.1.0",
     "resolve-url-loader": "^3.1.1",
-    "rollup": "^2.18.2",
-    "rollup-plugin-peer-deps-external": "^2.2.3",
-    "rollup-plugin-postcss": "^3.1.2",
-    "rollup-plugin-sass-modules": "^1.4.0",
-    "rollup-plugin-typescript2": "^0.27.1",
     "sass-loader": "^9.0.0",
     "typescript": "^3.9.6",
     "yalc": "^1.0.0-pre.37",
     "yup": "^0.29.1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/",
-    "directory": "build"
   }
 }
