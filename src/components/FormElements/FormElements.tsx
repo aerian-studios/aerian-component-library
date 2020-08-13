@@ -50,7 +50,7 @@ interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
   label: string;
   options: SelectOption[];
   isMulti?: boolean;
-  onChange?: (selectedOption: SelectedDropdownItem) => void;
+  onChange?: (selectedOption: SelectedDropdownItem | SelectedDropdownItem[]) => void;
 }
 
 interface WrapComponentProps extends Record<string, any> {
@@ -183,9 +183,17 @@ export const Select: React.FC<SelectProps> = ({
 
   const setSelection = useCallback(
     (selectedOption) => {
+      if (!selectedOption) {
+        return onChange({ name: selectId, label: null, value: null });
+      }
+
+      if (Array.isArray(selectedOption)) {
+        return onChange(selectedOption);
+      }
+
       const name = selectId;
       const { label, value } = selectedOption;
-      onChange({ name, label, value });
+      return onChange({ name, label, value });
     },
     [onChange, selectId]
   );
@@ -195,6 +203,7 @@ export const Select: React.FC<SelectProps> = ({
       <div className={styles.label}>
         <label htmlFor={selectId}>{label}</label>
       </div>
+
       <ReactSelect
         id={selectId}
         name={selectId}

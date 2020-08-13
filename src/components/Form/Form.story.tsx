@@ -89,6 +89,17 @@ export const form = () => (
           { label: "Brie", value: "brie" },
         ]}
       />
+
+      <FormSelect
+        name="types_of_cheese_multi"
+        label="Types of cheese multi"
+        isMulti
+        options={[
+          { label: "Cheddar", value: "cheddar" },
+          { label: "Gouda", value: "gouda" },
+          { label: "Brie", value: "brie" },
+        ]}
+      />
       <FormControls />
     </FormContents>
   </Form>
