@@ -4,6 +4,7 @@ export {
   FormInput,
   FormInputGroup,
   FormSelect,
+  Select,
   ControlledElement,
 } from "./components/FormElements";
 

@@ -3,4 +3,5 @@ export {
   FormInputGroup,
   FormSelect,
   ControlledElement,
+  Select
 } from "./FormElements";
