@@ -2,6 +2,7 @@ export { Form, FormContents, FormControls } from "./components/Form";
 
 export {
   FormInput,
+  FormTextArea,
   FormInputGroup,
   FormSelect,
   Select,
