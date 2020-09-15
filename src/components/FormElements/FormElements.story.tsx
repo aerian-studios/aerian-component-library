@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "../Form";
-import { FormInput, FormSelect } from ".";
+import { FormInput, FormSelect, FormTextArea } from ".";
 
 export default {
   title: "Form Elements",
@@ -9,8 +9,14 @@ export default {
 const noop = () => {};
 
 export const formInput = () => (
-  <Form onSubmitFn={noop} validationSchema={{}}>
+  <Form onSubmitFn={(r)=> console.log(r)} validationSchema={{}}>
     <FormInput label="Form Input" name="input" placeholder="Input here..." />
+  </Form>
+);
+
+export const formTextArea = () => (
+  <Form onSubmitFn={(r)=> console.log(r)} validationSchema={{}}>
+    <FormTextArea label="Text Input" name="text input" placeholder="Input here..." />
   </Form>
 );
 

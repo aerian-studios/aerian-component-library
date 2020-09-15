@@ -20,6 +20,17 @@
   width: var(--input-width);
 }
 
+.textArea {
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  min-height: var(--input-height);
+  padding: var(--input-padding);
+  width: var(--input-width); 
+}
+
 .input:active,
 .input:focus {
   border: var(--input-border-focus);

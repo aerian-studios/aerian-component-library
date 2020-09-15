@@ -19,6 +19,10 @@ interface FormInputProps extends Props {
   errorMessage?: string;
 }
 
+interface FormTextAreaProps extends Props<HTMLTextAreaElement> {
+  errorMessage?: string;
+}
+
 interface FormInputGroupProps extends Props<HTMLFieldSetElement> {
   type?: "radio" | "checkbox";
   options: Array<Omit<RadioInputProps, "name">>;
@@ -86,6 +90,51 @@ export const FormInput: React.FC<FormInputProps> = ({
         aria-describedby={`err-${name}`}
         aria-invalid={!!errors[name]}
         className={styles.input}
+        {...rest}
+      />
+      {/* disclosure pattern */}
+      <ErrorMessage
+        name={name}
+        errors={errors}
+        render={({ message }) => (
+          <span
+            id={`err-${name}`}
+            className={styles.errorMessage}
+            aria-live="polite"
+          >
+            {errorMessage ?? message}
+          </span>
+        )}
+      ></ErrorMessage>
+    </div>
+  );
+};
+
+export const FormTextArea: React.FC<FormTextAreaProps> = ({
+  className,
+  label,
+  name,
+  hideLabel = false,
+  errorMessage,
+  ...rest
+}) => {
+  const { register, errors } = useFormContext("TextArea");
+
+  return (
+    <div className={cx([styles.formItem, className])}>
+      {!hideLabel && (
+        <label htmlFor={name} className={styles.label}>
+          {label}
+        </label>
+      )}
+      <textarea
+        id={name}
+        name={name}
+        aria-label={label}
+        ref={register}
+        aria-describedby={`err-${name}`}
+        aria-invalid={!!errors[name]}
+        className={styles.textArea}
         {...rest}
       />
       {/* disclosure pattern */}

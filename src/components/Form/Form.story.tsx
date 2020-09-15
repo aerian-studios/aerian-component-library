@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { Form, FormContents, FormControls } from ".";
 
-import { FormInput, FormInputGroup, FormSelect, Select } from "../FormElements";
+import { FormInput, FormInputGroup, FormSelect, FormTextArea } from "../FormElements";
 
 import styles from "./FormStory.module.scss";
 import applyTheme from "../../Theme";
@@ -38,6 +38,7 @@ export const form = () => (
       />
 
       <FormInput name="name" label="Name" placeholder="Your name" />
+      <FormTextArea name="info" label="Info" />
       <FormInputGroup
         name="types_of_fish"
         label="Types of fish"

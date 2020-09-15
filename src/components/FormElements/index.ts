@@ -1,5 +1,6 @@
 export {
   FormInput,
+  FormTextArea,
   FormInputGroup,
   FormSelect,
   ControlledElement,
