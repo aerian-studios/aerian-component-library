@@ -60,3 +60,67 @@
   margin: 0;
   padding: 0 var(--input-padding);
 }
+
+.tagWrapper {
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  box-sizing: border-box;
+  padding: var(--input-padding);
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tags {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-gap: var(--tag-grid-gap);
+  margin-right: var(--input-padding);
+  width: 100%;
+
+}
+
+.tagInput {
+  border: none;
+  font-size: inherit;
+  height: var(--tag-height);
+  outline: none;
+  margin: 3px;
+  flex-grow: 1;
+}
+
+.tagStyle {
+  align-items: center;
+  background: var(--tag-background);
+  border-radius: 2px;
+  color: var(--tag-colour);
+  display: flex;
+  height: var(--tag-height);
+  justify-content: space-between;
+  overflow: hidden;
+  font-size: 85%;
+  margin: 3px;
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+.tagText {
+  padding: 0 6px;
+}
+
+.deleteTagButton {
+  color: black;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  font-weight: bold;
+  padding: 0 4px;
+
+  &:hover {
+    background: var(--tag-delete-background);
+    color: var(--tag-delete-colour);
+  }
+}

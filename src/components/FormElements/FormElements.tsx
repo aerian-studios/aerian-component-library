@@ -1,4 +1,4 @@
-import React, { useCallback, HTMLAttributes } from "react";
+import React, { useCallback, HTMLAttributes, useEffect } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 import cx from "classnames";
 
@@ -54,7 +54,9 @@ interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
   label: string;
   options: SelectOption[];
   isMulti?: boolean;
-  onChange?: (selectedOption: SelectedDropdownItem | SelectedDropdownItem[]) => void;
+  onChange?: (
+    selectedOption: SelectedDropdownItem | SelectedDropdownItem[]
+  ) => void;
 }
 
 interface WrapComponentProps extends Record<string, any> {
@@ -303,5 +305,116 @@ export const ControlledElement: React.FC<WrapComponentProps> = ({
       defaultValue={defaultValue}
       {...rest}
     />
+  );
+};
+
+interface TagSelectorProps {
+  label?: string;
+  name: string;
+  wrapperStyle?: string;
+  tagStyle?: string;
+  inputStyle?: string;
+}
+
+export const FormTagSelector: React.FC<TagSelectorProps> = ({
+  label,
+  name,
+  wrapperStyle,
+  tagStyle,
+  inputStyle,
+}) => {
+  const { setValue: setFormValue, register } = useFormContext("TagSelector");
+
+  const inputRef = React.createRef<HTMLInputElement>();
+
+  const [tags, setTags] = React.useState<string[]>([]);
+  const [value, setValue] = React.useState<string>("");
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      setTags([...tags, value]);
+      setValue("");
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value);
+  };
+
+  const deleteTag = (
+    event: React.MouseEvent<HTMLButtonElement>,
+    tag: string
+  ) => {
+    event.preventDefault();
+    let newTags = [...tags];
+    newTags.splice(tags.indexOf(tag), 1);
+    setTags(newTags);
+    setFormValue(name, newTags);
+  };
+
+  const handleClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    inputRef.current.focus();
+  };
+
+  useEffect(() => {
+    setFormValue(name, tags);
+  }, [tags]);
+
+  useEffect(() => {
+    register(name);
+  }, []);
+
+  const Tags: React.FC = () => (
+    <>
+      {tags.map((tag) => (
+        <div key={tag} className={cx(styles.tagStyle, tagStyle)}>
+          <span className={styles.tagText}>{tag}</span>
+          <button
+            className={styles.deleteTagButton}
+            aria-label={`Delete ${tag}`}
+            onClick={(event) => deleteTag(event, tag)}
+          >
+            <svg
+              height="14"
+              width="14"
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              focusable="false"
+              className="css-6q0nyr-Svg"
+            >
+              <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z" />
+            </svg>
+          </button>
+        </div>
+      ))}
+    </>
+  );
+
+  return (
+    <>
+      <div className={styles.label}>
+        <label htmlFor={name}>{label}</label>
+      </div>
+      <div
+        className={cx(styles.tagWrapper, wrapperStyle)}
+        onClick={handleClick}
+      >
+        <div className={styles.tags}>
+          {tags && <Tags />}
+          <input
+            id={name}
+            ref={inputRef}
+            name={name}
+            type="text"
+            value={value}
+            className={cx(styles.tagInput, inputStyle)}
+            onKeyPress={(event) => handleKeyPress(event)}
+            onChange={(event) => handleChange(event)}
+          />
+        </div>
+      </div>
+    </>
   );
 };
