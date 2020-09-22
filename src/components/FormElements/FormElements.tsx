@@ -1,4 +1,4 @@
-import React, { useCallback, HTMLAttributes, useEffect } from "react";
+import React, { useCallback, useEffect, HTMLAttributes } from "react";
 import { ErrorMessage } from "@hookform/error-message";
 import cx from "classnames";
 
@@ -17,52 +17,6 @@ interface Props<T = HTMLInputElement> extends HTMLAttributes<T> {
 interface FormInputProps extends Props {
   type?: string;
   errorMessage?: string;
-}
-
-interface FormTextAreaProps extends Props<HTMLTextAreaElement> {
-  errorMessage?: string;
-}
-
-interface FormInputGroupProps extends Props<HTMLFieldSetElement> {
-  type?: "radio" | "checkbox";
-  options: Array<Omit<RadioInputProps, "name">>;
-  optionsClassName?: string;
-}
-
-interface RadioInputProps extends HTMLAttributes<HTMLElement> {
-  label: string;
-  value: string;
-  name: string;
-  type?: "radio" | "checkbox";
-  defaultChecked?: boolean;
-}
-
-interface SelectOption {
-  label: string;
-  value?: string;
-}
-
-interface SelectedDropdownItem {
-  name: string;
-  label?: string;
-  value: string;
-}
-
-interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
-  defaultValue?: SelectOption;
-  controlledDefault?: SelectOption;
-  label: string;
-  options: SelectOption[];
-  isMulti?: boolean;
-  onChange?: (
-    selectedOption: SelectedDropdownItem | SelectedDropdownItem[]
-  ) => void;
-}
-
-interface WrapComponentProps extends Record<string, any> {
-  name: string;
-  label: string;
-  Component: React.FC<any>;
 }
 
 export const FormInput: React.FC<FormInputProps> = ({
@@ -112,6 +66,10 @@ export const FormInput: React.FC<FormInputProps> = ({
   );
 };
 
+interface FormTextAreaProps extends Props<HTMLTextAreaElement> {
+  errorMessage?: string;
+}
+
 export const FormTextArea: React.FC<FormTextAreaProps> = ({
   className,
   label,
@@ -157,6 +115,14 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
   );
 };
 
+interface RadioInputProps extends HTMLAttributes<HTMLElement> {
+  label: string;
+  value: string;
+  name: string;
+  type?: "radio" | "checkbox";
+  defaultChecked?: boolean;
+}
+
 export const RadioOrCheckInput: React.FC<RadioInputProps> = ({
   className,
   type = "radio",
@@ -185,6 +151,12 @@ export const RadioOrCheckInput: React.FC<RadioInputProps> = ({
     </div>
   );
 };
+
+interface FormInputGroupProps extends Props<HTMLFieldSetElement> {
+  type?: "radio" | "checkbox";
+  options: Array<Omit<RadioInputProps, "name">>;
+  optionsClassName?: string;
+}
 
 export const FormInputGroup: React.FC<FormInputGroupProps> = ({
   className,
@@ -221,6 +193,28 @@ export const FormInputGroup: React.FC<FormInputGroupProps> = ({
     </fieldset>
   );
 };
+
+interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
+  defaultValue?: SelectOption;
+  controlledDefault?: SelectOption;
+  label: string;
+  options: SelectOption[];
+  isMulti?: boolean;
+  onChange?: (
+    selectedOption: SelectedDropdownItem | SelectedDropdownItem[]
+  ) => void;
+}
+
+interface SelectOption {
+  label: string;
+  value?: string;
+}
+
+interface SelectedDropdownItem {
+  name: string;
+  label?: string;
+  value: string;
+}
 
 export const Select: React.FC<SelectProps> = ({
   label,
@@ -287,6 +281,12 @@ export const FormSelect: React.FC<SelectProps> = ({
   ></ControlledElement>
 );
 
+interface WrapComponentProps extends Record<string, any> {
+  name: string;
+  label: string;
+  Component: React.FC<any>;
+}
+
 // typings - pass in component props
 export const ControlledElement: React.FC<WrapComponentProps> = ({
   Component,
@@ -308,20 +308,17 @@ export const ControlledElement: React.FC<WrapComponentProps> = ({
   );
 };
 
-interface TagSelectorProps {
-  label?: string;
-  name: string;
-  wrapperStyle?: string;
-  tagStyle?: string;
-  inputStyle?: string;
+interface TagSelectorProps extends Props {
+  tagClassName?: string;
+  inputClassName?: string;
 }
 
 export const FormTagSelector: React.FC<TagSelectorProps> = ({
+  className,
   label,
   name,
-  wrapperStyle,
-  tagStyle,
-  inputStyle,
+  inputClassName,
+  tagClassName,
 }) => {
   const { setValue: setFormValue, register } = useFormContext("TagSelector");
 
@@ -369,7 +366,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
   const Tags: React.FC = () => (
     <>
       {tags.map((tag) => (
-        <div key={tag} className={cx(styles.tagStyle, tagStyle)}>
+        <div key={tag} className={cx(styles.tag, tagClassName)}>
           <span className={styles.tagText}>{tag}</span>
           <button
             className={styles.deleteTagButton}
@@ -398,7 +395,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
         <label htmlFor={name}>{label}</label>
       </div>
       <div
-        className={cx(styles.tagWrapper, wrapperStyle)}
+        className={cx(styles.tagWrapper, className)}
         onClick={handleClick}
       >
         <div className={styles.tags}>
@@ -409,7 +406,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
             name={name}
             type="text"
             value={value}
-            className={cx(styles.tagInput, inputStyle)}
+            className={cx(styles.tagInput, inputClassName)}
             onKeyPress={(event) => handleKeyPress(event)}
             onChange={(event) => handleChange(event)}
           />
