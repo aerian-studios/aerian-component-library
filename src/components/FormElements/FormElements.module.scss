@@ -28,7 +28,7 @@
   color: inherit;
   min-height: var(--input-height);
   padding: var(--input-padding);
-  width: var(--input-width); 
+  width: var(--input-width);
 }
 
 .input:active,
@@ -78,7 +78,6 @@
   grid-gap: var(--tag-grid-gap);
   margin-right: var(--input-padding);
   width: 100%;
-
 }
 
 .tagInput {
@@ -90,7 +89,7 @@
   flex-grow: 1;
 }
 
-.tagStyle {
+.tag {
   align-items: center;
   background: var(--tag-background);
   border-radius: 2px;
@@ -106,18 +105,17 @@
 }
 
 .tagText {
-  padding: 0 6px;
+  padding: var(--tag-padding);
 }
 
 .deleteTagButton {
-  color: black;
-  height: 100%;
-  display: flex;
   align-items: center;
-  border: none;
   background: none;
+  border: none;
+  display: flex;
+  height: 100%;
   font-weight: bold;
-  padding: 0 4px;
+  padding: var(--tag-padding);
 
   &:hover {
     background: var(--tag-delete-background);
