@@ -1,15 +1,16 @@
 import React, { useCallback, useEffect, HTMLAttributes } from "react";
-import { ErrorMessage } from "@hookform/error-message";
+import { Controller } from "react-hook-form";
 import cx from "classnames";
+import { ErrorMessage } from "@hookform/error-message";
 
 import ReactSelect from "react-select";
 
+import Icon from "../Icons";
+
 import styles from "./FormElements.module.scss";
 import { useFormContext } from "../Form/useFormContext";
-import { Controller } from "react-hook-form";
 
 interface Props<T = HTMLInputElement> extends HTMLAttributes<T> {
-  hideLabel?: boolean;
   label: string;
   name: string;
 }
@@ -24,7 +25,6 @@ export const FormInput: React.FC<FormInputProps> = ({
   label,
   name,
   type = "text",
-  hideLabel = false,
   errorMessage,
   ...rest
 }) => {
@@ -32,18 +32,16 @@ export const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div className={cx([styles.formItem, className])}>
-      {!hideLabel && (
+      
         <label htmlFor={name} className={styles.label}>
           {label}
         </label>
-      )}
+      
       <input
         id={name}
         name={name}
         type={type}
-        aria-label={label}
         ref={register}
-        aria-describedby={`err-${name}`}
         aria-invalid={!!errors[name]}
         className={styles.input}
         {...rest}
@@ -74,7 +72,6 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
   className,
   label,
   name,
-  hideLabel = false,
   errorMessage,
   ...rest
 }) => {
@@ -82,17 +79,15 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
 
   return (
     <div className={cx([styles.formItem, className])}>
-      {!hideLabel && (
+      
         <label htmlFor={name} className={styles.label}>
           {label}
         </label>
-      )}
+      
       <textarea
         id={name}
         name={name}
-        aria-label={label}
         ref={register}
-        aria-describedby={`err-${name}`}
         aria-invalid={!!errors[name]}
         className={styles.textArea}
         {...rest}
@@ -160,7 +155,6 @@ interface FormInputGroupProps extends Props<HTMLFieldSetElement> {
 
 export const FormInputGroup: React.FC<FormInputGroupProps> = ({
   className,
-  hideLabel,
   label,
   name,
   options,
@@ -175,7 +169,7 @@ export const FormInputGroup: React.FC<FormInputGroupProps> = ({
       aria-label={label}
       {...rest}
     >
-      {!hideLabel && <legend className={styles.label}>{label}</legend>}
+      <legend className={styles.label}>{label}</legend>
 
       <div className={cx([styles.radioOrCheckButtonGroup, optionsClassName])}>
         {options.map(({ value, label, defaultChecked, ...optionsRest }) => (
@@ -320,23 +314,24 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
   inputClassName,
   tagClassName,
 }) => {
-  const { setValue: setFormValue, register } = useFormContext("TagSelector");
+  const { setValue, register } = useFormContext("TagSelector");
 
   const inputRef = React.createRef<HTMLInputElement>();
 
+  const [inputValue, setInputValue] = React.useState("");
   const [tags, setTags] = React.useState<string[]>([]);
-  const [value, setValue] = React.useState<string>("");
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      setTags([...tags, value]);
-      setValue("");
+      setTags([...tags, inputValue]);
+      setValue(name, [...tags, inputValue]);
+      setInputValue("");
     }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    setInputValue(event.target.value);
   };
 
   const deleteTag = (
@@ -347,17 +342,13 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
     let newTags = [...tags];
     newTags.splice(tags.indexOf(tag), 1);
     setTags(newTags);
-    setFormValue(name, newTags);
+    setValue(name, newTags);
   };
 
   const handleClick = (event: React.MouseEvent) => {
     event.preventDefault();
     inputRef.current.focus();
   };
-
-  useEffect(() => {
-    setFormValue(name, tags);
-  }, [tags]);
 
   useEffect(() => {
     register(name);
@@ -373,16 +364,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
             aria-label={`Delete ${tag}`}
             onClick={(event) => deleteTag(event, tag)}
           >
-            <svg
-              height="14"
-              width="14"
-              viewBox="0 0 20 20"
-              aria-hidden="true"
-              focusable="false"
-              className="css-6q0nyr-Svg"
-            >
-              <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z" />
-            </svg>
+           <Icon name="cross" />
           </button>
         </div>
       ))}
@@ -395,18 +377,18 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
         <label htmlFor={name}>{label}</label>
       </div>
       <div
-        className={cx(styles.tagWrapper, className)}
+        className={cx(styles.tagComponent, className)}
         onClick={handleClick}
       >
         <div className={styles.tags}>
           {tags && <Tags />}
           <input
             id={name}
-            ref={inputRef}
-            name={name}
             type="text"
-            value={value}
+            ref={inputRef}
             className={cx(styles.tagInput, inputClassName)}
+            name={name}
+            value={inputValue}
             onKeyPress={(event) => handleKeyPress(event)}
             onChange={(event) => handleChange(event)}
           />
