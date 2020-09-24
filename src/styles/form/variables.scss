@@ -53,4 +53,11 @@ $default-padding: 8px;
   --radio-group-justify: flex-start;
   --radio-group-align: center;
   --radio-group-width: 100%;
+  // TAG SELECTOR
+  --tag-height: 20px;
+  --tag-background: hsl(0,0%,90%);
+  --tag-colour: #383838;
+  --tag-delete-background: #FFBDAD;
+  --tag-delete-colour: #DE350B;
+  --tag-padding: 0 4px;
 }

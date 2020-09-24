@@ -2,7 +2,7 @@ import React from "react";
 import * as yup from "yup";
 import { Form, FormContents, FormControls } from ".";
 
-import { FormInput, FormInputGroup, FormSelect, FormTextArea } from "../FormElements";
+import { FormInput, FormInputGroup, FormSelect, FormTagSelector, FormTextArea } from "../FormElements";
 
 import styles from "./FormStory.module.scss";
 import applyTheme from "../../Theme";
@@ -101,6 +101,8 @@ export const form = () => (
           { label: "Brie", value: "brie" },
         ]}
       />
+
+      <FormTagSelector label="All the tags" name="all_the_tags" />
       <FormControls />
     </FormContents>
   </Form>

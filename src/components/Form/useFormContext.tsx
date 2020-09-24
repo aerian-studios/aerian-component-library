@@ -1,13 +1,7 @@
 import { useContext, createContext } from "react";
-import { DeepMap, FieldError } from "@hookform/error-message/dist/types";
+import { UseFormMethods } from "react-hook-form";
 
-interface FormContext {
-  register?: () => void;
-  control?: any;
-  errors?: DeepMap<Record<string, any>, FieldError>;
-}
-
-export const FormContext = createContext<FormContext>({});
+export const FormContext = createContext<UseFormMethods>(undefined);
 
 export function useFormContext(name = "Component") {
   const context = useContext(FormContext);

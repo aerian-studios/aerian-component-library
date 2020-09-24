@@ -28,7 +28,7 @@
   color: inherit;
   min-height: var(--input-height);
   padding: var(--input-padding);
-  width: var(--input-width); 
+  width: var(--input-width);
 }
 
 .input:active,
@@ -59,4 +59,64 @@
 .radioOrCheckButtonLabel {
   margin: 0;
   padding: 0 var(--input-padding);
+}
+
+.tagComponent {
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  box-sizing: border-box;
+  padding: var(--input-padding);
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.tagInput {
+  border: none;
+  font-size: inherit;
+  height: var(--tag-height);
+  outline: none;
+  margin: 3px;
+  flex-grow: 1;
+}
+
+.tag {
+  align-items: center;
+  background: var(--tag-background);
+  border-radius: 2px;
+  color: var(--tag-colour);
+  display: flex;
+  height: var(--tag-height);
+  justify-content: space-between;
+  overflow: hidden;
+  font-size: 85%;
+  margin: 3px;
+  min-width: 100px;
+  white-space: nowrap;
+}
+
+.tagText {
+  padding: var(--tag-padding);
+}
+
+.deleteTagButton {
+  align-items: center;
+  background: none;
+  border: none;
+  display: flex;
+  height: 100%;
+  font-weight: bold;
+  padding: var(--tag-padding);
+
+  &:hover {
+    background: var(--tag-delete-background);
+    color: var(--tag-delete-colour);
+  }
 }

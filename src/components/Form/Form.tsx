@@ -57,14 +57,14 @@ export function Form<T extends object>({
 }: FormProps<T>) {
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
-  const { register, handleSubmit, control, errors } = useForm<T>({
+  const methods = useForm<T>({
     resolver: yupResolver(wrappedValidationSchema),
   });
 
   return (
-    <FormContext.Provider value={{ register, errors, control }}>
+    <FormContext.Provider value={{ ...methods }}>
       <form
-        onSubmit={handleSubmit(onSubmitFn)}
+        onSubmit={methods.handleSubmit(onSubmitFn)}
         onReset={onResetFn}
         className={className}
         {...rest}
