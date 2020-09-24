@@ -5,6 +5,7 @@ export {
   FormTextArea,
   FormInputGroup,
   FormSelect,
+  FormTagSelector,
   Select,
   ControlledElement,
 } from "./components/FormElements";
