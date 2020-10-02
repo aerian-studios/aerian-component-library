@@ -1,4 +1,4 @@
 ---
-to: src/components/<%= h.changeCase.camel(name) %>/index.tsx
+to: src/components/<%= h.changeCase.pascal(name) %>/index.tsx
 ---
-export { <%= h.changeCase.pascal(name) %> } from "./<%= h.changeCase.camel(name) %>"
+export { <%= h.changeCase.pascal(name) %> } from "./<%= h.changeCase.pascal(name) %>"
