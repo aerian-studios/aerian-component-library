@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "@aerian/eslint-config-react",
+        "@aerian/eslint-config-typescript"
+    ],
+    "rules": {
+        "@typescript-eslint/camelcase": "off",
+        "@typescript-eslint/class-name-casing": "off",
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/ban-types": "off"
+    }
+}
