@@ -9,10 +9,10 @@ import { FormContext } from "./useFormContext";
 import styles from "./Form.module.scss";
 
 export interface FormProps<T extends object>
-  extends HTMLAttributes<HTMLElement> {
-  validationSchema: Record<string, YupTypes>;
-  onSubmitFn: SubmitHandler<T>;
-  onResetFn?: () => void;
+    extends HTMLAttributes<HTMLElement> {
+    validationSchema: Record<string, YupTypes>;
+    onSubmitFn: SubmitHandler<T>;
+    onResetFn?: () => void;
 }
 
 type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<object>;
@@ -20,57 +20,57 @@ type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<object>;
 interface FormContentsProps extends HTMLAttributes<HTMLElement> {}
 
 interface FormControlsProps extends HTMLAttributes<HTMLElement> {
-  submitButtonText?: string;
-  resetButtonText?: string;
+    submitButtonText?: string;
+    resetButtonText?: string;
 }
 
 export const FormContents: React.FC<FormContentsProps> = ({
-  children,
-  className,
-  ...rest
+    children,
+    className,
+    ...rest
 }) => (
-  <div className={cx([styles.formContents, className])} {...rest}>
-    {children}
-  </div>
+    <div className={cx([styles.formContents, className])} {...rest}>
+        {children}
+    </div>
 );
 
 export const FormControls: React.FC<FormControlsProps> = ({
-  className,
-  submitButtonText = "Submit",
-  resetButtonText = "Clear",
-  ...rest
+    className,
+    submitButtonText = "Submit",
+    resetButtonText = "Clear",
+    ...rest
 }) => (
-  <div className={cx([styles.formControls, className])} {...rest}>
-    <button type="submit">{submitButtonText}</button>
+    <div className={cx([styles.formControls, className])} {...rest}>
+        <button type="submit">{submitButtonText}</button>
 
-    <button type="reset">{resetButtonText}</button>
-  </div>
+        <button type="reset">{resetButtonText}</button>
+    </div>
 );
 
 export function Form<T extends object>({
-  children,
-  className,
-  onSubmitFn,
-  onResetFn,
-  validationSchema,
-  ...rest
+    children,
+    className,
+    onSubmitFn,
+    onResetFn,
+    validationSchema,
+    ...rest
 }: FormProps<T>) {
-  const wrappedValidationSchema = yup.object().shape(validationSchema);
+    const wrappedValidationSchema = yup.object().shape(validationSchema);
 
-  const methods = useForm<T>({
-    resolver: yupResolver(wrappedValidationSchema),
-  });
+    const methods = useForm<T>({
+        resolver: yupResolver(wrappedValidationSchema),
+    });
 
-  return (
-    <FormContext.Provider value={{ ...methods }}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmitFn)}
-        onReset={onResetFn}
-        className={className}
-        {...rest}
-      >
-        {children}
-      </form>
-    </FormContext.Provider>
-  );
+    return (
+        <FormContext.Provider value={{ ...methods }}>
+            <form
+                onSubmit={methods.handleSubmit(onSubmitFn)}
+                onReset={onResetFn}
+                className={className}
+                {...rest}
+            >
+                {children}
+            </form>
+        </FormContext.Provider>
+    );
 }
