@@ -7,6 +7,14 @@
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook"
   },
+  "lint-staged": {
+    "*.{css,md,scss}": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -17,10 +25,13 @@
   "dependencies": {
     "@hookform/error-message": "^0.0.2",
     "@hookform/resolvers": "^0.0.5",
+    "classnames": "^2.2.6",
     "react-hook-form": "^6.0.1",
     "react-select": "^3.1.0"
   },
   "devDependencies": {
+    "@aerian/eslint-config-react": "^9.1.0",
+    "@aerian/eslint-config-typescript": "^9.1.0",
     "@babel/core": "^7.10.4",
     "@hookform/error-message": "^0.0.2",
     "@hookform/resolvers": "^0.0.5",
@@ -34,13 +45,18 @@
     "@types/react": "^16.9.41",
     "@types/react-select": "^3.0.14",
     "@types/yup": "^0.29.3",
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
     "autoprefixer": "^9.8.4",
     "babel-loader": "^8.1.0",
     "babel-preset-react-app": "^9.1.2",
     "cssnano": "^4.1.10",
+    "eslint": "^7.10.0",
     "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
     "node-sass": "^4.14.1",
     "postcss-import": "^12.0.1",
+    "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hook-form": "^6.0.1",
@@ -50,5 +66,10 @@
     "typescript": "^3.9.6",
     "yalc": "^1.0.0-pre.37",
     "yup": "^0.29.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
