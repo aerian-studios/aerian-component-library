@@ -186,7 +186,14 @@ export const applyThemeForm = () => (
           { label: "Brie", value: "brie" },
         ]}
       />
+
+      <FormTagSelector 
+        name="tagging"
+        label="Doing a tagging"
+        className={styles.formInput}
+        defaultValue={["a", "b"]}
+      />
     </ThemedFormContents>
-    <ThemedFormControls loading />
+    <ThemedFormControls />
   </Form>
 );

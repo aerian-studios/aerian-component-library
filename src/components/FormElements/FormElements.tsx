@@ -311,7 +311,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
   name,
   inputClassName,
   tagClassName,
-  defaultValue
+  defaultValue,
 }) => {
   const { setValue, register } = useFormContext("TagSelector");
 
@@ -351,8 +351,10 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
 
   useEffect(() => {
     register(name);
-    setTags(defaultValue as string[]);
-    setValue(name, defaultValue as string[]);
+    if (Array.isArray(defaultValue)) {
+      setTags(defaultValue);
+      setValue(name, defaultValue);
+    }
   }, []);
 
   const Tags: React.FC = () => (
