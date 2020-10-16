@@ -32,11 +32,10 @@ export const FormInput: React.FC<FormInputProps> = ({
 
   return (
     <div className={cx([styles.formItem, className])}>
-      
-        <label htmlFor={name} className={styles.label}>
-          {label}
-        </label>
-      
+      <label htmlFor={name} className={styles.label}>
+        {label}
+      </label>
+
       <input
         id={name}
         name={name}
@@ -79,11 +78,10 @@ export const FormTextArea: React.FC<FormTextAreaProps> = ({
 
   return (
     <div className={cx([styles.formItem, className])}>
-      
-        <label htmlFor={name} className={styles.label}>
-          {label}
-        </label>
-      
+      <label htmlFor={name} className={styles.label}>
+        {label}
+      </label>
+
       <textarea
         id={name}
         name={name}
@@ -313,6 +311,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
   name,
   inputClassName,
   tagClassName,
+  defaultValue
 }) => {
   const { setValue, register } = useFormContext("TagSelector");
 
@@ -352,6 +351,8 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
 
   useEffect(() => {
     register(name);
+    setTags(defaultValue as string[]);
+    setValue(name, defaultValue as string[]);
   }, []);
 
   const Tags: React.FC = () => (
@@ -364,7 +365,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
             aria-label={`Delete ${tag}`}
             onClick={(event) => deleteTag(event, tag)}
           >
-           <Icon name="cross" />
+            <Icon name="cross" />
           </button>
         </div>
       ))}
@@ -376,10 +377,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
       <div className={styles.label}>
         <label htmlFor={name}>{label}</label>
       </div>
-      <div
-        className={cx(styles.tagComponent, className)}
-        onClick={handleClick}
-      >
+      <div className={cx(styles.tagComponent, className)} onClick={handleClick}>
         <div className={styles.tags}>
           {tags && <Tags />}
           <input
