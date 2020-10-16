@@ -22,6 +22,8 @@ interface FormContentsProps extends HTMLAttributes<HTMLElement> {}
 interface FormControlsProps extends HTMLAttributes<HTMLElement> {
   submitButtonText?: string;
   resetButtonText?: string;
+  loading?: boolean;
+  loadingIcon?: JSX.Element;
 }
 
 export const FormContents: React.FC<FormContentsProps> = ({
@@ -38,12 +40,18 @@ export const FormControls: React.FC<FormControlsProps> = ({
   className,
   submitButtonText = "Submit",
   resetButtonText = "Clear",
+  loading,
+  loadingIcon = "Loading...",
   ...rest
 }) => (
   <div className={cx([styles.formControls, className])} {...rest}>
-    <button type="submit">{submitButtonText}</button>
+    <button type="submit" disabled={loading}>
+      {loading ? loadingIcon : submitButtonText}
+    </button>
 
-    <button type="reset">{resetButtonText}</button>
+    <button type="reset" disabled={loading}>
+      {resetButtonText}
+    </button>
   </div>
 );
 

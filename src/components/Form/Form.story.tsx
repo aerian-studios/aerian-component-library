@@ -187,6 +187,6 @@ export const applyThemeForm = () => (
         ]}
       />
     </ThemedFormContents>
-    <ThemedFormControls />
+    <ThemedFormControls loading />
   </Form>
 );
