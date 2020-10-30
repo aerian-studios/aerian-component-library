@@ -10,6 +10,7 @@ export const applyTheme = <T extends Options>(
   return (
     <Component
       {...props}
+      {...options}
       className={cx([options.className, props.className])}
     />
   );
