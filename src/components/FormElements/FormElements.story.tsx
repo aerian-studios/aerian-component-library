@@ -33,3 +33,19 @@ export const formSelect = () => (
     />
   </Form>
 );
+
+export const formMulti = () => (
+  <Form onSubmitFn={noop} validationSchema={{}}>
+    <FormSelect
+      label="Inputs"
+      name="inputs"
+      defaultValue={null}
+      isMulti
+      options={[
+        { label: "Input 1", value: "input_1" },
+        { label: "Input 2", value: "input_2" },
+        { label: "Input 3", value: "input_3" },
+      ]}
+    />
+  </Form>
+);
