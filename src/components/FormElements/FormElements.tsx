@@ -244,7 +244,7 @@ export const Select: React.FC<SelectProps> = ({
       <ReactSelect
         id={selectId}
         name={selectId}
-        defaultValue={controlledDefault || options[0]}
+        defaultValue={controlledDefault}
         options={options}
         onChange={setSelection}
         isMulti={isMulti}
@@ -260,18 +260,23 @@ export const FormSelect: React.FC<SelectProps> = ({
   defaultValue,
   className,
   ...rest
-}) => (
-  <ControlledElement
-    Component={Select}
-    name={name}
-    label={label}
-    options={options}
-    defaultValue={defaultValue || options[0]}
-    controlledDefault={defaultValue || options[0]}
-    className={className}
-    {...rest}
-  ></ControlledElement>
-);
+}) => {
+  const calculatedDefaultValue =
+    defaultValue === null || defaultValue ? defaultValue : options[0];
+
+  return (
+    <ControlledElement
+      Component={Select}
+      name={name}
+      label={label}
+      options={options}
+      defaultValue={calculatedDefaultValue}
+      controlledDefault={calculatedDefaultValue}
+      className={className}
+      {...rest}
+    ></ControlledElement>
+  );
+};
 
 interface WrapComponentProps extends Record<string, any> {
   name: string;
