@@ -187,8 +187,8 @@ export const FormInputGroup: React.FC<FormInputGroupProps> = ({
 };
 
 interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
-  defaultValue?: SelectOption;
-  controlledDefault?: SelectOption;
+  defaultValue?: SelectOption | SelectOption[] | null;
+  controlledDefault?: SelectOption | SelectOption[] | null;
   label: string;
   options: SelectOption[];
   isMulti?: boolean;
