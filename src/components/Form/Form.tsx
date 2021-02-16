@@ -7,6 +7,8 @@ import cx from "classnames";
 import { FormContext } from "./useFormContext";
 
 import styles from "./Form.module.scss";
+import { UnpackNestedValue } from "react-hook-form/dist/types/form";
+import { DeepPartial } from "react-hook-form/dist/types/utils";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
@@ -65,15 +67,31 @@ export function Form<T extends object>({
 }: FormProps<T>) {
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
+  const [defaultValues, setDefaultValues] = React.useState<
+    UnpackNestedValue<DeepPartial<T>>
+  >();
+
   const methods = useForm<T>({
     resolver: yupResolver(wrappedValidationSchema),
   });
+
+  // on reset use reset to the intial values
+  const handleReset = () => {
+    methods.reset(defaultValues);
+    onResetFn && onResetFn();
+  };
+
+  // when form loads set its initial values as defaults
+  React.useEffect(() => {
+    const defaults = methods.getValues();
+    setDefaultValues(defaults);
+  }, []);
 
   return (
     <FormContext.Provider value={{ ...methods }}>
       <form
         onSubmit={methods.handleSubmit(onSubmitFn)}
-        onReset={onResetFn}
+        onReset={handleReset}
         className={className}
         {...rest}
       >

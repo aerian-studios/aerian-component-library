@@ -214,26 +214,41 @@ export const Select: React.FC<SelectProps> = ({
   options,
   className,
   onChange,
+  name,
   isMulti = false,
 }) => {
   const selectId = label.replace(/\s+/g, "-").toLowerCase();
 
+  // when the form is reset its value will change but watching this we can update the forms value when reset is called
+  const { watch } = useFormContext(name);
+  const formValue = watch(name);
+
+  // element controls its own value
+  const [value, setValue] = React.useState(controlledDefault);
+
   const setSelection = useCallback(
     (selectedOption) => {
       if (!selectedOption) {
-        return onChange({ name: selectId, label: null, value: null });
+        return onChange(null);
       }
 
       if (Array.isArray(selectedOption)) {
         return onChange(selectedOption);
       }
 
-      const name = selectId;
       const { label, value } = selectedOption;
+      setValue({ label, value });
+
+      const name = selectId;
       return onChange({ name, label, value });
     },
     [onChange, selectId]
   );
+
+  // when the formValue (in react hook form changes) update the component value so it displays the correct value
+  React.useEffect(() => {
+    setValue(formValue || controlledDefault);
+  }, [formValue]);
 
   return (
     <div className={className}>
@@ -244,7 +259,7 @@ export const Select: React.FC<SelectProps> = ({
       <ReactSelect
         id={selectId}
         name={selectId}
-        defaultValue={controlledDefault}
+        value={value}
         options={options}
         onChange={setSelection}
         isMulti={isMulti}
