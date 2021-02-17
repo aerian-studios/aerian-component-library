@@ -263,6 +263,7 @@ export const Select: React.FC<SelectProps> = ({
         options={options}
         onChange={setSelection}
         isMulti={isMulti}
+        aria-label={label}
       />
     </div>
   );
