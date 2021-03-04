@@ -192,6 +192,7 @@ interface SelectProps extends Omit<Props, "defaultValue" | "onChange"> {
   label: string;
   options: SelectOption[];
   isMulti?: boolean;
+  menuPlacement?: "top" | "bottom";
   onChange?: (
     selectedOption: SelectedDropdownItem | SelectedDropdownItem[]
   ) => void;
@@ -216,6 +217,7 @@ export const Select: React.FC<SelectProps> = ({
   onChange,
   name,
   isMulti = false,
+  menuPlacement = "bottom"
 }) => {
   const selectId = label.replace(/\s+/g, "-").toLowerCase();
 
@@ -263,6 +265,7 @@ export const Select: React.FC<SelectProps> = ({
         options={options}
         onChange={setSelection}
         isMulti={isMulti}
+        menuPlacement={menuPlacement}
       />
     </div>
   );
@@ -395,11 +398,11 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
   );
 
   return (
-    <>
+    <div className={className}>
       <div className={styles.label}>
         <label htmlFor={name}>{label}</label>
       </div>
-      <div className={cx(styles.tagComponent, className)} onClick={handleClick}>
+      <div className={cx(styles.tagComponent)} onClick={handleClick}>
         <div className={styles.tags}>
           {tags && <Tags />}
           <input
@@ -414,6 +417,6 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
