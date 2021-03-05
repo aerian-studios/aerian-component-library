@@ -12,7 +12,7 @@ yarn add @aerian-studios/aerian-component-library@0.0.1
 
 # Form
 
-The `Form` component is an implimentation of `react-hook-form`. 
+The `Form` component is an implimentation of `react-hook-form`.
 The component has 2 required props `onSubmitFn` and `validationSchema`.
 
 - onSubmitFn:
@@ -23,27 +23,29 @@ The component has 2 required props `onSubmitFn` and `validationSchema`.
 ## Full example
 
 ```tsx
-import { 
-    Form, 
-    FormContents, 
-    FormControls, 
-    FormInput, 
-    FormInputGroup, 
-    FormSelect 
-} from 'aerian-component-library';
-import * as yup from 'yup';
+import {
+  Form,
+  FormContents,
+  FormControls,
+  FormInput,
+  FormInputGroup,
+  FormSelect,
+} from "aerian-component-library";
+import * as yup from "yup";
 
 const validationSchema = {
-    email: yup.string().email().required()
-}
+  email: yup
+    .string()
+    .email()
+    .required(),
+};
 
 const FormComponent = () => {
-    const submitHandler = (data) => {
-        // do something with the data returned from the form
-        // data is passed to onSubmitFn with the names of 
-        // each input as the key e.g.:
-
-        /* 
+  const submitHandler = (data) => {
+    // do something with the data returned from the form
+    // data is passed to onSubmitFn with the names of
+    // each input as the key e.g.:
+    /* 
             {
                 email: "someemail@email.com,
                 types_of_fish: "pike",
@@ -51,65 +53,65 @@ const FormComponent = () => {
                 types_of_cheese: "cheddar
             }
         */
-    }
+  };
 
-    return (
-        <Form onSubmitFn={submitHandler} validationSchema={validationSchema}>
-            <FormContents>
-                <FormInput label="Name" name="email" type="email" />
+  return (
+    <Form onSubmitFn={submitHandler} validationSchema={validationSchema}>
+      <FormContents>
+        <FormInput label="Name" name="email" type="email" />
 
-                <FormInputGroup
-                    name="types_of_fish"
-                    label="Types of fish"
-                    inputs={[
-                    {
-                        label: "Salmon",
-                        value: "salmon",
-                        defaultChecked: true,
-                    },
-                    {
-                        label: "Pike",
-                        value: "pike",
-                    },
-                    ]}
-                />
+        <FormInputGroup
+          name="types_of_fish"
+          label="Types of fish"
+          inputs={[
+            {
+              label: "Salmon",
+              value: "salmon",
+              defaultChecked: true,
+            },
+            {
+              label: "Pike",
+              value: "pike",
+            },
+          ]}
+        />
 
-                <FormInputGroup
-                    name="peoples_names"
-                    label="People's Names"
-                    type="checkbox"
-                    inputs={[
-                    {
-                        label: "Jon",
-                        value: "jon",
-                        defaultChecked: true,
-                    },
-                    {
-                        label: "Amy",
-                        value: "amy",
-                    },
-                    {
-                        label: "Carol",
-                        value: "carol",
-                    },
-                    ]}
-                />
+        <FormInputGroup
+          name="peoples_names"
+          label="People's Names"
+          type="checkbox"
+          inputs={[
+            {
+              label: "Jon",
+              value: "jon",
+              defaultChecked: true,
+            },
+            {
+              label: "Amy",
+              value: "amy",
+            },
+            {
+              label: "Carol",
+              value: "carol",
+            },
+          ]}
+        />
 
-                <FormSelect
-                    name="types_of_cheese"
-                    label="Types of cheese"
-                    options={[
-                    { label: "Cheddar", value: "cheddar" },
-                    { label: "Gouda", value: "gouda" },
-                    { label: "Brie", value: "brie" },
-                    ]}
-                />
-            </FormContents>
+        <FormSelect
+          name="types_of_cheese"
+          label="Types of cheese"
+          options={[
+            { label: "Cheddar", value: "cheddar" },
+            { label: "Gouda", value: "gouda" },
+            { label: "Brie", value: "brie" },
+          ]}
+        />
+      </FormContents>
 
-            <FormControls />
-        </Form>
-    );
-}
+      <FormControls />
+    </Form>
+  );
+};
 
 export default FormComponent;
 ```
@@ -117,26 +119,25 @@ export default FormComponent;
 ## Form Element
 
 ```tsx
-import { Form } from 'aerian-component-library';
+import { Form } from "aerian-component-library";
 
 const FormComponent = () => {
-    return (
-        <Form onSubmitFn={() => {}} validationSchema={{}}>
-        </Form>
-    );
-}
+  return <Form onSubmitFn={() => {}} validationSchema={{}}></Form>;
+};
 
 export default FormComponent;
 ```
 
 ### Props
+
 | Name             | Type                                                     | Default   |
 | :--------------- | :------------------------------------------------------- | :-------- |
 | onSubmitFn       | `(data: Record<string, string &#124; string[]>) => void` | undefined |
 | validationSchema | `Record<string, YupTypes>`                               | undefined |
 | onResetFn?       | `() => void`                                             | undefined |
 
-## Developing locally 
+## Developing locally
+
 <hr />
 
 The repository contains storybooks for building and testing new components. To add components to the library use the following steps:
@@ -159,9 +160,27 @@ Run:
 yarn storybook
 ```
 
-Then create a component and relevant story within the `src` folder.
+## Adding a new component
+
+<hr />
+The repository contains a template that will allow you to quickly generate the scaffolding of a new component, including the style and storybook elements.
+
+To use these templates you must install [hygen](https://www.hygen.io):
+
+```bash
+npm i -g hygen
+```
+
+To create a new component using hygen simply run:
+
+```bash
+hygen component new --name my-new-component
+```
+
+The component will automatically be named in pascal-style format and will appear in the components folder.
 
 ## Linking a local version of aerian-component-library to another project
+
 <hr />
 
 Based on: [this article](https://medium.com/@mtfranchetto/the-solution-for-a-working-npm-yarn-link-ddcb4f3c785e)
@@ -178,4 +197,4 @@ yarn global add yalc
 
 Once yalc is installed running `yarn npm-publish:local` will build the library as if it was being published to npm, but store it locally.
 
-Next go to the react project you want to install the local version of `aerian-component-library` and run `yalc add aerian-component-library`.  
+Next go to the react project you want to install the local version of `aerian-component-library` and run `yalc add aerian-component-library`.

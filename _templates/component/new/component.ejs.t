@@ -1,9 +1,9 @@
 ---
-to: src/components/<%= h.changeCase.camel(name) %>/<%= h.changeCase.camel(name) %>.tsx
+to: src/components/<%= h.changeCase.pascal(name) %>/<%= h.changeCase.pascal(name) %>.tsx
 ---
 import React, { HTMLAttributes } from "react";
 
-import styles from "./<%= h.changeCase.camel(name) %>.module.scss";
+import styles from "./<%= h.changeCase.pascal(name) %>.module.scss";
 
 interface Props extends HTMLAttributes<HTMLElement> {
 
