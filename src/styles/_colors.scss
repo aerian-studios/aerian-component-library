@@ -1,0 +1,112 @@
+:root {
+  /***** 
+     Primary Brand Palette
+     Do not use these values directly if you can help it
+     *****/
+  --c-pale-pink: #f78da7;
+  --c-vivid-red: #cf2e2e;
+  --c-luminous-vivid-orange: #ff6900;
+  --c-luminous-vivid-amber: #fcb900;
+  --c-light-green-cyan: #7bdcb5;
+  --c-vivid-green-cyan: #00d084;
+  --c-pale-cyan-blue: #8ed1fc;
+  --c-vivid-cyan-blue: #0693e3;
+  --c-vivid-purple: #9b51e0;
+  --c-cobalt: #004;
+
+  --c-green: green;
+  --c-blue: rgb(32, 69, 157);
+  --c-amber: rgb(220, 153, 45);
+  --c-black: #000;
+  --c-white: #fff;
+
+  /***** Grayscale Palette *****/
+  --c-gray-100: #f5f5f5;
+  --c-gray-200: #eaeaea;
+  --c-gray-300: #c8c8c8;
+  --c-gray-400: #afafaf;
+  --c-gray-500: #8e8e8e;
+  --c-gray-600: #6f6f6f;
+  --c-gray-700: #333;
+  --c-gray-800: #2b2b2b;
+
+  /***** Usage Semantics (design tokens) *****/
+  --c-focus: var(--c-luminous-vivid-orange);
+  --c-active: var(--c-luminous-vivid-orange);
+
+  // Misc
+  --c-separator: var(--c-gray-200);
+  --c-positive: var(--c-green);
+  --c-negative: var(--c-vivid-red);
+  --c-informational: var(--c-blue);
+  --c-advisory: var(--c-amber);
+
+  // Body
+  --c-body-bg: var(--c-white);
+  --c-body: var(--c-gray-800);
+
+  // Link
+  --c-link: var(--c-cobalt);
+  --c-link-hover: var(--c-vivid-green-cyan);
+  --c-link-hover-decoration: underline;
+  --c-link-disabled: var(--c-gray-600);
+
+  // Global input colours
+  --c-input-border-disabled: var(--c-gray-500);
+  --c-input-bg: var(--c-white);
+  --c-input-bg-focus: var(--c-gray-100);
+  --c-input-bg-active: var(--c-gray-100);
+  --c-input-border: var(--c-gray-600);
+  --c-input-border-focus: var(--c-focus);
+  --c-input-border-active: var(--c-active);
+  --c-input-border-disabled: var(--c-gray-200);
+  --c-input-invalid: var(--c-negative);
+  --c-input-bg-invalid: var(--c-white);
+  --c-input-border-invalid: var(--c-negative);
+  --c-input-placeholder: var(--c-gray-600);
+  --c-input-helper-text: var(--c-gray-600);
+
+  // Button
+  --c-button: var(--c-cobalt);
+  --c-button-bg: var(--c-white);
+  --c-button-border: var(--c-cobalt);
+  --c-button-hover: var(--c-luminous-vivid-amber);
+  --c-button-hover-bg: var(--c-white);
+  --c-button-hover-border: var(--c-luminous-vivid-amber);
+  --c-button-disabled: var(--c-gray-600);
+  --c-button-disabled-border: var(--c-gray-600);
+  --c-button-disabled-bg: var(--c-gray-200);
+  // Primary
+  --c-button-primary: var(--c-cobalt);
+  --c-button-primary-bg: var(--c-vivid-green-cyan);
+  --c-button-primary-border: var(--c-cobalt);
+  --c-button-primary-hover: var(--c-cobalt);
+  --c-button-primary-hover-bg: var(--c-luminous-vivid-amber);
+  --c-button-primary-hover-border: var(--c-cobalt);
+  --c-button-primary-disabled: var(--c-gray-600);
+  --c-button-primary-disabled-border: var(--c-gray-600);
+  --c-button-primary-disabled-bg: var(--c-gray-200);
+  // Important/negative
+  --c-button-important: var(--c-white);
+  --c-button-important-bg: var(--c-negative);
+  --c-button-important-border: var(--c-negative);
+  --c-button-important-hover: var(--c-cobalt);
+  --c-button-important-hover-bg: var(--c-luminous-vivid-amber);
+  --c-button-important-hover-border: var(--c-cobalt);
+  --c-button-important-disabled: var(--c-gray-600);
+  --c-button-important-disabled-border: var(--c-gray-600);
+  --c-button-important-disabled-bg: var(--c-gray-200);
+  // (buttons that look like links)
+  --c-button-tertiary: var(--c-link);
+  --c-button-tertiary-bg: transparent;
+  --c-button-tertiary-border: transparent;
+  --c-button-tertiary-hover: var(--c-link-hover);
+  --c-button-tertiary-hover-border: transparent;
+  --c-button-tertiary-hover-bg: transparent;
+  --c-button-tertiary-disabled: var(--c-link-disabled);
+  --c-button-tertiary-disabled-border: transparent;
+  --c-button-tertiary-disabled-bg: transparent;
+
+  // Overlays
+  --c-overlay-opacity: 0.9;
+}
