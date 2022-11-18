@@ -53,6 +53,7 @@
   background-color: var(--c-dialog-content-bg, var(--c-white));
   border-radius: var(--s-content-border-radius, var(--s-border-radius-xs));
   box-shadow: var(--sh-dialog-content-shadow, var(--sh-box-xs));
+  z-index: var(--z-modal);
 
   &:focus {
     outline: none;
@@ -67,6 +68,7 @@
   opacity: var(--c-overlay-opacity);
   animation: overlayShow var(--ease-duration-short, 150ms)
     var(--ease-1, 0.16, 1, 0.3, 1);
+  z-index: calc(var(--z-modal) - 1);
 }
 
 .title {

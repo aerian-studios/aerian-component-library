@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { AlertDialog, AlertDialogTrigger, AlertDialogFooter } from "./index";
+import { Button } from "../Button";
 
 const Meta: ComponentMeta<typeof AlertDialog> = {
   title: "Components/AlertDialog",
@@ -18,15 +19,16 @@ export const Default = Template.bind({});
 Default.args = {
   trigger: (
     <AlertDialogTrigger>
-      <button>Open the dialog</button>
+      <Button variant="tertiary">Open the dialog</Button>
     </AlertDialogTrigger>
   ),
   dialogTitle: <>This is important!</>,
   dialogContent: <p>Are you sure about all of that stuff?</p>,
   dialogFooter: (
     <AlertDialogFooter
-      dialogCancel={<button>Cancel</button>}
-      dialogAction={<button>Yes, do it!</button>}
+      style={{ justifyContent: "space-between", display: "flex" }}
+      dialogCancel={<Button variant="important">Cancel</Button>}
+      dialogAction={<Button variant="primary">Yes, do it!</Button>}
     />
   ),
 };

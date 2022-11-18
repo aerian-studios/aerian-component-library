@@ -45,7 +45,7 @@ TertiaryVariant.parameters = {
   },
 };
 
-export const NegativeVariant: ComponentStory<typeof Button> = () => (
+export const ImportantVariant: ComponentStory<typeof Button> = () => (
   <>
     <Button variant={"important"}>Example</Button>
     <Button variant={"important"} disabled>
@@ -53,7 +53,7 @@ export const NegativeVariant: ComponentStory<typeof Button> = () => (
     </Button>
   </>
 );
-NegativeVariant.parameters = {
+ImportantVariant.parameters = {
   docs: {
     storyDescription:
       "This variant is for important potentially destructive operations.",
