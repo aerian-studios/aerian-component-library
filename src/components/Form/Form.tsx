@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import * as yup from "yup";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers";
+import { yupResolver } from "@hookform/resolvers/yup";
 import cx from "classnames";
 
 import { FormContext } from "./useFormContext";
@@ -9,6 +9,7 @@ import { FormContext } from "./useFormContext";
 import styles from "./Form.module.scss";
 import { UnpackNestedValue } from "react-hook-form/dist/types/form";
 import { DeepPartial } from "react-hook-form/dist/types/utils";
+import { ObjectShape } from "yup/lib/object";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
@@ -17,7 +18,7 @@ export interface FormProps<T extends object>
   onResetFn?: () => void;
 }
 
-type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<object>;
+type YupTypes = yup.StringSchema<string> | yup.ObjectSchema<ObjectShape>;
 
 interface FormContentsProps extends HTMLAttributes<HTMLElement> {}
 
@@ -67,9 +68,7 @@ export function Form<T extends object>({
 }: FormProps<T>) {
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
-  const [defaultValues, setDefaultValues] = React.useState<
-    UnpackNestedValue<DeepPartial<T>>
-  >();
+  const [defaultValues, setDefaultValues] = React.useState<T>();
 
   const methods = useForm<T>({
     resolver: yupResolver(wrappedValidationSchema),
