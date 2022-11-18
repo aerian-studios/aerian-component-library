@@ -1,0 +1,29 @@
+import React from "react";
+import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { {{pascalCase name}} } from "./index";
+
+const Meta: ComponentMeta<typeof {{pascalCase name}}> = {
+    title: "Components/{{pascalCase name}}",
+    component: {{pascalCase name}},
+};
+
+export default Meta;
+
+const Template: ComponentStory<typeof {{pascalCase name}}> = (args) => <{{pascalCase name}} {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+    key: "Milk Chocolate",
+};
+
+export const DarkVariant = Template.bind({});
+DarkVariant.args = {
+    color: "dark",
+    key: "Dark Chocolate",
+};
+DarkVariant.parameters = {
+    docs: {
+        storyDescription:
+            "This is the dark variant of the component and it displays...",
+    },
+};

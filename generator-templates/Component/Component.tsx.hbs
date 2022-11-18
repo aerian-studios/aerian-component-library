@@ -1,0 +1,14 @@
+import React from "react";
+import cx from "classnames";
+import styles from "./{{pascalCase name}}.module.scss";
+import { DefaultProps } from "../../types/types";
+
+/**
+ * IMPORTANT: Add a description to document this component for storybooks
+ */
+export const {{pascalCase name}} = ({
+    className,
+    ...rest
+}: DefaultProps<"div">) => {
+    return <div className={cx(styles.component, className)} {...rest}></div>;
+};
