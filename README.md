@@ -1,16 +1,15 @@
 # Aerian Component Library
 
-# Installation
+## Installation
 
 ```bash
 npm install --save @aerian-studios/aerian-component-library@0.0.1
 # or
 yarn add @aerian-studios/aerian-component-library@0.0.1
 ```
+## Usage
 
-# Usage
-
-# Form
+## Form
 
 The `Form` component is an implimentation of `react-hook-form`. 
 The component has 2 required props `onSubmitFn` and `validationSchema`.
@@ -130,13 +129,29 @@ export default FormComponent;
 ```
 
 ### Props
+
 | Name             | Type                                                     | Default   |
 | :--------------- | :------------------------------------------------------- | :-------- |
 | onSubmitFn       | `(data: Record<string, string &#124; string[]>) => void` | undefined |
 | validationSchema | `Record<string, YupTypes>`                               | undefined |
 | onResetFn?       | `() => void`                                             | undefined |
 
-## Developing locally 
+## Developing the component library
+
+There are generators to quickly output the files and boilerplate that you need to output a component:
+
+```bash
+yarn generate
+
+# or npm
+
+npm run generate
+```
+
+All components should have tests, a story, some local theming. Largely speaking the development and documentation of a component occurs in storybooks. This encourages thinking about the the component in isolation.
+
+### Developing locally 
+
 <hr />
 
 The repository contains storybooks for building and testing new components. To add components to the library use the following steps:
@@ -166,7 +181,7 @@ Then create a component and relevant story within the `src` folder.
 
 Based on: [this article](https://medium.com/@mtfranchetto/the-solution-for-a-working-npm-yarn-link-ddcb4f3c785e)
 
-Sometimes it is useul to link a local version of a library to another react project, to ensure everything is working correctly, before publishing an update to the npm dirctory.
+Sometimes it is useful to link a local version of a library to another react project, to ensure everything is working correctly, before publishing an update to the npm directory.
 
 Using `npm link` or `yarn link` can cause problems as the whole project is linked and multiple versions of react are detected.
 
