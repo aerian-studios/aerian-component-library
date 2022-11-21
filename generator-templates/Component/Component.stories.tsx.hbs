@@ -16,6 +16,19 @@ Default.args = {
     key: "Milk Chocolate",
 };
 
+export const LocalTheme: ComponentStory<any> = () => (
+  <>
+    <p>
+      The {{pascalCase name}} component implements the following local theme
+    </p>
+    <pre>
+      {`
+      animation-duration: var(--ease-duration-short, 150ms);
+      `}
+    </pre>
+  </>
+);
+
 export const DarkVariant = Template.bind({});
 DarkVariant.args = {
     color: "dark",
