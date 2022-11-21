@@ -5,8 +5,13 @@ import cx from "classnames";
 import { DefaultProps } from "../../types/types";
 import styles from "./AerButton.module.scss";
 
+export type AerButtonVariants =
+  | "primary"
+  | "tertiary"
+  | "important"
+  | "default";
 type Props = DefaultProps<"button"> & {
-  variant?: "primary" | "tertiary" | "important" | "default";
+  variant?: AerButtonVariants;
   type?: "button" | "submit" | "reset";
 };
 
