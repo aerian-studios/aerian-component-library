@@ -1,27 +1,77 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import Button from "./AerButton";
+import { AerButton } from "./AerButton";
 
-const Meta: ComponentMeta<typeof Button> = {
+const Meta: ComponentMeta<typeof AerButton> = {
   title: "Components/Inputs/Button",
-  component: Button,
+  component: AerButton,
 };
 
 export default Meta;
 
-export const Default: ComponentStory<typeof Button> = () => (
+export const Default: ComponentStory<typeof AerButton> = () => (
   <>
-    <Button>Example</Button>
-    <Button disabled>Example (disabled)</Button>
+    <AerButton>Example</AerButton>
+    <AerButton disabled>Example (disabled)</AerButton>
   </>
 );
 
-export const PrimaryVariant: ComponentStory<typeof Button> = () => (
+export const LocalTheme: ComponentStory<any> = () => (
   <>
-    <Button variant={"primary"}>Example</Button>
-    <Button variant={"primary"} disabled>
+    <p>
+      The AerButton component implements the following CSS variables that are
+      available in the global scope
+    </p>
+    <pre>
+      {`
+      // Button
+      --c-button: var(--c-cobalt);
+      --c-button-bg: var(--c-white);
+      --c-button-border: var(--c-cobalt);
+      --c-button-hover: var(--c-luminous-vivid-amber);
+      --c-button-hover-bg: var(--c-white);
+      --c-button-hover-border: var(--c-luminous-vivid-amber);
+      border-radius: var(--s-btn-radius, var(--s-border-radius-s));
+      --c-button-disabled: var(--c-gray-600);
+      --c-button-disabled-bg: var(--c-gray-200);
+      // Primary
+      --c-button-primary: var(--c-cobalt);
+      --c-button-primary-bg: var(--c-vivid-green-cyan);
+      --c-button-primary-border: var(--c-cobalt);
+      --c-button-primary-hover: var(--c-cobalt);
+      --c-button-primary-hover-bg: var(--c-luminous-vivid-amber);
+      --c-button-primary-hover-border: var(--c-cobalt);
+      --c-button-primary-disabled: var(--c-gray-600);
+      --c-button-primary-disabled-bg: var(--c-gray-200);
+      // Important/negative
+      --c-button-important: var(--c-white);
+      --c-button-important-bg: var(--c-negative);
+      --c-button-important-border: var(--c-negative);
+      --c-button-important-hover: var(--c-cobalt);
+      --c-button-important-hover-bg: var(--c-luminous-vivid-amber);
+      --c-button-important-hover-border: var(--c-cobalt);
+      --c-button-important-disabled: var(--c-gray-600);
+      --c-button-important-disabled-bg: var(--c-gray-200);
+      // (buttons that look like links)
+      --c-button-tertiary: var(--c-link);
+      --c-button-tertiary-bg: transparent;
+      --c-button-tertiary-border: transparent;
+      --c-button-tertiary-hover: var(--c-link-hover);
+      --c-button-tertiary-hover-border: transparent;
+      --c-button-tertiary-hover-bg: transparent;
+      --c-button-tertiary-disabled: var(--c-link-disabled);
+      --c-button-tertiary-disabled-bg: transparent;
+      `}
+    </pre>
+  </>
+);
+
+export const PrimaryVariant: ComponentStory<typeof AerButton> = () => (
+  <>
+    <AerButton variant={"primary"}>Example</AerButton>
+    <AerButton variant={"primary"} disabled>
       Example (disabled)
-    </Button>
+    </AerButton>
   </>
 );
 PrimaryVariant.parameters = {
@@ -30,12 +80,12 @@ PrimaryVariant.parameters = {
   },
 };
 
-export const TertiaryVariant: ComponentStory<typeof Button> = () => (
+export const TertiaryVariant: ComponentStory<typeof AerButton> = () => (
   <>
-    <Button variant={"tertiary"}>Example</Button>
-    <Button variant={"tertiary"} disabled>
+    <AerButton variant={"tertiary"}>Example</AerButton>
+    <AerButton variant={"tertiary"} disabled>
       Example (disabled)
-    </Button>
+    </AerButton>
   </>
 );
 TertiaryVariant.parameters = {
@@ -45,12 +95,12 @@ TertiaryVariant.parameters = {
   },
 };
 
-export const ImportantVariant: ComponentStory<typeof Button> = () => (
+export const ImportantVariant: ComponentStory<typeof AerButton> = () => (
   <>
-    <Button variant={"important"}>Example</Button>
-    <Button variant={"important"} disabled>
+    <AerButton variant={"important"}>Example</AerButton>
+    <AerButton variant={"important"} disabled>
       Example (disabled)
-    </Button>
+    </AerButton>
   </>
 );
 ImportantVariant.parameters = {

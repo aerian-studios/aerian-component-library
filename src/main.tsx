@@ -1,5 +1,4 @@
 import React from "react";
-// import "./theme.css";
 import { createRoot } from "react-dom/client";
 import {
   AerAlertDialog,

@@ -37,4 +37,28 @@ Default.args = {
   ),
 };
 
+export const LocalTheme: ComponentStory<any> = () => (
+  <>
+    <p>The AerAlertDialog component implements the following local theme:</p>
+    <pre>
+      {`
+      animation-duration: var(--ease-duration-short, 150ms);
+      animation-transition: var(--ease-1, 0.16, 1, 0.3, 1);
+      overlay animation: overlayShow;
+      overlay: background-color: var(--c-overlay-bg-color, var(--c-black));
+      overlay: opacity: var(--c-overlay-opacity);
+
+      content animation: contentShow 
+      content: background-color: var(--c-dialog-content-bg, var(--c-white));
+      content: border-radius: var(--s-border-radius-xs);
+      content: box-shadow: var(--sh-dialog-content-shadow, var(--sh-box-xs)); 
+      content: padding: var(--s-content-padding, var(--s-2));
+      content: var(--s-content-border-radius, var(--s-border-radius-xs));
+      
+      title: font-size: var(--t-dialog-title);
+      title: font-weight: var(--fw-dialog-title);`}
+    </pre>
+  </>
+);
+
 // todo make hidden title version
