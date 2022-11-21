@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
 import cx from "classnames";
-import * as Dialog from "@radix-ui/react-alert-dialog";
+import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import styles from "./AlertDialog.module.scss";
 import { DefaultProps } from "../../types/types";
 
-export const AlertDialogTrigger = ({ children }: DefaultProps<"button">) => (
-  <Dialog.Trigger asChild>{children}</Dialog.Trigger>
+export const AerAlertDialogTrigger = ({ children }: DefaultProps<"button">) => (
+  <AlertDialog.Trigger asChild>{children}</AlertDialog.Trigger>
 );
 
 export interface AlertDialogFooterProps extends DefaultProps<"footer"> {
@@ -15,16 +15,16 @@ export interface AlertDialogFooterProps extends DefaultProps<"footer"> {
   dialogAction: ReactElement;
 }
 
-export const AlertDialogFooter = ({
+export const AerAlertDialogFooter = ({
   dialogCancel,
   dialogAction,
   ...rest
 }: AlertDialogFooterProps) => (
   <footer {...rest}>
     {dialogCancel ? (
-      <Dialog.Cancel asChild>{dialogCancel}</Dialog.Cancel>
+      <AlertDialog.Cancel asChild>{dialogCancel}</AlertDialog.Cancel>
     ) : null}
-    <Dialog.Action asChild>{dialogAction}</Dialog.Action>
+    <AlertDialog.Action asChild>{dialogAction}</AlertDialog.Action>
   </footer>
 );
 
@@ -32,7 +32,7 @@ const elementIsReactElement = (element: any): element is ReactElement => {
   return "props" in element;
 };
 
-export interface AlertDialogProps extends DefaultProps<"div"> {
+export interface AerAlertDialogProps extends DefaultProps<"div"> {
   // The trigger should be an `AlertDialogTrigger`
   trigger: ReactElement;
   // `dialogTitle` is an object of the title and whether to hide the title (this defaults to true). NOTE: This is placed in an `<h2>`.
@@ -45,40 +45,40 @@ export interface AlertDialogProps extends DefaultProps<"div"> {
 /**
  * The AlertDialog interrupts a user's workflow to communicate an important message that requires a response. *NOTE:* This is different from the Dialog component
  */
-export const AlertDialog = ({
+export const AerAlertDialog = ({
   className,
   trigger,
   dialogTitle,
   dialogFooter,
   dialogContent,
-}: AlertDialogProps) => {
+}: AerAlertDialogProps) => {
   return (
-    <Dialog.Root>
+    <AlertDialog.Root>
       {trigger}
-      <Dialog.Portal>
+      <AlertDialog.Portal>
         <div className={className}>
-          <Dialog.Overlay className={styles.overlay} />
-          <Dialog.Content className={cx(styles.content)}>
+          <AlertDialog.Overlay className={styles.overlay} />
+          <AlertDialog.Content className={cx(styles.content)}>
             {elementIsReactElement(dialogTitle) ? (
-              <Dialog.Title className={cx(styles.title)}>
+              <AlertDialog.Title className={cx(styles.title)}>
                 {dialogTitle}
-              </Dialog.Title>
+              </AlertDialog.Title>
             ) : (
-              <Dialog.Title
+              <AlertDialog.Title
                 className={cx(styles.title, {
                   [styles.visuallyHidden]: dialogTitle.hideTitle === false,
                 })}
               >
                 {dialogTitle.title}
-              </Dialog.Title>
+              </AlertDialog.Title>
             )}
-            <Dialog.Description className={styles.description} asChild>
+            <AlertDialog.Description className={styles.description} asChild>
               {dialogContent}
-            </Dialog.Description>
+            </AlertDialog.Description>
             {dialogFooter}
-          </Dialog.Content>
+          </AlertDialog.Content>
         </div>
-      </Dialog.Portal>
-    </Dialog.Root>
+      </AlertDialog.Portal>
+    </AlertDialog.Root>
   );
 };

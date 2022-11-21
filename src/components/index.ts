@@ -1,9 +1,9 @@
 /* PLOP_INJECT_IMPORT */
-import { FooBar } from "./FooBar";
-import { AlertDialog } from "./AlertDialog";
+import { AerAlertDialog, AerAlertDialogFooter, AerAlertDialogTrigger } from "./AerAlertDialog";
 
 export {
   /* PLOP_INJECT_EXPORT */
-	FooBar,
-	AlertDialog,
+	AerAlertDialog,
+	AerAlertDialogFooter,
+	AerAlertDialogTrigger
 }

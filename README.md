@@ -1,17 +1,18 @@
-# Aerian Component Library
+# Aerated - Component Library
 
 ## Installation
 
 ```bash
-npm install --save @aerian-studios/aerian-component-library@0.0.1
+npm install --save @aerian-studios/aerated@0.0.1
 # or
-yarn add @aerian-studios/aerian-component-library@0.0.1
+yarn add @aerian-studios/aerated@0.0.1
 ```
+
 ## Usage
 
 ## Form
 
-The `Form` component is an implimentation of `react-hook-form`. 
+The `Form` component is an implementation of `react-hook-form`. 
 The component has 2 required props `onSubmitFn` and `validationSchema`.
 
 - onSubmitFn:
@@ -29,7 +30,7 @@ import {
     FormInput, 
     FormInputGroup, 
     FormSelect 
-} from 'aerian-component-library';
+} from 'aerated';
 import * as yup from 'yup';
 
 const validationSchema = {
@@ -116,7 +117,7 @@ export default FormComponent;
 ## Form Element
 
 ```tsx
-import { Form } from 'aerian-component-library';
+import { Form } from 'aerated';
 
 const FormComponent = () => {
     return (
@@ -159,7 +160,7 @@ The repository contains storybooks for building and testing new components. To a
 Clone this repository:
 
 ```bash
-https://github.com/matt-hardman/aerian-component-library.git
+https://github.com/matt-hardman/aerated.git
 ```
 
 Install dependencies:
@@ -176,7 +177,7 @@ yarn storybook
 
 Then create a component and relevant story within the `src` folder.
 
-## Linking a local version of aerian-component-library to another project
+## Linking a local version of aerated to another project
 <hr />
 
 Based on: [this article](https://medium.com/@mtfranchetto/the-solution-for-a-working-npm-yarn-link-ddcb4f3c785e)
@@ -193,4 +194,4 @@ yarn global add yalc
 
 Once yalc is installed running `yarn npm-publish:local` will build the library as if it was being published to npm, but store it locally.
 
-Next go to the react project you want to install the local version of `aerian-component-library` and run `yalc add aerian-component-library`.  
+Next go to the react project you want to install the local version of `aerated` and run `yalc add aerated`.  

@@ -2,20 +2,24 @@ import React from "react";
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AlertDialog, AlertDialogFooter, AlertDialogTrigger } from "./index";
+import {
+  AerAlertDialog,
+  AerAlertDialogFooter,
+  AerAlertDialogTrigger,
+} from "./index";
 
 describe("AlertDialog", () => {
   it("should render correctly", async () => {
     const { container } = render(
-      <AlertDialog
+      <AerAlertDialog
         trigger={
-          <AlertDialogTrigger>
+          <AerAlertDialogTrigger>
             <button>Open the dialog</button>
-          </AlertDialogTrigger>
+          </AerAlertDialogTrigger>
         }
         dialogTitle={<>This is important!</>}
         dialogFooter={
-          <AlertDialogFooter
+          <AerAlertDialogFooter
             dialogCancel={<button>Cancel</button>}
             dialogAction={<button>Yes, do it!</button>}
           />
