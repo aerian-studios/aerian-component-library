@@ -1,15 +1,14 @@
 import React from "react";
 import { describe, it, expect, afterEach, vi } from "vitest";
 
-import { render, screen } from "@testing-library/react";
+import { cleanup, render, screen } from "@testing-library/react";
 
 import { AerButton } from "./index";
 import { AerButtonVariants } from "./AerButton";
-import { act } from "react-dom/test-utils";
 
 describe("AerButton", () => {
   afterEach(() => {
-    document.body.innerHTML = "";
+    cleanup();
   });
   it("should render correctly", () => {
     const { container } = render(<AerButton disabled={false} />);

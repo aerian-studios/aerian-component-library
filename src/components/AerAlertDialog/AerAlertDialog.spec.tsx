@@ -1,6 +1,6 @@
 import React from "react";
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {
   AerAlertDialog,
@@ -9,8 +9,12 @@ import {
 } from "./index";
 
 describe("AlertDialog", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it("should render correctly", async () => {
-    const { container } = render(
+    const { baseElement } = render(
       <AerAlertDialog
         trigger={
           <AerAlertDialogTrigger>
@@ -35,6 +39,93 @@ describe("AlertDialog", () => {
     expect(screen.getByRole("alertdialog", { name: "This is important!" }));
     expect(screen.getByText("Are you sure about all of that stuff?"));
 
-    expect(container).toMatchSnapshot();
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it("should render an accessible `alertdialog` despite not showing the title visually", async () => {
+    const { baseElement } = render(
+      <AerAlertDialog
+        trigger={
+          <AerAlertDialogTrigger>
+            <button>Open the dialog</button>
+          </AerAlertDialogTrigger>
+        }
+        dialogTitle={{ title: <>This is important!</>, hideTitle: true }}
+        dialogFooter={
+          <AerAlertDialogFooter
+            dialogCancel={<button>Cancel</button>}
+            dialogAction={<button>Yes, do it!</button>}
+          />
+        }
+        dialogContent={<p>Are you sure about all of that stuff?</p>}
+      />
+    );
+
+    await userEvent.click(
+      screen.getByRole("button", { name: "Open the dialog" })
+    );
+
+    expect(screen.getByRole("alertdialog", { name: "This is important!" }));
+    expect(baseElement).toMatchSnapshot();
+  });
+
+  it("should call the cancel callback and hide the dialog", async () => {
+    const cancelCb = vi.fn();
+
+    const { baseElement } = render(
+      <AerAlertDialog
+        trigger={
+          <AerAlertDialogTrigger>
+            <button>Open the dialog</button>
+          </AerAlertDialogTrigger>
+        }
+        dialogTitle={<>This is important!</>}
+        dialogFooter={
+          <AerAlertDialogFooter
+            dialogCancel={<button onClick={cancelCb}>Cancel</button>}
+            dialogAction={<button>Yes, do it!</button>}
+          />
+        }
+        dialogContent={<p>Are you sure about all of that stuff?</p>}
+      />
+    );
+
+    await userEvent.click(
+      screen.getByRole("button", { name: "Open the dialog" })
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+
+    expect(cancelCb).toHaveBeenCalledOnce();
+  });
+
+  it("should call the action callback and hide the dialog", async () => {
+    const actionCb = vi.fn();
+
+    const { baseElement } = render(
+      <AerAlertDialog
+        trigger={
+          <AerAlertDialogTrigger>
+            <button>Open the dialog</button>
+          </AerAlertDialogTrigger>
+        }
+        dialogTitle={<>This is important!</>}
+        dialogFooter={
+          <AerAlertDialogFooter
+            dialogCancel={<button>Cancel</button>}
+            dialogAction={<button onClick={actionCb}>Yes, do it!</button>}
+          />
+        }
+        dialogContent={<p>Are you sure about all of that stuff?</p>}
+      />
+    );
+
+    await userEvent.click(
+      screen.getByRole("button", { name: "Open the dialog" })
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /yes, do it/i }));
+
+    expect(actionCb).toHaveBeenCalledOnce();
   });
 });
