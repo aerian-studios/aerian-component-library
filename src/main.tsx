@@ -2,11 +2,11 @@ import React from "react";
 // import "./theme.css";
 import { createRoot } from "react-dom/client";
 import {
-  AlertDialog,
-  AlertDialogFooter,
-  AlertDialogTrigger,
-} from "./components/AlertDialog";
-import { Button } from "./components/Button";
+  AerAlertDialog,
+  AerAlertDialogFooter,
+  AerAlertDialogTrigger,
+} from "./components/AerAlertDialog";
+import { AerButton } from "./components/AerButton";
 import styles from "./main.module.scss";
 
 const container = document.getElementById("root");
@@ -17,19 +17,19 @@ const root = createRoot(container!);
 root.render(
   <React.StrictMode>
     {/* Test out some components here */}
-    <AlertDialog
+    <AerAlertDialog
       className={styles.dialog}
       trigger={
-        <AlertDialogTrigger>
-          <Button>Open the dialog</Button>
-        </AlertDialogTrigger>
+        <AerAlertDialogTrigger>
+          <AerButton>Open the dialog</AerButton>
+        </AerAlertDialogTrigger>
       }
       dialogTitle={<>This is important!</>}
       dialogFooter={
-        <AlertDialogFooter
+        <AerAlertDialogFooter
           className={styles.footer}
-          dialogCancel={<Button variant="important">Cancel</Button>}
-          dialogAction={<Button variant="primary">Yes, do it!</Button>}
+          dialogCancel={<AerButton variant="important">Cancel</AerButton>}
+          dialogAction={<AerButton variant="primary">Yes, do it!</AerButton>}
         />
       }
       dialogContent={<p>Are you sure about all of that stuff?</p>}

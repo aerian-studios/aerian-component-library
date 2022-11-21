@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import cx from "classnames";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
-import styles from "./AlertDialog.module.scss";
+import styles from "./AerAlertDialog.module.scss";
 import { DefaultProps } from "../../types/types";
 
 export const AerAlertDialogTrigger = ({ children }: DefaultProps<"button">) => (
