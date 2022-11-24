@@ -1,5 +1,5 @@
 {
-  "name": "@aerian/aerian-component-library",
+  "name": "@aerian/aerated-component-library",
   "version": "0.8.0",
   "type": "module",
   "source": [
@@ -8,7 +8,7 @@
   "module": "dist/main.js",
   "types": "dist/types.d.ts",
   "description": "",
-  "repository": "https://github.com/aerian-studios/aerian-component-library.git",
+  "repository": "https://github.com/aerian-studios/aerated.git",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
