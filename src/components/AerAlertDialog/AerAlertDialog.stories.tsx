@@ -1,16 +1,12 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import {
-  AerAlertDialog,
-  AerAlertDialogTrigger,
-  AerAlertDialogFooter,
-} from "./index";
+import { AerAlertDialog, AerAlertDialogFooter } from "./index";
 import { AerButton } from "../AerButton";
 
 const Meta: ComponentMeta<typeof AerAlertDialog> = {
   title: "Components/AerAlertDialog",
   component: AerAlertDialog,
-  subcomponents: { AerAlertDialogTrigger, AerAlertDialogFooter },
+  subcomponents: { AerAlertDialogFooter },
 };
 
 export default Meta;
@@ -21,12 +17,8 @@ const Template: ComponentStory<typeof AerAlertDialog> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  trigger: (
-    <AerAlertDialogTrigger>
-      <AerButton>Open the dialog</AerButton>
-    </AerAlertDialogTrigger>
-  ),
-  title: <>This is important!</>,
+  trigger: <AerButton>Open the dialog</AerButton>,
+  title: "This is important!",
   content: <p>Are you sure about all of that stuff?</p>,
   footer: (
     <AerAlertDialogFooter
@@ -64,12 +56,8 @@ export const LocalTheme: ComponentStory<any> = () => (
 export const VisuallyHiddenTitle = Template.bind({});
 
 VisuallyHiddenTitle.args = {
-  trigger: (
-    <AerAlertDialogTrigger>
-      <AerButton>Open the dialog</AerButton>
-    </AerAlertDialogTrigger>
-  ),
-  title: { title: <>This is important!</>, hideTitle: true },
+  trigger: <AerButton>Open the dialog</AerButton>,
+  title: { title: "This is important!", hideTitle: true },
   content: <p>Are you sure about all of that stuff?</p>,
   footer: (
     <AerAlertDialogFooter

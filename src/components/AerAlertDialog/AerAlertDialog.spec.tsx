@@ -2,11 +2,7 @@ import React from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {
-  AerAlertDialog,
-  AerAlertDialogFooter,
-  AerAlertDialogTrigger,
-} from "./index";
+import { AerAlertDialog, AerAlertDialogFooter } from "./index";
 
 describe("AlertDialog", () => {
   afterEach(() => {
@@ -16,11 +12,7 @@ describe("AlertDialog", () => {
   it("should render correctly", async () => {
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
+        trigger={<button>Open the dialog</button>}
         title={<>This is important!</>}
         footer={
           <AerAlertDialogFooter
@@ -45,11 +37,7 @@ describe("AlertDialog", () => {
   it("should render an accessible `alertdialog` despite not showing the title visually", async () => {
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
+        trigger={<button>Open the dialog</button>}
         title={{ title: <>This is important!</>, hideTitle: true }}
         footer={
           <AerAlertDialogFooter
@@ -74,11 +62,7 @@ describe("AlertDialog", () => {
 
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
+        trigger={<button>Open the dialog</button>}
         title={<>This is important!</>}
         footer={
           <AerAlertDialogFooter
@@ -104,12 +88,8 @@ describe("AlertDialog", () => {
 
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
-        title={<>This is important!</>}
+        trigger={<button>Open the dialog</button>}
+        title={"This is important!"}
         footer={
           <AerAlertDialogFooter
             cancel={<button>Cancel</button>}

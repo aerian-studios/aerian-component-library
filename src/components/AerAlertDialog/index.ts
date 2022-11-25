@@ -1,3 +1,3 @@
-import { AerAlertDialog, AerAlertDialogTrigger, AerAlertDialogFooter } from "./AerAlertDialog";
+import { AerAlertDialog, AerAlertDialogFooter } from "./AerAlertDialog";
 
-export { AerAlertDialog, AerAlertDialogTrigger, AerAlertDialogFooter };
+export { AerAlertDialog, AerAlertDialogFooter };

@@ -18,12 +18,8 @@ root.render(
     {/* Test out some components here */}
     <AerAlertDialog
       className={styles.dialog}
-      trigger={
-        <AerAlertDialogTrigger>
-          <AerButton>Open the dialog</AerButton>
-        </AerAlertDialogTrigger>
-      }
-      title={<>This is important!</>}
+      trigger={<AerButton>Open the dialog</AerButton>}
+      title={"This is important!"}
       footer={
         <AerAlertDialogFooter
           className={styles.footer}
