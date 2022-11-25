@@ -58,6 +58,10 @@
   &:focus {
     outline: none;
   }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 }
 
 .overlay {
@@ -69,6 +73,10 @@
   animation: overlayShow var(--ease-duration-short, 150ms)
     var(--ease-1, 0.16, 1, 0.3, 1);
   z-index: calc(var(--z-modal) - 1);
+
+  @media (prefers-reduced-motion) {
+    animation: none;
+  }
 }
 
 .title {

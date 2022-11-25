@@ -1,79 +1,130 @@
+/* Local Theme
+ * root: border-radius: var(--s-cmp-border-radius, var(--s-border-radius-xs));
+ * root: width: var(--s-cmp-width, unset);
+ * root: box-shadow: var(--sh-cmp, var(--sh-box-xs));
+*
+ * item-separator-color: var(--c-cmp-separator, var(--c-separator));// actually applied as a background to the root
+ * item-separator-height: var(--c-cmp-separator-height, 1px);
+ * item-focus-within-border-color: var(--c-cmp-focus, --c-focus);
+ * item-focus-within-border-size: var(--s-cmp-focus, 2px);
+ *
+ * item-header:trigger: padding: var(--s-cmp-trigger-padding-top, 0) var(--s-cmp-trigger-padding-right, var(--s-2)) var(--s-cmp-trigger-padding-bottom, 0) var(--s-cmp-trigger-padding-left, var(--s-2));
+ * item-header:trigger: height: var(--cmp-trigger-height, var(--t-heading-m));
+ * item-header:trigger: font-size: var(--t-cmp-trigger, var(--t-heading-m));
+ * item-header:trigger: color: var(--c-cmp-trigger);
+ * item-header:trigger: box-shadow: var(--sh-cmp-trigger, var(--sh-box-xs));
+ * item-header:trigger: background-color: var(--c-cmp-trigger-bg, var(--c-white));
+ * item-header:trigger:hover: color: var(--c-cmp-trigger-hover);
+ * item-header:trigger:hover: background-color: var(--c-cmp-trigger-bg-hover, var(--c-gray-100));
+ * item-header:trigger-icon: color: var(--c-cmp-trigger-icon, inherit);
+ *
+ * item-content: color: var(--c-cmp-item);
+ * item-content: font-size: var(--t-cmp-body, var(--t-body-m));
+ * item-content: background-color: var(--c-cmp-body-bg, var(--c-gray-100));
+ * item-content: padding: var(--s-cmp-body-padding-top, var(--s-1)) var(--s-cmp-body-padding-right, var(--s-2)) var(--s-cmp-body-padding-bottom, var(--s-1)) var(--s-cmp-body-padding-left, var(--s-2));
+}
+ */
+
 .accordionRoot {
-  border-radius: 6px;
-  width: 300px;
-  background-color: var(--mauve6);
-  box-shadow: 0 2px 10px var(--blackA4);
+  border-radius: var(--s-cmp-border-radius, var(--s-border-radius-xs));
+  width: var(--s-cmp-width, unset);
+  background-color: var(--c-cmp-separator, var(--c-separator));
+  box-shadow: var(--sh-cmp, var(--sh-box-xs));
 }
 
 .accordionItem {
   overflow: hidden;
-  margin-top: 1px;
+  margin-top: var(--c-cmp-separator-height, 1px);
 }
 
 .accordionItem:first-child {
   margin-top: 0;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  border-top-left-radius: var(--s-cmp-border-radius, var(--s-border-radius-xs));
+  border-top-right-radius: var(
+    --s-cmp-border-radius,
+    var(--s-border-radius-xs)
+  );
 }
 
 .accordionItem:last-child {
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: var(
+    --s-cmp-border-radius,
+    var(--s-border-radius-xs)
+  );
+  border-bottom-right-radius: var(
+    --s-cmp-border-radius,
+    var(--s-border-radius-xs)
+  );
 }
 
 .accordionItem:focus-within {
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 2px var(--mauve12);
+  box-shadow: 0 0 0 var(--s-cmp-focus, 2px) var(--c-cmp-focus, --c-focus);
 }
 
 .accordionHeader {
   display: flex;
+  margin: 0;
 }
 
 .accordionTrigger {
+  all: unset;
   font-family: inherit;
   background-color: transparent;
-  padding: 0 20px;
-  height: 45px;
+  padding: var(--s-cmp-trigger-padding-top, var(--s-1))
+    var(--s-cmp-trigger-padding-right, var(--s-2))
+    var(--s-cmp-trigger-padding-bottom, var(--s-1))
+    var(--s-cmp-trigger-padding-left, var(--s-2));
+  height: var(--cmp-trigger-height, var(--t-heading-m));
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: var(--t-cmp-trigger, var(--t-heading-m));
   line-height: 1;
-  color: var(--violet11);
-  box-shadow: 0 1px 0 var(--mauve6);
-  background-color: white;
-}
+  color: var(--c-cmp-trigger);
+  box-shadow: var(--sh-cmp-trigger, var(--sh-box-xs));
+  background-color: var(--c-cmp-trigger-bg, var(--c-white));
 
-.accordionTrigger:hover {
-  background-color: var(--mauve2);
+  &:hover {
+    color: var(--c-cmp-trigger-hover);
+    background-color: var(--c-cmp-trigger-bg-hover, var(--c-gray-100));
+  }
+
+  &[data-state="open"] > .accordionChevron {
+    transform: rotate(180deg);
+  }
 }
 
 .accordionContent {
   overflow: hidden;
-  font-size: 15px;
-  color: var(--mauve11);
-  background-color: var(--mauve2);
-}
-.accordionContent[data-state="open"] {
-  animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
-}
-.accordionContent[data-state="closed"] {
-  animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  font-size: var(--t-cmp-body, var(--t-body-m));
+  color: var(--c-cmp-item);
+  background-color: var(--c-cmp-body-bg, var(--c-gray-100));
+
+  &[data-state="open"] {
+    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  }
+  &[data-state="closed"] {
+    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none !important;
+  }
 }
 
 .accordionContentText {
-  padding: 15px 20px;
+  padding: var(--s-cmp-body-padding-top, var(--s-1))
+    var(--s-cmp-body-padding-right, var(--s-2))
+    var(--s-cmp-body-padding-bottom, var(--s-1))
+    var(--s-cmp-body-padding-left, var(--s-2));
 }
 
 .accordionChevron {
-  color: var(--violet10);
+  color: var(--c-cmp-trigger-icon, inherit);
   transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
-}
-.accordionTrigger[data-state="open"] > .accordionChevron {
-  transform: rotate(180deg);
 }
 
 @keyframes slideDown {
