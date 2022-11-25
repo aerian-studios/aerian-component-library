@@ -26,13 +26,13 @@ Default.args = {
       <AerButton>Open the dialog</AerButton>
     </AerAlertDialogTrigger>
   ),
-  dialogTitle: <>This is important!</>,
-  dialogContent: <p>Are you sure about all of that stuff?</p>,
-  dialogFooter: (
+  title: <>This is important!</>,
+  content: <p>Are you sure about all of that stuff?</p>,
+  footer: (
     <AerAlertDialogFooter
       style={{ justifyContent: "space-between", display: "flex" }}
-      dialogCancel={<AerButton variant="important">Cancel</AerButton>}
-      dialogAction={<AerButton variant="primary">Yes, do it!</AerButton>}
+      cancel={<AerButton variant="important">Cancel</AerButton>}
+      action={<AerButton variant="primary">Yes, do it!</AerButton>}
     />
   ),
 };
@@ -61,4 +61,21 @@ export const LocalTheme: ComponentStory<any> = () => (
   </>
 );
 
-// todo make hidden title version
+export const VisuallyHiddenTitle = Template.bind({});
+
+VisuallyHiddenTitle.args = {
+  trigger: (
+    <AerAlertDialogTrigger>
+      <AerButton>Open the dialog</AerButton>
+    </AerAlertDialogTrigger>
+  ),
+  title: { title: <>This is important!</>, hideTitle: true },
+  content: <p>Are you sure about all of that stuff?</p>,
+  footer: (
+    <AerAlertDialogFooter
+      style={{ justifyContent: "space-between", display: "flex" }}
+      cancel={<AerButton variant="important">Cancel</AerButton>}
+      action={<AerButton variant="primary">Yes, do it!</AerButton>}
+    />
+  ),
+};

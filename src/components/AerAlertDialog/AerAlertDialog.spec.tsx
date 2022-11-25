@@ -21,14 +21,14 @@ describe("AlertDialog", () => {
             <button>Open the dialog</button>
           </AerAlertDialogTrigger>
         }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        title={<>This is important!</>}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -50,14 +50,14 @@ describe("AlertDialog", () => {
             <button>Open the dialog</button>
           </AerAlertDialogTrigger>
         }
-        dialogTitle={{ title: <>This is important!</>, hideTitle: true }}
-        dialogFooter={
+        title={{ title: <>This is important!</>, hideTitle: true }}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -79,14 +79,14 @@ describe("AlertDialog", () => {
             <button>Open the dialog</button>
           </AerAlertDialogTrigger>
         }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        title={<>This is important!</>}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button onClick={cancelCb}>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button onClick={cancelCb}>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -109,14 +109,14 @@ describe("AlertDialog", () => {
             <button>Open the dialog</button>
           </AerAlertDialogTrigger>
         }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        title={<>This is important!</>}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button onClick={actionCb}>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button onClick={actionCb}>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 

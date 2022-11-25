@@ -10,37 +10,44 @@ export const AerAlertDialogTrigger = ({ children }: DefaultProps<"button">) => (
 
 export interface AlertDialogFooterProps extends DefaultProps<"footer"> {
   // An element (ideally a button) to cancel the alert dialog
-  dialogCancel?: ReactElement;
+  cancel?: ReactElement;
   // An element (ideally a button) to trigger the alert dialog action
-  dialogAction: ReactElement;
+  action: ReactElement;
 }
 
 export const AerAlertDialogFooter = ({
-  dialogCancel,
-  dialogAction,
+  cancel,
+  action,
   ...rest
 }: AlertDialogFooterProps) => (
   <footer {...rest}>
-    {dialogCancel ? (
-      <AlertDialog.Cancel asChild>{dialogCancel}</AlertDialog.Cancel>
-    ) : null}
-    <AlertDialog.Action asChild>{dialogAction}</AlertDialog.Action>
+    {cancel ? <AlertDialog.Cancel asChild>{cancel}</AlertDialog.Cancel> : null}
+    <AlertDialog.Action asChild>{action}</AlertDialog.Action>
   </footer>
 );
 
-const elementIsReactElement = (element: any): element is ReactElement => {
-  return "props" in element;
+type TitleShape = {
+  title: React.ReactElement | string;
+  hideTitle: boolean;
+};
+
+const elementIsTitleShape = (element: any): element is TitleShape => {
+  return (
+    typeof element === "object" &&
+    !Array.isArray(element) &&
+    "hideTitle" in element
+  );
 };
 
 export interface AerAlertDialogProps extends DefaultProps<"div"> {
   // The trigger should be an `AlertDialogTrigger`
   trigger: ReactElement;
   // `dialogTitle` is an object of the title and whether to hide the title (this defaults to true). NOTE: This is placed in an `<h2>`.
-  dialogTitle: ReactElement | { title: ReactElement; hideTitle?: boolean };
+  title: ReactElement | TitleShape;
   // The body content of the alert. NOTE: This will take the form of the element that you pass in.
-  dialogContent: ReactElement;
+  content: ReactElement;
   // An element that displays in the dialog footer that contains an action and an optional cancel button
-  dialogFooter: ReactElement;
+  footer: ReactElement;
 }
 /**
  * The AlertDialog interrupts a user's workflow to communicate an important message that requires a response. *NOTE:* This is different from the Dialog component
@@ -48,10 +55,12 @@ export interface AerAlertDialogProps extends DefaultProps<"div"> {
 export const AerAlertDialog = ({
   className,
   trigger,
-  dialogTitle,
-  dialogFooter,
-  dialogContent,
+  title,
+  footer,
+  content,
 }: AerAlertDialogProps) => {
+  console.log({ dialogTitle: title });
+
   return (
     <AlertDialog.Root>
       {trigger}
@@ -59,23 +68,23 @@ export const AerAlertDialog = ({
         <div className={className}>
           <AlertDialog.Overlay className={styles.overlay} />
           <AlertDialog.Content className={cx(styles.content)}>
-            {elementIsReactElement(dialogTitle) ? (
+            {!elementIsTitleShape(title) ? (
               <AlertDialog.Title className={cx(styles.title)}>
-                {dialogTitle}
+                {title}
               </AlertDialog.Title>
             ) : (
               <AlertDialog.Title
                 className={cx(styles.title, {
-                  [styles.visuallyHidden]: dialogTitle.hideTitle === false,
+                  [styles.visuallyHidden]: title.hideTitle,
                 })}
               >
-                {dialogTitle.title}
+                {title.title}
               </AlertDialog.Title>
             )}
             <AlertDialog.Description className={styles.description} asChild>
-              {dialogContent}
+              {content}
             </AlertDialog.Description>
-            {dialogFooter}
+            {footer}
           </AlertDialog.Content>
         </div>
       </AlertDialog.Portal>
