@@ -1,5 +1,5 @@
 {
-  "name": "@aerian/aerian-component-library",
+  "name": "@aerian/aerated-component-library",
   "version": "0.8.0",
   "type": "module",
   "source": [
@@ -8,7 +8,7 @@
   "module": "dist/main.js",
   "types": "dist/types.d.ts",
   "description": "",
-  "repository": "https://github.com/aerian-studios/aerian-component-library.git",
+  "repository": "https://github.com/aerian-studios/aerated.git",
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
@@ -29,7 +29,9 @@
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@hookform/resolvers": "^2.9.10",
+    "@radix-ui/react-accordion": "^1.0.1",
     "@radix-ui/react-alert-dialog": "^1.0.2",
+    "@radix-ui/react-icons": "^1.1.1",
     "classnames": "^2.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
