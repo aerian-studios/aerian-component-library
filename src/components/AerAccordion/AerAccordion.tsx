@@ -54,10 +54,6 @@ export const AerAccordionContent = React.forwardRef(
   )
 );
 
-const isMultiAccordion = (
-  props: Accordion.AccordionMultipleProps | Accordion.AccordionSingleProps
-): props is Accordion.AccordionMultipleProps => props.type === "multiple";
-
 type GuardedAccordion<
   AccordionType extends (
     | Accordion.AccordionSingleProps

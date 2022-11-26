@@ -17,6 +17,7 @@
  * item-header:trigger:hover: color: var(--c-cmp-trigger-hover);
  * item-header:trigger:hover: background-color: var(--c-cmp-trigger-bg-hover, var(--c-gray-100));
  * item-header:trigger-icon: color: var(--c-cmp-trigger-icon, inherit);
+ * item-header:trigger-icon: width/height: var(--s-cmp-icon, var(--s-icon));
  *
  * item-content: color: var(--c-cmp-item);
  * item-content: font-size: var(--t-cmp-body, var(--t-body-m));
@@ -104,10 +105,10 @@
   background-color: var(--c-cmp-body-bg, var(--c-gray-100));
 
   &[data-state="open"] {
-    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    animation: slideDown var(--ease-duration-m) var(--ease-2);
   }
   &[data-state="closed"] {
-    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    animation: slideUp var(--ease-duration-m) var(--ease-2);
   }
 
   @media (prefers-reduced-motion) {
@@ -124,7 +125,9 @@
 
 .accordionChevron {
   color: var(--c-cmp-trigger-icon, inherit);
-  transition: transform 300ms cubic-bezier(0.87, 0, 0.13, 1);
+  width: var(--s-cmp-icon, var(--s-icon));
+  height: var(--s-cmp-icon, var(--s-icon));
+  transition: transform var(--ease-duration-m) var(--ease-2);
 }
 
 @keyframes slideDown {
