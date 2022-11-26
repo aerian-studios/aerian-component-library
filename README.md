@@ -2,11 +2,13 @@
 
 ## Installation
 
+TODO This is coming while we decide how best to manage versioning. See below for local development.
+<!-- 
 ```bash
 npm install --save @aerian-studios/aerated@0.0.1
 # or
 yarn add @aerian-studios/aerated@0.0.1
-```
+``` -->
 
 ## Usage
 
