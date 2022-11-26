@@ -46,7 +46,7 @@ exports[`AlertDialog > should render an accessible \`alertdialog\` despite not s
       tabindex="-1"
     >
       <h2
-        class="_title_e6bcc0"
+        class="_title_e6bcc0 _visuallyHidden_e6bcc0"
         id="radix-:r4:"
       >
         This is important!

@@ -2,11 +2,7 @@ import React from "react";
 import { describe, it, expect, vi, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {
-  AerAlertDialog,
-  AerAlertDialogFooter,
-  AerAlertDialogTrigger,
-} from "./index";
+import { AerAlertDialog, AerAlertDialogFooter } from "./index";
 
 describe("AlertDialog", () => {
   afterEach(() => {
@@ -16,19 +12,15 @@ describe("AlertDialog", () => {
   it("should render correctly", async () => {
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        trigger={<button>Open the dialog</button>}
+        title={<>This is important!</>}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -45,19 +37,15 @@ describe("AlertDialog", () => {
   it("should render an accessible `alertdialog` despite not showing the title visually", async () => {
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
-        dialogTitle={{ title: <>This is important!</>, hideTitle: true }}
-        dialogFooter={
+        trigger={<button>Open the dialog</button>}
+        title={{ title: <>This is important!</>, hideTitle: true }}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -74,19 +62,15 @@ describe("AlertDialog", () => {
 
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        trigger={<button>Open the dialog</button>}
+        title={<>This is important!</>}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button onClick={cancelCb}>Cancel</button>}
-            dialogAction={<button>Yes, do it!</button>}
+            cancel={<button onClick={cancelCb}>Cancel</button>}
+            action={<button>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 
@@ -104,19 +88,15 @@ describe("AlertDialog", () => {
 
     const { baseElement } = render(
       <AerAlertDialog
-        trigger={
-          <AerAlertDialogTrigger>
-            <button>Open the dialog</button>
-          </AerAlertDialogTrigger>
-        }
-        dialogTitle={<>This is important!</>}
-        dialogFooter={
+        trigger={<button>Open the dialog</button>}
+        title={"This is important!"}
+        footer={
           <AerAlertDialogFooter
-            dialogCancel={<button>Cancel</button>}
-            dialogAction={<button onClick={actionCb}>Yes, do it!</button>}
+            cancel={<button>Cancel</button>}
+            action={<button onClick={actionCb}>Yes, do it!</button>}
           />
         }
-        dialogContent={<p>Are you sure about all of that stuff?</p>}
+        content={<p>Are you sure about all of that stuff?</p>}
       />
     );
 

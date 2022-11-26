@@ -18,20 +18,16 @@ root.render(
     {/* Test out some components here */}
     <AerAlertDialog
       className={styles.dialog}
-      trigger={
-        <AerAlertDialogTrigger>
-          <AerButton>Open the dialog</AerButton>
-        </AerAlertDialogTrigger>
-      }
-      dialogTitle={<>This is important!</>}
-      dialogFooter={
+      trigger={<AerButton>Open the dialog</AerButton>}
+      title={"This is important!"}
+      footer={
         <AerAlertDialogFooter
           className={styles.footer}
-          dialogCancel={<AerButton variant="important">Cancel</AerButton>}
-          dialogAction={<AerButton variant="primary">Yes, do it!</AerButton>}
+          cancel={<AerButton variant="important">Cancel</AerButton>}
+          action={<AerButton variant="primary">Yes, do it!</AerButton>}
         />
       }
-      dialogContent={<p>Are you sure about all of that stuff?</p>}
+      content={<p>Are you sure about all of that stuff?</p>}
     />
   </React.StrictMode>
 );

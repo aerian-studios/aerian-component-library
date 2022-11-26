@@ -1,16 +1,12 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import {
-  AerAlertDialog,
-  AerAlertDialogTrigger,
-  AerAlertDialogFooter,
-} from "./index";
+import { AerAlertDialog, AerAlertDialogFooter } from "./index";
 import { AerButton } from "../AerButton";
 
 const Meta: ComponentMeta<typeof AerAlertDialog> = {
   title: "Components/AerAlertDialog",
   component: AerAlertDialog,
-  subcomponents: { AerAlertDialogTrigger, AerAlertDialogFooter },
+  subcomponents: { AerAlertDialogFooter },
 };
 
 export default Meta;
@@ -21,18 +17,14 @@ const Template: ComponentStory<typeof AerAlertDialog> = (args) => (
 export const Default = Template.bind({});
 
 Default.args = {
-  trigger: (
-    <AerAlertDialogTrigger>
-      <AerButton>Open the dialog</AerButton>
-    </AerAlertDialogTrigger>
-  ),
-  dialogTitle: <>This is important!</>,
-  dialogContent: <p>Are you sure about all of that stuff?</p>,
-  dialogFooter: (
+  trigger: <AerButton>Open the dialog</AerButton>,
+  title: "This is important!",
+  content: <p>Are you sure about all of that stuff?</p>,
+  footer: (
     <AerAlertDialogFooter
       style={{ justifyContent: "space-between", display: "flex" }}
-      dialogCancel={<AerButton variant="important">Cancel</AerButton>}
-      dialogAction={<AerButton variant="primary">Yes, do it!</AerButton>}
+      cancel={<AerButton variant="important">Cancel</AerButton>}
+      action={<AerButton variant="primary">Yes, do it!</AerButton>}
     />
   ),
 };
@@ -61,4 +53,17 @@ export const LocalTheme: ComponentStory<any> = () => (
   </>
 );
 
-// todo make hidden title version
+export const VisuallyHiddenTitle = Template.bind({});
+
+VisuallyHiddenTitle.args = {
+  trigger: <AerButton>Open the dialog</AerButton>,
+  title: { title: "This is important!", hideTitle: true },
+  content: <p>Are you sure about all of that stuff?</p>,
+  footer: (
+    <AerAlertDialogFooter
+      style={{ justifyContent: "space-between", display: "flex" }}
+      cancel={<AerButton variant="important">Cancel</AerButton>}
+      action={<AerButton variant="primary">Yes, do it!</AerButton>}
+    />
+  ),
+};
