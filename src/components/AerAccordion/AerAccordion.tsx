@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithRef, ForwardedRef } from "react";
+import React, { ComponentPropsWithRef, ElementType, ForwardedRef } from "react";
 import cx from "classnames";
 import * as styles from "./AerAccordion.module.scss";
 import { DefaultProps } from "../../types/types";
@@ -7,30 +7,46 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 export interface AerAccordionHeaderProps
   extends DefaultProps<"button">,
-    Accordion.AccordionTriggerProps {
+    Omit<Accordion.AccordionTriggerProps, "asChild"> {
   expandedIcon?: React.ReactElement;
+  headingLevel?: "h2" | "h3" | "h4" | "h5" | "h6";
 }
 /** The AerAccordionHeader represents the part of the accordion that is visible when the accordion item is closed */
 export const AerAccordionHeader = React.forwardRef(
   (
-    { children, className, expandedIcon, ...props }: AerAccordionHeaderProps,
+    {
+      children,
+      className,
+      expandedIcon,
+      headingLevel = "h3",
+      ...props
+    }: AerAccordionHeaderProps,
     forwardedRef: ForwardedRef<HTMLButtonElement>
-  ) => (
-    <Accordion.Header className={styles.accordionHeader}>
-      <Accordion.Trigger
-        className={cx(styles.accordionTrigger, className)}
-        {...props}
-        ref={forwardedRef}
-      >
-        {children}
-        {expandedIcon ? (
-          expandedIcon
-        ) : (
-          <ChevronDownIcon className={styles.accordionChevron} aria-hidden />
-        )}
-      </Accordion.Trigger>
-    </Accordion.Header>
-  )
+  ) => {
+    const HeadingComponent = headingLevel;
+
+    return (
+      <Accordion.Header className={styles.accordionHeader} asChild>
+        <HeadingComponent>
+          <Accordion.Trigger
+            className={cx(styles.accordionTrigger, className)}
+            {...props}
+            ref={forwardedRef}
+          >
+            {children}
+            {expandedIcon ? (
+              expandedIcon
+            ) : (
+              <ChevronDownIcon
+                className={styles.accordionChevron}
+                aria-hidden
+              />
+            )}
+          </Accordion.Trigger>
+        </HeadingComponent>
+      </Accordion.Header>
+    );
+  }
 );
 
 export const AerAccordionItem = Accordion.Item;
@@ -65,7 +81,7 @@ type GuardedAccordion<
   : Accordion.AccordionSingleProps & React.RefAttributes<HTMLDivElement>;
 
 /**
- * AerAccordion is a standard accordion pattern; it allows control over whether single or multiple elements can be open simultaneously, if it collapses, and what is open by default as well as providing control for the `value` of the component
+ * AerAccordion is a standard accordion pattern. It allows control over: whether single or multiple elements can be open simultaneously; if it collapses; and what is open by default; as well as providing control for the `value` of the component
  */
 export function AerAccordion<
   AccordionType extends (

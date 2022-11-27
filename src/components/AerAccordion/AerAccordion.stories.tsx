@@ -87,3 +87,60 @@ export const LocalTheme: ComponentStory<any> = () => (
     </pre>
   </>
 );
+
+export const SingleVariant = Template.bind({});
+SingleVariant.args = {
+  type: "single",
+};
+
+SingleVariant.parameters = {
+  docs: {
+    storyDescription:
+      "The AerAccordion defaults to a `type` of `'multiple'`; `'single'` type only allows 1 content to show at the same time",
+  },
+};
+
+export const CustomHeadingLevel = () => (
+  <AerAccordion type="multiple">
+    <AerAccordionItem value="item-1">
+      <AerAccordionHeader headingLevel="h2">Header 1</AerAccordionHeader>
+      <AerAccordionContent>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </AerAccordionContent>
+    </AerAccordionItem>
+    <AerAccordionItem value="item-2">
+      <AerAccordionHeader headingLevel="h3">Header 2</AerAccordionHeader>
+      <AerAccordionContent>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
+      </AerAccordionContent>
+    </AerAccordionItem>
+    <AerAccordionItem value="item-3">
+      <AerAccordionHeader headingLevel="h4">Header 3</AerAccordionHeader>
+      <AerAccordionContent>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum.
+      </AerAccordionContent>
+    </AerAccordionItem>
+  </AerAccordion>
+);
+
+CustomHeadingLevel.parameters = {
+  docs: {
+    storyDescription:
+      'The AerAccordionHeader component render an `h3` by default; this can be overridden by providing the `headingLevel` prop. E.g. `<AerAccordionHeader headingLevel="h2">Header 1</AerAccordionHeader>`',
+  },
+};
