@@ -16,14 +16,31 @@ const Template: ComponentStory<typeof AerCheckbox> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
 };
 
 export const LocalTheme: ComponentStory<any> = () => (
   <>
     <p>The AerCheckbox component implements the following local theme</p>
+    <p>
+      <em>
+        NOTE: currently the AerCheckbox has some default behaviour for
+        invalidity that might need work in the future
+      </em>
+    </p>
     <pre>
       {`
-      animation-duration: var(--ease-duration-short, 150ms);
+      input: gap: var(--s-cmp-checkbox, var(--s-1));
+      input:icon: color: var(--c-cmp-checkbox-icon, var(--c-body));
+      input:icon: width/height: var(--s-cmp-checkbox-icon, var(--s-icon));
+      input:icon: padding: var(--s-cmp-checkbox-padding, 1px);
+      input:icon: border-radius: var(--s-cmp-checkbox-icon-br, var(--s-border-radius-xs));
+      input:icon:hover: background-color: var(--c-cmp-checkbox-icon-bg-hover, var(--c-gray-200));
+      input:icon:border: border: 2px solid var(--c-cmp-checkbox-icon-border, currentColor);
+      
+      label: color: var(--c-cmp-checkbox-label, var(--c-body));
+      label: padding: var(--s-cmp-checkbox-padding, 0 0 0 var(--s-1));
+      label: font-size: var(--t-cmp-checkbox, var(--c-body-m));
       `}
     </pre>
   </>
@@ -32,6 +49,7 @@ export const LocalTheme: ComponentStory<any> = () => (
 export const Checked = Template.bind({});
 Checked.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
   defaultState: true,
 };
 Checked.parameters = {
@@ -44,6 +62,7 @@ Checked.parameters = {
 export const Indeterminate = Template.bind({});
 Indeterminate.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
   defaultState: "indeterminate",
 };
 Indeterminate.parameters = {
@@ -56,6 +75,7 @@ Indeterminate.parameters = {
 export const Invalid = Template.bind({});
 Invalid.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
   defaultState: true,
   required: true,
 };
@@ -69,6 +89,7 @@ Invalid.parameters = {
 export const CustomCheckIcons = Template.bind({});
 CustomCheckIcons.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
   defaultState: false,
   checkBox: <span style={{ border: "2px solid green" }}></span>,
   checkedIcon: (
@@ -85,6 +106,7 @@ CustomCheckIcons.parameters = {
 export const CustomInvalidMessage = Template.bind({});
 CustomInvalidMessage.args = {
   label: "Accept the terms and conditions",
+  value: "t&c",
   defaultState: false,
   required: true,
   errorMessage: "Beep Boop! Please fill in this field.",
