@@ -1,6 +1,7 @@
 import React from "react";
-import { describe, it, expect } from "vitest";
-import { render, cleanup } from "@testing-library/react";
+import { describe, it, expect, afterEach } from "vitest";
+import { render, cleanup, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { {{pascalCase name}} } from "./index";
 
 describe("{{pascalCase name}}", () => {
@@ -8,7 +9,7 @@ describe("{{pascalCase name}}", () => {
         cleanup();
     })
     
-    it("should render correctly", () => {
+    it("should render correctly", async () => {
         const { container } = render(<{{pascalCase name}} />);
         expect(container).toMatchSnapshot();
     });
