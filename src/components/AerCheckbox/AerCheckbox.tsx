@@ -101,7 +101,6 @@ export const AerCheckbox = forwardRef(
       // let parents know
       rest.onBlur && rest.onBlur(event);
     };
-    console.log({ errMessage });
 
     return (
       <div className={styles.wrapper}>
@@ -140,7 +139,13 @@ export const AerCheckbox = forwardRef(
           </span>
         </label>
         {errMessage ? (
-          <div className={styles.errorMessage} role="status">
+          <div
+            className={styles.errorMessage}
+            role="status"
+            aria-label={`There is an error with the field, "${
+              isLabelProps(label) ? label.name : label
+            }"`}
+          >
             {errMessage}
           </div>
         ) : null}
