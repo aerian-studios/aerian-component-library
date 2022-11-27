@@ -32,7 +32,7 @@ export const LocalTheme: ComponentStory<any> = () => (
 export const Checked = Template.bind({});
 Checked.args = {
   label: "Accept the terms and conditions",
-  checked: true,
+  defaultState: true,
 };
 Checked.parameters = {
   docs: {
@@ -44,7 +44,7 @@ Checked.parameters = {
 export const Indeterminate = Template.bind({});
 Indeterminate.args = {
   label: "Accept the terms and conditions",
-  checked: "indeterminate",
+  defaultState: "indeterminate",
 };
 Indeterminate.parameters = {
   docs: {
@@ -56,7 +56,7 @@ Indeterminate.parameters = {
 export const Invalid = Template.bind({});
 Invalid.args = {
   label: "Accept the terms and conditions",
-  checked: true,
+  defaultState: true,
   required: true,
 };
 Invalid.parameters = {
@@ -69,7 +69,7 @@ Invalid.parameters = {
 export const CustomCheckIcons = Template.bind({});
 CustomCheckIcons.args = {
   label: "Accept the terms and conditions",
-  checked: false,
+  defaultState: false,
   checkBox: <span style={{ border: "2px solid green" }}></span>,
   checkedIcon: (
     <span style={{ display: "flex", justifyContent: "center" }}>💝</span>
@@ -85,7 +85,7 @@ CustomCheckIcons.parameters = {
 export const CustomInvalidMessage = Template.bind({});
 CustomInvalidMessage.args = {
   label: "Accept the terms and conditions",
-  checked: false,
+  defaultState: false,
   required: true,
   errorMessage: "Beep Boop! Please fill in this field.",
 };

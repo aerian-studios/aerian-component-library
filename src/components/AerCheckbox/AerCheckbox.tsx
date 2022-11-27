@@ -14,17 +14,17 @@ const resolveNextState = (
 
 export const isLabelProps = (
   props: string | ReactElement | LabelProps
-): props is LabelProps =>
-  props && typeof props !== "string" && "hidden" in props;
+): props is LabelProps => typeof props === "object" && "hidden" in props;
 
 export type LabelProps = { name: string | ReactElement; hidden: boolean };
-export interface AerCheckboxProps extends DefaultProps<"input"> {
+export interface AerCheckboxProps
+  extends Omit<DefaultProps<"input">, "checked"> {
   // Required label for the checkbox. NOTE: you can hide the label using the `LabelProps` API, but must provide a label to make the field accessible
   label: string | ReactElement | LabelProps;
   // Value is what is returned from form submissions when the item is checked, so should ideally be set
   value: string;
   // The default state of the checkbox. NOTE: `indeterminate` can only be set/unset via this prop
-  checked?: CheckedStates;
+  defaultState?: CheckedStates;
   // When using multiple checkboxes that are thematically linked, giving them all the same name allows for better data schematics
   name?: string;
   // The element to use as the box background. NOTE: to hide the box altogether, please provide an empty element
@@ -44,7 +44,7 @@ export const AerCheckbox = forwardRef(
     {
       className,
       label,
-      checked = false,
+      defaultState = false,
       indeterminateIcon = <DividerHorizontalIcon />,
       checkedIcon = <CheckIcon />,
       checkBox,
@@ -55,7 +55,7 @@ export const AerCheckbox = forwardRef(
   ) => {
     const defaultRef = React.useRef<HTMLInputElement | null>(null);
     const resolvedRef = ref || defaultRef;
-    const [state, setState] = useState(checked);
+    const [state, setState] = useState(defaultState);
     const [error, setError] = useState<string | undefined>(errorMessage);
 
     const errMessage = errorMessage || error;
@@ -77,7 +77,7 @@ export const AerCheckbox = forwardRef(
     }, [resolvedRef]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setState((currentState) => resolveNextState(currentState, checked));
+      setState((currentState) => resolveNextState(currentState, defaultState));
 
       if (errMessage) {
         const valid = event.target.validity;
