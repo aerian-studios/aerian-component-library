@@ -1,22 +1,23 @@
 :root {
   /***** 
-     Primary Brand Palette
-     Do not use these values directly if you can help it
-     *****/
-  --c-pale-pink: #f78da7;
-  --c-vivid-red: #cf2e2e;
-  --c-luminous-vivid-orange: #ff6900;
-  --c-luminous-vivid-amber: #fcb900;
-  --c-light-green-cyan: #7bdcb5;
-  --c-vivid-green-cyan: #00d084;
-  --c-pale-cyan-blue: #8ed1fc;
-  --c-vivid-cyan-blue: #0693e3;
-  --c-vivid-purple: #9b51e0;
-  --c-cobalt: #004;
+  Primary Brand Palette (SCSS variables for local scoping)
+  Do not use these values directly if you can help it
+  *****/
+  $c-pale-pink: #f78da7;
+  $c-vivid-red: #cf2e2e;
+  $c-luminous-vivid-orange: #ff6900;
+  $c-luminous-vivid-amber: #fcb900;
+  $c-light-green-cyan: #7bdcb5;
+  $c-vivid-green-cyan: #00d084;
+  $c-pale-cyan-blue: #8ed1fc;
+  $c-vivid-cyan-blue: #0693e3;
+  $c-vivid-purple: #9b51e0;
+  $c-cobalt: #004;
 
   --c-green: green;
   --c-blue: rgb(32, 69, 157);
   --c-amber: rgb(220, 153, 45);
+  --c-red: rgb(223, 32, 42);
   --c-black: #000;
   --c-white: #fff;
 
@@ -31,13 +32,15 @@
   --c-gray-800: #2b2b2b;
 
   /***** Usage Semantics (design tokens) *****/
-  --c-focus: var(--c-luminous-vivid-orange);
-  --c-active: var(--c-luminous-vivid-orange);
+  --c-focus: $c-luminous-vivid-orange;
+  --c-active: $c-luminous-vivid-orange;
 
   // Misc
   --c-separator: var(--c-gray-200);
+
+  // Signposting colours
   --c-positive: var(--c-green);
-  --c-negative: var(--c-vivid-red);
+  --c-negative: var(--c-red);
   --c-informational: var(--c-blue);
   --c-advisory: var(--c-amber);
 
@@ -46,8 +49,8 @@
   --c-body: var(--c-gray-800);
 
   // Link
-  --c-link: var(--c-cobalt);
-  --c-link-hover: var(--c-vivid-green-cyan);
+  --c-link: $c-cobalt;
+  --c-link-hover: $c-vivid-green-cyan;
   --c-link-hover-decoration: underline;
   --c-link-disabled: var(--c-gray-600);
 
@@ -67,22 +70,22 @@
   --c-input-helper-text: var(--c-gray-600);
 
   // Button
-  --c-button: var(--c-cobalt);
+  --c-button: $c-cobalt;
   --c-button-bg: var(--c-white);
-  --c-button-border: var(--c-cobalt);
-  --c-button-hover: var(--c-luminous-vivid-amber);
+  --c-button-border: $c-cobalt;
+  --c-button-hover: $c-luminous-vivid-amber;
   --c-button-hover-bg: var(--c-white);
-  --c-button-hover-border: var(--c-luminous-vivid-amber);
+  --c-button-hover-border: $c-luminous-vivid-amber;
   --c-button-disabled: var(--c-gray-600);
   --c-button-disabled-border: var(--c-gray-600);
   --c-button-disabled-bg: var(--c-gray-200);
   // Primary
-  --c-button-primary: var(--c-cobalt);
-  --c-button-primary-bg: var(--c-vivid-green-cyan);
-  --c-button-primary-border: var(--c-cobalt);
-  --c-button-primary-hover: var(--c-cobalt);
-  --c-button-primary-hover-bg: var(--c-luminous-vivid-amber);
-  --c-button-primary-hover-border: var(--c-cobalt);
+  --c-button-primary: $c-cobalt;
+  --c-button-primary-bg: $c-vivid-green-cyan;
+  --c-button-primary-border: $c-cobalt;
+  --c-button-primary-hover: $c-cobalt;
+  --c-button-primary-hover-bg: $c-luminous-vivid-amber;
+  --c-button-primary-hover-border: $c-cobalt;
   --c-button-primary-disabled: var(--c-gray-600);
   --c-button-primary-disabled-border: var(--c-gray-600);
   --c-button-primary-disabled-bg: var(--c-gray-200);
@@ -90,9 +93,9 @@
   --c-button-important: var(--c-white);
   --c-button-important-bg: var(--c-negative);
   --c-button-important-border: var(--c-negative);
-  --c-button-important-hover: var(--c-cobalt);
-  --c-button-important-hover-bg: var(--c-luminous-vivid-amber);
-  --c-button-important-hover-border: var(--c-cobalt);
+  --c-button-important-hover: $c-cobalt;
+  --c-button-important-hover-bg: $c-luminous-vivid-amber;
+  --c-button-important-hover-border: $c-cobalt;
   --c-button-important-disabled: var(--c-gray-600);
   --c-button-important-disabled-border: var(--c-gray-600);
   --c-button-important-disabled-bg: var(--c-gray-200);
