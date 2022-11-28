@@ -32,9 +32,7 @@ export const AerButton = React.forwardRef(
       disabled={disabled}
       className={cx(
         className,
-        variant && {
-          [styles[variant]]: variant,
-        }
+        { [styles[variant]]: variant }
       )}
       {...rest}
       ref={ref}
