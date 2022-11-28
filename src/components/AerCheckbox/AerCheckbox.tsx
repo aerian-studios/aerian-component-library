@@ -4,7 +4,6 @@ import { CheckIcon, DividerHorizontalIcon } from "@radix-ui/react-icons";
 
 import styles from "./AerCheckbox.module.scss";
 import { DefaultProps } from "../../types/types";
-import { errorMessage } from "../FormElements/FormElements.module.scss";
 
 export type CheckedStates = boolean | "indeterminate";
 const resolveNextState = (

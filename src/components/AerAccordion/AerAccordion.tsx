@@ -1,6 +1,6 @@
 import React, { ComponentPropsWithRef, ElementType, ForwardedRef } from "react";
 import cx from "classnames";
-import * as styles from "./AerAccordion.module.scss";
+import styles from "./AerAccordion.module.scss";
 import { DefaultProps } from "../../types/types";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
