@@ -1,0 +1,11 @@
+import React from "react";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
+import { {{pascalCase name}} } from "./index";
+
+describe("{{pascalCase name}}", () => {
+    it("should render correctly", () => {
+        const { container } = render(<{{pascalCase name}} />);
+        expect(container).toMatchSnapshot();
+    });
+});

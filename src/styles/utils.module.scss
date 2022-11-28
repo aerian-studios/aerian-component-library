@@ -1,0 +1,14 @@
+.visuallyHidden {
+    appearance: none;
+    clip-path: circle(0);
+    position: absolute;
+    overflow: hidden;
+    line-height: 0;
+    text-indent: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.noListStyle {
+    list-style-type: none;
+}
