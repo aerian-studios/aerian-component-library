@@ -1,6 +1,6 @@
 import React from "react";
-import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { describe, it, expect, afterEach } from "vitest";
+import { cleanup, render, screen } from "@testing-library/react";
 import { AerAccordion } from "./index";
 import {
   AerAccordionContent,
@@ -9,6 +9,10 @@ import {
 } from "./AerAccordion";
 
 describe("AerAccordion", () => {
+  afterEach(() => {
+    cleanup();
+  });
+
   it("should render correctly", () => {
     const { container } = render(
       <AerAccordion type="multiple">
@@ -35,13 +39,13 @@ describe("AerAccordion", () => {
     expect(container).toMatchSnapshot();
 
     expect(
-      screen.getByRole("heading", { name: "Heading 1", level: 3 })
+      screen.getByRole("heading", { name: "Header 1", level: 3 })
     ).toBeDefined();
     expect(
-      screen.getByRole("heading", { name: "Heading 2", level: 3 })
+      screen.getByRole("heading", { name: "Header 2", level: 3 })
     ).toBeDefined();
     expect(
-      screen.getByRole("heading", { name: "Heading 3", level: 3 })
+      screen.getByRole("heading", { name: "Header 3", level: 3 })
     ).toBeDefined();
   });
 
@@ -58,10 +62,10 @@ describe("AerAccordion", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: "Heading 1", level: 3 })
-    ).not.toBeDefined();
+      screen.queryByRole("heading", { name: "Header 1", level: 3 })
+    ).toBeNull();
     expect(
-      screen.getByRole("heading", { name: "Heading 1", level: 2 })
+      screen.getByRole("heading", { name: "Header 1", level: 2 })
     ).toBeDefined();
   });
 });

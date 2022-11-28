@@ -3,18 +3,19 @@
 exports[`AerAccordion > should render correctly 1`] = `
 <div>
   <div
-    class=""
+    class="_accordionRoot_d92853"
   >
     <div
       data-state="closed"
     >
       <h3
+        class="_accordionHeader_d92853"
         data-state="closed"
       >
         <button
           aria-controls="radix-:r1:"
           aria-expanded="false"
-          class=""
+          class="_accordionTrigger_d92853"
           data-radix-collection-item=""
           data-state="closed"
           id="radix-:r0:"
@@ -23,6 +24,7 @@ exports[`AerAccordion > should render correctly 1`] = `
           Header 1
           <svg
             aria-hidden="true"
+            class="_accordionChevron_d92853"
             fill="none"
             height="15"
             viewBox="0 0 15 15"
@@ -40,7 +42,7 @@ exports[`AerAccordion > should render correctly 1`] = `
       </h3>
       <div
         aria-labelledby="radix-:r0:"
-        class=""
+        class="_accordionContent_d92853"
         data-state="closed"
         hidden=""
         id="radix-:r1:"
@@ -52,12 +54,13 @@ exports[`AerAccordion > should render correctly 1`] = `
       data-state="closed"
     >
       <h3
+        class="_accordionHeader_d92853"
         data-state="closed"
       >
         <button
           aria-controls="radix-:r3:"
           aria-expanded="false"
-          class=""
+          class="_accordionTrigger_d92853"
           data-radix-collection-item=""
           data-state="closed"
           id="radix-:r2:"
@@ -66,6 +69,7 @@ exports[`AerAccordion > should render correctly 1`] = `
           Header 2
           <svg
             aria-hidden="true"
+            class="_accordionChevron_d92853"
             fill="none"
             height="15"
             viewBox="0 0 15 15"
@@ -83,7 +87,7 @@ exports[`AerAccordion > should render correctly 1`] = `
       </h3>
       <div
         aria-labelledby="radix-:r2:"
-        class=""
+        class="_accordionContent_d92853"
         data-state="closed"
         hidden=""
         id="radix-:r3:"
@@ -95,12 +99,13 @@ exports[`AerAccordion > should render correctly 1`] = `
       data-state="closed"
     >
       <h3
+        class="_accordionHeader_d92853"
         data-state="closed"
       >
         <button
           aria-controls="radix-:r5:"
           aria-expanded="false"
-          class=""
+          class="_accordionTrigger_d92853"
           data-radix-collection-item=""
           data-state="closed"
           id="radix-:r4:"
@@ -109,6 +114,7 @@ exports[`AerAccordion > should render correctly 1`] = `
           Header 3
           <svg
             aria-hidden="true"
+            class="_accordionChevron_d92853"
             fill="none"
             height="15"
             viewBox="0 0 15 15"
@@ -126,7 +132,7 @@ exports[`AerAccordion > should render correctly 1`] = `
       </h3>
       <div
         aria-labelledby="radix-:r4:"
-        class=""
+        class="_accordionContent_d92853"
         data-state="closed"
         hidden=""
         id="radix-:r5:"
