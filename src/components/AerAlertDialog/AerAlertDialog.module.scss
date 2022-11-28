@@ -3,18 +3,18 @@
  * animation-duration: var(--ease-duration-s, 150ms);
  * animation-transition:  var(--ease-1, 0.16, 1, 0.3, 1);
  * overlay animation: overlayShow
- * overlay: background-color: var(--c-overlay-bg-color, var(--c-black));
+ * overlay: background-color: var(--c-overlay-bg-color);
  * overlay: opacity: var(--c-overlay-opacity);
  *
  * content animation: contentShow
- * content: background-color: var(--c-dialog-content-bg, var(--c-white));
+ * content: background-color: var(--c-cmp-alertdialog-content-bg, var(--c-white));
  * content: border-radius: var(--s-border-radius-xs);
- * content: box-shadow: var(--sh-dialog-content-shadow, var(--sh-box-xs));
- * content: padding: var(--s-content-padding, var(--s-2));
- * content: var(--s-content-border-radius, var(--s-border-radius-xs));
+ * content: box-shadow: var(--sh-cmp-alertdialog-content-shadow, var(--sh-box-xs));
+ * content: padding: var(--s-cmp-alertdialog-content-padding, var(--s-2));
+ * content: var(--s-cmp-alertdialog-content-border-radius, var(--s-border-radius-xs));
  *
- * title: font-size: var(--t-dialog-title);
- * title: font-weight: var(--fw-dialog-title);
+ * title: font-size: var(--t-cmp-alertdialog-title);
+ * title: font-weight: var(--fw-cmp-alertdialog-title);
  */
 
 @keyframes overlayShow {
@@ -47,12 +47,15 @@
   width: 90vw;
   max-width: 500px;
   max-height: 85vh;
-  padding: var(--s-content-padding, var(--s-2));
+  padding: var(--s-cmp-alertdialog-content-padding, var(--s-2));
   animation: contentShow var(--ease-duration-s, 150ms)
     var(--ease-1, 0.16, 1, 0.3, 1);
-  background-color: var(--c-dialog-content-bg, var(--c-white));
-  border-radius: var(--s-content-border-radius, var(--s-border-radius-xs));
-  box-shadow: var(--sh-dialog-content-shadow, var(--sh-box-xs));
+  background-color: var(--c-cmp-alertdialog-content-bg, var(--c-white));
+  border-radius: var(
+    --s-cmp-alertdialog-content-border-radius,
+    var(--s-border-radius-xs)
+  );
+  box-shadow: var(--sh-cmp-alertdialog-content-shadow, var(--sh-box-xs));
   z-index: var(--z-modal);
 
   &:focus {
@@ -68,7 +71,7 @@
   position: fixed;
   inset: 0;
   // todo, potentially move this variable to global
-  background-color: var(--c-overlay-bg-color, var(--c-black));
+  background-color: var(--c-overlay-bg-color);
   opacity: var(--c-overlay-opacity);
   animation: overlayShow var(--ease-duration-s, 150ms)
     var(--ease-1, 0.16, 1, 0.3, 1);
@@ -80,8 +83,8 @@
 }
 
 .title {
-  font-size: var(--t-dialog-title, var(--t-heading-m));
-  font-weight: var(--fw-dialog-title, var(--fw-medium));
+  font-size: var(--t-cmp-alertdialog-title, var(--t-heading-m));
+  font-weight: var(--fw-cmp-alertdialog-title, var(--fw-medium));
 }
 
 .description {
