@@ -95,6 +95,7 @@ export function AerAccordion<
   type = "multiple",
   ...rest
 }: GuardedAccordion<AccordionType>) {
+  // todo work out a way to make the guarded type work!
   return (
     <Accordion.Root
       className={cx(styles.accordionRoot, className)}
