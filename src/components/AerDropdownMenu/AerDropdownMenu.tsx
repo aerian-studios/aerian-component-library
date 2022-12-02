@@ -1,9 +1,4 @@
-import React, {
-  Children,
-  forwardRef,
-  ReactElement,
-  useLayoutEffect,
-} from "react";
+import React, { forwardRef, ReactElement, useLayoutEffect } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   HamburgerMenuIcon,
@@ -18,71 +13,207 @@ import { DefaultProps } from "../../types/types";
 import { CheckedStates } from "../AerCheckbox/AerCheckbox";
 import { useMemo } from "@storybook/addons";
 
-/*
-<button className="IconButton" aria-label="Customise options">
-            <HamburgerMenuIcon />
-          </button>*/
+/**
+ * AerMenuItem is used for normal menu items. It implements [the same API as the Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#item)
+ */
+export const AerMenuItem = forwardRef(
+  (
+    {
+      className,
+      ...rest
+    }: DropdownMenu.DropdownMenuItemProps & React.RefAttributes<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.DropdownMenuItem
+        className={cx(styles.menuItem, className)}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
+/**
+ * AerCheckboxMenuItem is used for menu items that contain checkboxes. It implements [the same API as the Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#checkboxitem)
+ */
+export const AerCheckboxMenuItem = forwardRef(
+  (
+    {
+      className,
+      ...rest
+    }: DropdownMenu.DropdownMenuCheckboxItemProps &
+      React.RefAttributes<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.DropdownMenuCheckboxItem
+        className={cx(styles.menuCheckboxItem, className)}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
 
-export type MenuItemTypes =
-  | "item"
-  | "itemWithSubmenu"
-  | "itemWithCheckbox"
-  | "label"
-  | "groupOfRadioItems"
-  | "separator";
-
-export type SeparatorMenuItem = { type: "separator" };
-export type MenuLabel = {
-  type: "label";
-  label: string | ReactElement;
-};
-
-export type MenuItem = MenuLabel & {
-  type: "item";
-  actionCb?: React.EventHandler<React.MouseEvent>;
-};
-
-export type MenuItemWithCheckbox = MenuItem & {
-  type: "itemWithCheckbox";
-  defaultChecked?: CheckedStates;
-  value?: string;
+export type RadioGroupItem = {
+  // Unique value of the item
+  value: string;
+  // The visible text content of the item
+  content: string | ReactElement;
+  className?: string;
   disabled?: boolean;
+  onSelect?: (event: Event) => void;
+  // Custom indicator for the radio item
+  indicator?: ReactElement;
+};
+export type DropdownMenuRadioGroupItems = { radioItems: RadioGroupItem[] };
+/**
+ * AerMenuRadioGroup is used for a group of menu items that can only have one item selected. It implements [the API of this Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#radiogroup) and a little more for managing the contents
+ */
+export const AerMenuRadioGroup = forwardRef(
+  (
+    {
+      className,
+      radioItems,
+      ...rest
+    }: DropdownMenu.DropdownMenuRadioGroupProps &
+      React.RefAttributes<HTMLDivElement> &
+      DropdownMenuRadioGroupItems,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.RadioGroup
+        className={cx(styles.menuItem, className)}
+        ref={ref}
+        {...rest}
+      >
+        {radioItems.map((item) => {
+          return (
+            <DropdownMenu.RadioItem
+              value={item.value}
+              className={cx(item.className)}
+              disabled={item.disabled}
+              onSelect={item.onSelect}
+              key={`radio-${item.value}`}
+            >
+              <DropdownMenu.ItemIndicator className={styles.menuItemIndicator}>
+                {item.indicator ? item.indicator : <DotFilledIcon />}
+              </DropdownMenu.ItemIndicator>
+            </DropdownMenu.RadioItem>
+          );
+        })}
+      </DropdownMenu.RadioGroup>
+    );
+  }
+);
+
+export const AerMenuSeparator = forwardRef(
+  (
+    {
+      className,
+      ...rest
+    }: DropdownMenu.DropdownMenuSeparatorProps &
+      React.RefAttributes<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.DropdownMenuSeparator
+        className={cx(styles.separator, className)}
+        {...rest}
+      />
+    );
+  }
+);
+
+export const AerMenuSectionHeading = forwardRef(
+  (
+    {
+      className,
+      children,
+      ...rest
+    }: DropdownMenu.DropdownMenuLabelProps &
+      React.RefAttributes<HTMLDivElement>,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.DropdownMenuLabel
+        className={cx(styles.separator, className)}
+        {...rest}
+      >
+        {children}
+      </DropdownMenu.DropdownMenuLabel>
+    );
+  }
+);
+
+export type AerSubDropdown = {
+  // Custom style to add to submenu parent
+  className?: string;
+  // The content for the parent. Please include an indicator that there is a dropdown
+  subMenuParentContent: ReactElement;
+  // An array of AerMenuItem, AerCheckboxMenuItems, etc
+  subMenuContent: ReactElement[];
 };
 
-export type RadioGroupMenuItem = MenuItemWithCheckbox[];
-export type MenuContent = Record<
-  MenuItemTypes,
-  | MenuLabel
-  | MenuItem
-  | MenuItemWithCheckbox
-  | RadioGroupMenuItem
-  | SeparatorMenuItem
->;
+export const AerMenuItemWithSubDropdown = forwardRef(
+  (
+    {
+      className,
+      subMenuParentContent,
+      subMenuContent,
+      ...rest
+    }: DropdownMenu.DropdownMenuSubProps &
+      React.RefAttributes<HTMLDivElement> &
+      AerSubDropdown,
+    ref: React.ForwardedRef<HTMLDivElement>
+  ) => {
+    return (
+      <DropdownMenu.Sub {...rest}>
+        <DropdownMenu.SubTrigger className={cx(styles.subTrigger, className)}>
+          {subMenuParentContent}
+        </DropdownMenu.SubTrigger>
+        <DropdownMenu.Portal>
+          <DropdownMenu.SubContent
+            className={styles.subContent}
+            sideOffset={2}
+            alignOffset={-5}
+          >
+            {subMenuContent}
+          </DropdownMenu.SubContent>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Sub>
+    );
+  }
+);
+
 export interface AerDropdownMenuProps
   extends DropdownMenu.DropdownMenuProps,
     DropdownMenu.DropdownMenuContentProps,
     Omit<DefaultProps<"div">, "dir"> {
-  // A button to trigger the opening of the dropdown
-  trigger: ReactElement;
-  menuContent: MenuContent[];
+  children: React.ReactNode;
+  // A button to trigger the opening of the dropdown. *Please ensure the button has accessible text*
+  trigger?: ReactElement;
 }
 /**
- * IMPORTANT: Add a description to document this component for storybooks
+ * AerDropdownMenu provides a flexible menu dropdown that can have submenus, checkbox and radio menu items
  */
 export const AerDropdownMenu = forwardRef(
   (
-    { className, menuContent, trigger, ...rest }: AerDropdownMenuProps,
+    {
+      className,
+      trigger = (
+        <button className={styles.iconButton} aria-label="Customise options">
+          <HamburgerMenuIcon />
+        </button>
+      ),
+      children,
+      ...rest
+    }: AerDropdownMenuProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     const dialogContainer = document.getElementById("dialog-container");
 
     const { defaultOpen, open, onOpenChange, modal, dir, ...otherProps } = rest;
-
-    const memoisedMenuContent = useMemo(() => {
-      const ret = [];
-      // todo
-      return ret;
-    }, []);
 
     useLayoutEffect(() => {
       if (!dialogContainer) {
@@ -93,23 +224,42 @@ export const AerDropdownMenu = forwardRef(
       }
     }, []);
 
+    // todo extract this to a util function
+    const rootProps = {
+      defaultOpen,
+      open,
+      onOpenChange,
+      modal,
+      dir,
+    };
+
+    if (typeof open === undefined) {
+      delete rootProps.open;
+    }
+    if (typeof defaultOpen === undefined) {
+      delete rootProps.defaultOpen;
+    }
+    if (typeof onOpenChange === undefined) {
+      delete rootProps.onOpenChange;
+    }
+    if (typeof modal === undefined) {
+      delete rootProps.modal;
+    }
+    if (typeof dir === undefined) {
+      delete rootProps.dir;
+    }
+
     return (
-      <DropdownMenu.Root
-        defaultOpen={defaultOpen}
-        open={open}
-        onOpenChange={onOpenChange}
-        modal={modal}
-        dir={dir}
-      >
+      <DropdownMenu.Root {...rootProps}>
         <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
 
         <DropdownMenu.Portal container={dialogContainer}>
           <DropdownMenu.Content
-            className={cx(styles.dropdownMenuContent, className)}
+            className={cx(styles.menuContent, className)}
             {...otherProps}
             ref={ref}
           >
-            {memoisedMenuContent}
+            {children}
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
