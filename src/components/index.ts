@@ -2,7 +2,7 @@
 import { AerDropdownMenu } from "./AerDropdownMenu";
 import { AerCheckbox } from "./AerCheckbox";
 import { AerAccordion } from "./AerAccordion";
-import { AerAlertDialog, AerAlertDialogFooter, AerAlertDialogTrigger } from "./AerAlertDialog";
+import { AerAlertDialog, AerAlertDialogFooter } from "./AerAlertDialog";
 
 export {
   /* PLOP_INJECT_EXPORT */
@@ -11,5 +11,4 @@ export {
 	AerAccordion,
 	AerAlertDialog,
 	AerAlertDialogFooter,
-	AerAlertDialogTrigger
 }
