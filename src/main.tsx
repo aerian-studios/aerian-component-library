@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import {
   AerAlertDialog,
   AerAlertDialogFooter,
-  AerAlertDialogTrigger,
 } from "./components/AerAlertDialog";
 import { AerButton } from "./components/AerButton";
 import styles from "./main.module.scss";

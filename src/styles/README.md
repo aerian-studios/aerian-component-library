@@ -18,7 +18,7 @@ The purpose of these files is to provide:
 
 ### Anatomy of the global theme
 
-The theme files are roughly split up into 7 areas (1 file for each). All CSS variables (custom properties) associated with, say colour, would be set in the `./styles/_colors.scss` file. Within the file there are 2 types of CSS variable and 2 types of variable.
+The theme files are roughly split up into 7 areas (1 file for each). All CSS variables (custom properties) associated with, say colour, would be set in the `./styles/_colors.scss` file. Within the file there are 2 types of CSS variable and 2 types of variable (CSS variables (global) & SCSS variables (local)).
 
 #### Types of variable
 
@@ -37,13 +37,13 @@ Because we have variables that will be used globally and which will be used outs
 
 The shape of the variable names is fixed
 
-| Type | Category | Scope [& name]           | [State]  | Description                                                          |
-| ---- | -------- | ------------------------ | -------- | -------------------------------------------------------------------- |
-| `--` | `c`      | `-body`                  |          | Body colour                                                          |
-| `--` | `c`      | `-body-bg`               |          | Body background colour                                               |
-| `--` | `c`      | `-input-bg`              | `-hover` | Input background colour on hover                                     |
-| `--` | `s`      | `-cmp-accordion-padding` |          | Accordion component (`cmp-accordion`) padding space                  |
-| `$`  | `c`      | `-luminous-vivid-orange` |          | Luminous vivid orange colour - no scope means that it is not a token |
+| Type | Category      | Scope [& name]           | [State]  | Description                                                          |
+| ---- | ------------- | ------------------------ | -------- | -------------------------------------------------------------------- |
+| `--` | `c` (colour)  | `-body`                  |          | Body colour                                                          |
+| `--` | `c` (colour)  | `-body-bg`               |          | Body background colour                                               |
+| `--` | `c` (colour)  | `-input-bg`              | `-hover` | Input background colour on hover                                     |
+| `--` | `s` (spacing) | `-cmp-accordion-padding` |          | Accordion component (`cmp-accordion`) padding space                  |
+| `$`  | `c` (colour)  | `-luminous-vivid-orange` |          | Luminous vivid orange colour - no scope means that it is not a token |
 
 ## (S)CSS modules
 
