@@ -3,7 +3,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import { AerButton } from "./AerButton";
 
 const Meta: ComponentMeta<typeof AerButton> = {
-  title: "Components/Inputs/Button",
+  title: "Components/Button",
   component: AerButton,
 };
 
