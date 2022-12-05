@@ -4,14 +4,11 @@ import {
   HamburgerMenuIcon,
   DotFilledIcon,
   CheckIcon,
-  ChevronRightIcon,
 } from "@radix-ui/react-icons";
 
 import cx from "classnames";
 import styles from "./AerDropdownMenu.module.scss";
 import { DefaultProps } from "../../types/types";
-import { CheckedStates } from "../AerCheckbox/AerCheckbox";
-import { useMemo } from "@storybook/addons";
 
 /**
  * AerMenuItem is used for normal menu items. It implements [the same API as the Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#item)
@@ -40,9 +37,11 @@ export const AerCheckboxMenuItem = forwardRef(
   (
     {
       className,
+      children,
+      checkIcon,
       ...rest
     }: DropdownMenu.DropdownMenuCheckboxItemProps &
-      React.RefAttributes<HTMLDivElement>,
+      React.RefAttributes<HTMLDivElement> & { checkIcon?: ReactElement },
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
@@ -50,7 +49,12 @@ export const AerCheckboxMenuItem = forwardRef(
         className={cx(styles.menuCheckboxItem, className)}
         ref={ref}
         {...rest}
-      />
+      >
+        <DropdownMenu.ItemIndicator className={styles.menuItemIndicator}>
+          {checkIcon ? checkIcon : <CheckIcon />}
+        </DropdownMenu.ItemIndicator>
+        {children}
+      </DropdownMenu.DropdownMenuCheckboxItem>
     );
   }
 );
@@ -82,16 +86,12 @@ export const AerMenuRadioGroup = forwardRef(
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
     return (
-      <DropdownMenu.RadioGroup
-        className={cx(styles.menuItem, className)}
-        ref={ref}
-        {...rest}
-      >
+      <DropdownMenu.RadioGroup className={cx(className)} ref={ref} {...rest}>
         {radioItems.map((item) => {
           return (
             <DropdownMenu.RadioItem
               value={item.value}
-              className={cx(item.className)}
+              className={cx(styles.menuRadioItem, item.className)}
               disabled={item.disabled}
               onSelect={item.onSelect}
               key={`radio-${item.value}`}
@@ -99,6 +99,7 @@ export const AerMenuRadioGroup = forwardRef(
               <DropdownMenu.ItemIndicator className={styles.menuItemIndicator}>
                 {item.indicator ? item.indicator : <DotFilledIcon />}
               </DropdownMenu.ItemIndicator>
+              {item.content}
             </DropdownMenu.RadioItem>
           );
         })}
@@ -137,7 +138,7 @@ export const AerMenuSectionHeading = forwardRef(
   ) => {
     return (
       <DropdownMenu.DropdownMenuLabel
-        className={cx(styles.separator, className)}
+        className={cx(styles.menuLabel, className)}
         {...rest}
       >
         {children}
@@ -151,8 +152,6 @@ export type AerSubDropdown = {
   className?: string;
   // The content for the parent. Please include an indicator that there is a dropdown
   subMenuParentContent: ReactElement;
-  // An array of AerMenuItem, AerCheckboxMenuItems, etc
-  subMenuContent: ReactElement[];
 };
 
 export const AerMenuItemWithSubDropdown = forwardRef(
@@ -160,7 +159,7 @@ export const AerMenuItemWithSubDropdown = forwardRef(
     {
       className,
       subMenuParentContent,
-      subMenuContent,
+      children,
       ...rest
     }: DropdownMenu.DropdownMenuSubProps &
       React.RefAttributes<HTMLDivElement> &
@@ -176,9 +175,9 @@ export const AerMenuItemWithSubDropdown = forwardRef(
           <DropdownMenu.SubContent
             className={styles.subContent}
             sideOffset={2}
-            alignOffset={-5}
+            alignOffset={-4}
           >
-            {subMenuContent}
+            {children}
           </DropdownMenu.SubContent>
         </DropdownMenu.Portal>
       </DropdownMenu.Sub>
@@ -193,6 +192,8 @@ export interface AerDropdownMenuProps
   children: React.ReactNode;
   // A button to trigger the opening of the dropdown. *Please ensure the button has accessible text*
   trigger?: ReactElement;
+  // Include an arrow onto the dropdown
+  includeArrow?: boolean;
 }
 /**
  * AerDropdownMenu provides a flexible menu dropdown that can have submenus, checkbox and radio menu items
@@ -207,6 +208,7 @@ export const AerDropdownMenu = forwardRef(
         </button>
       ),
       children,
+      includeArrow,
       ...rest
     }: AerDropdownMenuProps,
     ref: React.ForwardedRef<HTMLDivElement>
@@ -233,24 +235,24 @@ export const AerDropdownMenu = forwardRef(
       dir,
     };
 
-    if (typeof open === undefined) {
+    if (typeof open === "undefined") {
       delete rootProps.open;
     }
-    if (typeof defaultOpen === undefined) {
+    if (typeof defaultOpen === "undefined") {
       delete rootProps.defaultOpen;
     }
-    if (typeof onOpenChange === undefined) {
+    if (typeof onOpenChange === "undefined") {
       delete rootProps.onOpenChange;
     }
-    if (typeof modal === undefined) {
+    if (typeof modal === "undefined") {
       delete rootProps.modal;
     }
-    if (typeof dir === undefined) {
+    if (typeof dir === "undefined") {
       delete rootProps.dir;
     }
 
     return (
-      <DropdownMenu.Root {...rootProps}>
+      <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
 
         <DropdownMenu.Portal container={dialogContainer}>
@@ -258,8 +260,12 @@ export const AerDropdownMenu = forwardRef(
             className={cx(styles.menuContent, className)}
             {...otherProps}
             ref={ref}
+            sideOffset={5}
           >
             {children}
+            {includeArrow && (
+              <DropdownMenu.Arrow className={styles.menuArrow} />
+            )}
           </DropdownMenu.Content>
         </DropdownMenu.Portal>
       </DropdownMenu.Root>
