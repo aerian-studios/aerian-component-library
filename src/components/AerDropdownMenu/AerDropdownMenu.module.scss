@@ -1,0 +1,197 @@
+/** Local theme
+ * content: background-color: var(--c-cmp-dropmenu-bg, var(--c-white));
+ * content: border-radius: var(--s-cmp-dropmenu-border-radius, var(--s-border-radius-xs));
+ * content: padding: var(--s-cmp-padding, calc(var(--s-1) * 0.5));
+ * content: box-shadow: var(--sh-box-l);
+ * content: animation-duration: var(--ease-cmp-duration, 400ms);
+ *
+ * menuitem: font-size: var(--t-cmp-item, var(--t-body-sm));
+ * menuitem: color: var(--c-cmp-dropmenu-item, var(--c-body));
+ * menuitem: border-radius: var(--s-cmp-dropmenu-item-border-radius, var(--s-border-radius-xs));
+ * menuitem: padding: var(--s-cmp-item-padding, 0 calc(var(--s-1) * 0.5) 0 var(--s-3));
+ * menuitem: var(--s-cmp-dropmenu-item-height, var(--s-3));
+ * menuitem: color: var(--c-cmp-dropmenu-item-highlight, var(--c-white));
+ * menuitem: background-color: var(--c-cmp-dropmenu-item-highlight-bg, var(--c-gray-600));
+ *
+ * submenuparent: [data-state="open"]: background-color: var(--c-cmp-dropmenu-item-open-bg, var(--c-gray-200));
+ * submenuparent: [data-state="open"]: color: var(--c-cmp-dropmenu-item-open, var(--c-gray-800));
+ *
+ * heading: padding: var(--s-cmp-item-heading-padding, 0 0 0 var(--s-3));
+ * heading:font-size: var(--t-cmp-item-heading, var(--t-heading-xxs));
+ * heading:line-height: var(--lh-cmp-item-heading-padding, (--s-3));
+ * heading: color: var(--c-cmp-item-heading, var(--c-gray-600));
+ *
+ * iconbutton: height: var(--s-5);
+ * iconbutton: width: var(--s-5);
+ * iconbutton: color: var(--c-cmp-menubutton, var(--c-body));
+ * iconbutton: background-color: var(--c-cmp-menubutton-bg, transparent);
+ * iconbutton: box-shadow: var(--sh-cmp-menubutton, var(--sh-box-xs));
+ * iconbutton:hover: background-color: var(--c-cmp-menubutton-hover-bg, var(--c-gray-200));
+ * iconbutton: focus: box-shadow: 0 0 0 2px var(--c-focus);
+ */
+
+.menuContent {
+  min-width: 220px;
+  background-color: var(--c-cmp-dropmenu-bg, var(--c-white));
+  border-radius: var(--s-cmp-dropmenu-border-radius, var(--s-border-radius-xs));
+  padding: var(--s-cmp-padding, calc(var(--s-1) * 0.5));
+  box-shadow: var(--sh-box-l);
+  animation-duration: var(--ease-cmp-duration, 400ms);
+  animation-timing-function: var(--ease-1);
+  will-change: transform, opacity;
+  z-index: var(--z-dropdown);
+
+  &[data-side="top"] {
+    animation-name: slideDownAndFade;
+  }
+
+  &[data-side="right"] {
+    animation-name: slideLeftAndFade;
+  }
+
+  &[data-side="bottom"] {
+    animation-name: slideUpAndFade;
+  }
+
+  &[data-side="left"] {
+    animation-name: slideRightAndFade;
+  }
+}
+
+.subContent {
+  composes: menuContent;
+}
+
+.subTrigger[data-state="open"] {
+  background-color: var(--c-cmp-dropmenu-item-open-bg, var(--c-gray-200));
+  color: var(--c-cmp-dropmenu-item-open, var(--c-gray-800));
+}
+
+.menuItem {
+  font-size: var(--t-cmp-dropmenu-item, var(--t-body-sm));
+  line-height: 1;
+  color: var(--c-cmp-dropmenu-item, var(--c-body));
+  border-radius: var(
+    --s-cmp-dropmenu-item-border-radius,
+    var(--s-border-radius-xs)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-1);
+  height: var(--s-cmp-dropmenu-item-height, var(--s-3));
+  padding: var(--s-cmp-item-padding, 0 calc(var(--s-1) * 0.5) 0 var(--s-3));
+  position: relative;
+  user-select: none;
+  outline: none;
+
+  &[data-disabled] {
+    color: var(--c-input-border-disabled);
+    pointer-events: none;
+  }
+
+  &[data-highlighted] {
+    background-color: var(
+      --c-cmp-dropmenu-item-highlight-bg,
+      var(--c-gray-600)
+    );
+    color: var(--c-cmp-dropmenu-item-highlight, var(--c-white));
+  }
+}
+
+.menuCheckboxItem,
+.menuRadioItem,
+.subTrigger {
+  composes: menuItem;
+}
+
+.menuLabel {
+  padding: var(--s-cmp-item-heading-padding, 0 0 0 var(--s-3));
+  font-size: var(--t-cmp-item-heading, var(--t-heading-xxs));
+  line-height: var(--lh-cmp-item-heading-padding, (--s-3));
+  color: var(--c-cmp-item-heading, var(--c-gray-600));
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--c-separator);
+  margin: calc(var(--s-1) * 0.5);
+}
+
+// used for checkboxes etc
+.menuItemIndicator {
+  position: absolute;
+  left: 0;
+  width: var(--s-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menuArrow {
+  fill: var(--c-cmp-dropmenu-bg, var(--c-white));
+}
+
+.iconButton {
+  all: unset;
+  font-family: inherit;
+  border-radius: 100%;
+  height: var(--s-5);
+  width: var(--s-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-cmp-menubutton, var(--c-body));
+  background-color: var(--c-cmp-menubutton-bg, transparent);
+  box-shadow: var(--sh-cmp-menubutton, var(--sh-box-xs));
+  &:hover {
+    background-color: var(--c-cmp-menubutton-hover-bg, var(--c-gray-200));
+  }
+  &:focus {
+    box-shadow: 0 0 0 2px var(--c-focus);
+  }
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeftAndFade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

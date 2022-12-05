@@ -1,0 +1,32 @@
+// Vitest Snapshot v1
+
+exports[`AerCheckbox > should render correctly given just label and value 1`] = `
+<div>
+  <div
+    class="_wrapper_d61275"
+  >
+    <label
+      class="_component_d61275"
+    >
+      <span
+        class="_indicator_d61275"
+      >
+        <input
+          class="_input_d61275"
+          type="checkbox"
+          value="sut"
+        />
+        <span
+          aria-hidden="true"
+          class="_imgWrapper_d61275 _checkBox_d61275"
+        />
+      </span>
+      <span
+        class="_label_d61275"
+      >
+        checkbox label
+      </span>
+    </label>
+  </div>
+</div>
+`;
