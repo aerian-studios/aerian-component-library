@@ -1,0 +1,102 @@
+/** Local theme
+ *
+ */
+.visuallyHidden {
+  composes: visuallyHidden from "../../styles/utils.module.scss";
+}
+
+.noPointer {
+  composes: noPointer from "../../styles/utils.module.scss";
+}
+
+.radioInput {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--s-cmp-checkbox, var(--s-1));
+  color: var(--c-cmp-checkbox-label, var(--c-body));
+
+  &[data-disabled] {
+    color: var(--c-input-border-disabled);
+    pointer-events: none;
+  }
+}
+
+.indicator {
+  position: relative;
+  color: var(--c-cmp-checkbox-icon, currentColor);
+  padding: var(--s-cmp-checkbox-padding, 1px);
+  width: var(--s-cmp-checkbox-icon, var(--s-icon));
+  height: var(--s-cmp-checkbox-icon, var(--s-icon));
+  border-radius: var(--s-cmp-checkbox-icon-br, 100%);
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.checkedIcon {
+  margin-top: -1px;
+  transform: scale(1.5);
+}
+
+.imgWrapper {
+  composes: noPointer;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--s-cmp-checkbox-icon, var(--s-icon));
+  grid-template-rows: var(--s-cmp-checkbox-icon, var(--s-icon));
+  justify-content: stretch;
+  align-items: stretch;
+
+  & > * {
+    grid-column: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.radioBackground {
+  border: 2px solid var(--c-cmp-checkbox-icon-border, currentColor);
+  border-radius: var(--s-cmp-checkbox-icon-br, 100%);
+
+  & > * {
+    width: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
+    height: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
+  }
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // must be slightly visible for screen reader to read
+  opacity: 0.01;
+  z-index: 1;
+
+  &:hover + * {
+    background-color: var(--c-cmp-checkbox-icon-bg-hover, var(--c-gray-200));
+  }
+
+  &:focus-visible + * {
+    box-shadow: 0 0 0 2px var(--c-focus);
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: var(--s-cmp-checkbox-padding, 0 0 0 var(--s-1));
+  font-size: var(--t-cmp-checkbox, var(--c-body-m));
+}
+
+.invalid {
+  color: var(--c-negative);
+}
+
+.errorMessage {
+  color: var(--c-negative);
+}
