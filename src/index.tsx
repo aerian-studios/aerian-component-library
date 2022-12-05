@@ -9,5 +9,3 @@ export {
   Select,
   ControlledElement,
 } from "./components/FormElements";
-
-export { applyTheme } from "./Theme";
