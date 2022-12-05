@@ -46,7 +46,7 @@ export const Default: ComponentStory<typeof AerDropdownMenu> = (args) => (
       subMenuParentContent={
         <>
           Menu item & sub-menu{" "}
-          <div className="RightSlot">
+          <div>
             <ChevronRightIcon />
           </div>
         </>

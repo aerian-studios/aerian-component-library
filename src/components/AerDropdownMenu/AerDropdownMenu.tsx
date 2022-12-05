@@ -1,4 +1,4 @@
-import React, { forwardRef, ReactElement, useLayoutEffect } from "react";
+import React, { forwardRef, ReactElement, useRef } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   HamburgerMenuIcon,
@@ -9,6 +9,7 @@ import {
 import cx from "classnames";
 import styles from "./AerDropdownMenu.module.scss";
 import { DefaultProps } from "../../types/types";
+import { removeEmptyObjectKVs } from "../../utils/dataStructures";
 
 /**
  * AerMenuItem is used for normal menu items. It implements [the same API as the Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#item)
@@ -195,8 +196,15 @@ export interface AerDropdownMenuProps
   // Include an arrow onto the dropdown
   includeArrow?: boolean;
 }
+const dialogContainer = document.getElementById("dialog-container");
+if (!dialogContainer) {
+  const dialogContainer = document.createElement("div");
+  dialogContainer.id = "dialog-container";
+
+  document.body.appendChild(dialogContainer);
+}
 /**
- * AerDropdownMenu provides a flexible menu dropdown that can have submenus, checkbox and radio menu items
+ * AerDropdownMenu provides a flexible menu dropdown that can have submenus, checkbox and radio menu items. *NOTE:* This is `modal` by default.
  */
 export const AerDropdownMenu = forwardRef(
   (
@@ -213,54 +221,34 @@ export const AerDropdownMenu = forwardRef(
     }: AerDropdownMenuProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
-    const dialogContainer = document.getElementById("dialog-container");
-
     const { defaultOpen, open, onOpenChange, modal, dir, ...otherProps } = rest;
-
-    useLayoutEffect(() => {
-      if (!dialogContainer) {
-        const dialogContainer = document.createElement("div");
-        dialogContainer.id = "dialog-container";
-
-        document.body.appendChild(dialogContainer);
-      }
-    }, []);
-
-    // todo extract this to a util function
-    const rootProps = {
+    const rootProps = removeEmptyObjectKVs({
       defaultOpen,
       open,
       onOpenChange,
       modal,
       dir,
-    };
+    });
 
-    if (typeof open === "undefined") {
-      delete rootProps.open;
-    }
-    if (typeof defaultOpen === "undefined") {
-      delete rootProps.defaultOpen;
-    }
-    if (typeof onOpenChange === "undefined") {
-      delete rootProps.onOpenChange;
-    }
-    if (typeof modal === "undefined") {
-      delete rootProps.modal;
-    }
-    if (typeof dir === "undefined") {
-      delete rootProps.dir;
+    const dialogContainer = useRef(document.getElementById("dialog-container"));
+    // to prevent the dropdown littering the body, this is created before render
+    if (!dialogContainer.current) {
+      dialogContainer.current = document.createElement("div");
+      dialogContainer.current.id = "dialog-container";
+
+      document.body.appendChild(dialogContainer.current);
     }
 
     return (
-      <DropdownMenu.Root>
+      <DropdownMenu.Root {...rootProps}>
         <DropdownMenu.Trigger asChild>{trigger}</DropdownMenu.Trigger>
 
-        <DropdownMenu.Portal container={dialogContainer}>
+        <DropdownMenu.Portal container={dialogContainer.current}>
           <DropdownMenu.Content
             className={cx(styles.menuContent, className)}
             {...otherProps}
             ref={ref}
-            sideOffset={5}
+            sideOffset={4}
           >
             {children}
             {includeArrow && (
