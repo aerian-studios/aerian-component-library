@@ -1,6 +1,28 @@
 /** Local theme
+ * group: gap: var(--s-cmp-radiogroup-gap, var(--s-1));
+ * group:title font-size: var(--t-cmp-radiogroup-title, var(--t-heading-s));
+ * group:title font-weight: var(--fw-cmp-radiogroup-title, var(--fw-medium));
+ * group:title margin: var(--s-cmp-radiogroup-title, 0 0 var(--s-1));
+ * group:title color: var(--c-cmp-radiogroup-title, var(--c-gray-600));
  *
+ * radio: width: var(--s-cmp-radio-icon, var(--s-icon));
+ * radio: height: var(--s-cmp-radio-icon, var(--s-icon));
+ * radio: gap: var(--s-cmp-radio, var(--s-1));
+ * radio: border: var(--cmp-radio-icon-border, 2px solid currentColor);
+ * radio: border-radius: var(--s-cmp-radio-icon-br, 100%);
+ * radio:disabled color: var(--c-input-border-disabled);
+ *
+ * radio:indicator: color: var(--c-cmp-radio-icon, currentColor);
+ * radio:indicator: padding: var(--s-cmp-radio-padding, 1px);
+ * radio:indicator: width: var(--s-cmp-radio-icon, var(--s-icon));
+ * radio:indicator: height: var(--s-cmp-radio-icon, var(--s-icon));
+ * radio:indicator: border-radius: var(--s-cmp-radio-icon-br, 100%);
+ *
+ * label: color: var(--c-cmp-radio-label, var(--c-body));
+ * label: font-size: var(--t-cmp-radio, var(--c-body-m));
+ * label:disabled color: var(--c-input-border-disabled);
  */
+
 .visuallyHidden {
   composes: visuallyHidden from "../../styles/utils.module.scss";
 }
@@ -9,12 +31,28 @@
   composes: noPointer from "../../styles/utils.module.scss";
 }
 
+.component {
+  all: unset;
+  display: flex;
+  gap: var(--s-cmp-radiogroup-gap, var(--s-1));
+  flex-flow: column wrap;
+}
+
+.title {
+  all: unset;
+  display: block;
+  font-size: var(--t-cmp-radiogroup-title, var(--t-heading-s));
+  font-weight: var(--fw-cmp-radiogroup-title, var(--fw-medium));
+  margin: var(--s-cmp-radiogroup-title, 0 0 var(--s-1));
+  color: var(--c-cmp-radiogroup-title, var(--c-gray-600));
+}
+
 .radioInput {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: var(--s-cmp-checkbox, var(--s-1));
-  color: var(--c-cmp-checkbox-label, var(--c-body));
+  gap: var(--s-cmp-radio, var(--s-1));
+  color: var(--c-cmp-radio-label, var(--c-body));
 
   &[data-disabled] {
     color: var(--c-input-border-disabled);
@@ -24,11 +62,11 @@
 
 .indicator {
   position: relative;
-  color: var(--c-cmp-checkbox-icon, currentColor);
-  padding: var(--s-cmp-checkbox-padding, 1px);
-  width: var(--s-cmp-checkbox-icon, var(--s-icon));
-  height: var(--s-cmp-checkbox-icon, var(--s-icon));
-  border-radius: var(--s-cmp-checkbox-icon-br, 100%);
+  color: var(--c-cmp-radio-icon, currentColor);
+  padding: var(--s-cmp-radio-padding, 1px);
+  width: var(--s-cmp-radio-icon, var(--s-icon));
+  height: var(--s-cmp-radio-icon, var(--s-icon));
+  border-radius: var(--s-cmp-radio-icon-br, 100%);
 
   > * {
     width: 100%;
@@ -45,8 +83,8 @@
   composes: noPointer;
   position: relative;
   display: grid;
-  grid-template-columns: var(--s-cmp-checkbox-icon, var(--s-icon));
-  grid-template-rows: var(--s-cmp-checkbox-icon, var(--s-icon));
+  grid-template-columns: var(--s-cmp-radio-icon, var(--s-icon));
+  grid-template-rows: var(--s-cmp-radio-icon, var(--s-icon));
   justify-content: stretch;
   align-items: stretch;
 
@@ -61,12 +99,12 @@
 }
 
 .radioBackground {
-  border: 2px solid var(--c-cmp-checkbox-icon-border, currentColor);
-  border-radius: var(--s-cmp-checkbox-icon-br, 100%);
+  border: var(--cmp-radio-icon-border, 2px solid currentColor);
+  border-radius: var(--s-cmp-radio-icon-br, 100%);
 
   & > * {
-    width: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
-    height: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
+    width: calc(var(--s-cmp-radio-icon, var(--s-icon)) - 4px);
+    height: calc(var(--s-cmp-radio-icon, var(--s-icon)) - 4px);
   }
 }
 
@@ -79,7 +117,7 @@
   z-index: 1;
 
   &:hover + * {
-    background-color: var(--c-cmp-checkbox-icon-bg-hover, var(--c-gray-200));
+    background-color: var(--c-cmp-radio-icon-bg-hover, var(--c-gray-200));
   }
 
   &:focus-visible + * {
@@ -89,8 +127,7 @@
 
 .label {
   display: inline-block;
-  padding: var(--s-cmp-checkbox-padding, 0 0 0 var(--s-1));
-  font-size: var(--t-cmp-checkbox, var(--c-body-m));
+  font-size: var(--t-cmp-radio, var(--c-body-m));
 }
 
 .invalid {

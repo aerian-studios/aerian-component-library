@@ -1,18 +1,21 @@
 import React, {
-  FormEvent,
-  FormEventHandler,
   forwardRef,
   ReactElement,
   ReactNode,
-  useCallback,
   useMemo,
+  useRef,
   useState,
 } from "react";
 import cx from "classnames";
 import styles from "./AerRadioGroup.module.scss";
-import { DefaultProps } from "../../types/types";
+import { DefaultProps, HideableTextShape } from "../../types/types";
 import { DotFilledIcon } from "@radix-ui/react-icons";
-import { isObject, isReactElement } from "../../utils/dataStructures";
+import {
+  elementIsHideableTextShape,
+  isObject,
+  isReactElement,
+} from "../../utils/dataStructures";
+import { hyphenJoin } from "../../utils/stringUtils";
 
 export const isLabelProps = (
   props: string | ReactElement | LabelProps
@@ -20,28 +23,33 @@ export const isLabelProps = (
 
 export type LabelProps = { name: string | ReactElement; hidden: boolean };
 
+/**
+ *
+ */
 export type Selectable = {
+  /** Value is what is returned from form submissions when the item is checked, so should ideally be set. */
   value: string;
+  /** The checked state of the selectable. */
   checked?: boolean;
-  onChange?: (event: Event) => void;
+  /** If providing a checked state, we need a way of changing it. */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export interface AerRadioButtonProps extends DefaultProps<"input">, Selectable {
-  // Required label for the radio. NOTE: you can hide the label using the `LabelProps` API, but must provide a label to make the field accessible
-  label: string | ReactElement | LabelProps;
-  // Value is what is returned from form submissions when the item is checked, so should ideally be set
-  value: string;
-  // The default state of the radio.
-  checked?: boolean;
-  // The element to use as the radio background. NOTE: to hide the box altogether, please provide an empty element
-  radioBackground?: ReactElement;
-  // The element to use for the checked state
-  checkedIcon?: ReactElement;
-  // Use the appropriate props to fill the radio
-  children?: never;
-}
+export type AerRadioButtonProps = DefaultProps<"input"> &
+  Selectable & {
+    /** Required label for the radio. NOTE: you can hide the label using the `LabelProps` API, but must provide a label to make the field accessible. */
+    label: string | ReactElement | LabelProps;
+    /** The element to use as the radio background. NOTE: to hide the box altogether, please provide an empty element. */
+    radioBackground?: ReactElement | null;
+    /** The element to use for the checked state. */
+    checkedIcon?: ReactElement | null;
+    /** The AerRadioGroup.Item will not accept children. Please add all content in the `label` prop. */
+    children?: never;
+    /** NOTE: The onChange event is provided by the AerRadioGroup, anything that you provide will be called after the `onChange` handler passed to that. */
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  };
 /**
- * AerRadioGroup.Item is a typical radio input
+ * AerRadioGroup.Item is a typical radio input.
  */
 export const AerRadioButton = forwardRef(
   (
@@ -76,7 +84,8 @@ export const AerRadioButton = forwardRef(
           <span
             aria-hidden
             className={cx(styles.imgWrapper, {
-              [styles.radioBackground]: !radioBackground,
+              [styles.radioBackground]:
+                !radioBackground && radioBackground !== null,
             })}
           >
             {radioBackground}
@@ -100,26 +109,45 @@ const implementsTheSelectableInterface = (obj: unknown): obj is Selectable =>
   "value" in obj &&
   ("label" in obj || "checked" in obj || "defaultChecked" in obj);
 
-export interface AerRadioGroupProps extends DefaultProps<"div"> {
-  // the value of the default selected radio
+export type AerRadioGroupProps = DefaultProps<"fieldset"> & {
   value: string;
-}
+  groupLabel: string | HideableTextShape<string>;
+  onChange?: (value: string) => void;
+};
+
 /**
  * AerRadioGroup allows automatic control of accessible radio buttons
  */
 export const AerRadioGroup = forwardRef(
   (
-    { className, children, value, ...rest }: AerRadioGroupProps,
-    ref: React.ForwardedRef<HTMLDivElement>
+    {
+      className,
+      children,
+      onChange,
+      groupLabel,
+      value,
+      ...rest
+    }: AerRadioGroupProps,
+    ref: React.ForwardedRef<HTMLFieldSetElement>
   ) => {
     const [selected, setSelected] = useState<string>(value);
-
-    console.log(selected);
+    const uuid = useRef<string>(`aer-radio-${Date.now()}`);
+    const defaultName =
+      (groupLabel &&
+        hyphenJoin(
+          elementIsHideableTextShape(groupLabel) ? groupLabel.text : groupLabel
+        )) ||
+      uuid.current;
 
     const getHandleChange =
-      (value: string, cb?: ((ev: Event) => any) | null) => (ev: Event) => {
+      (
+        value: string,
+        cb?: ((ev: React.ChangeEvent<HTMLInputElement>) => any) | null
+      ) =>
+      (ev: React.ChangeEvent<HTMLInputElement>) => {
         setSelected(() => value);
 
+        onChange && onChange(value);
         cb && cb(ev);
       };
 
@@ -131,12 +159,9 @@ export const AerRadioGroup = forwardRef(
           }
 
           if (implementsTheSelectableInterface(child.props)) {
-            const typedChild: ReactElement<Selectable> = child;
+            const typedChild: ReactElement<AerRadioButtonProps> = child;
 
-            const onChange = getHandleChange(
-              typedChild.props.value,
-              typedChild.props.onChange
-            );
+            const onChange = getHandleChange(typedChild.props.value);
 
             const checked = selected === typedChild.props.value;
 
@@ -144,6 +169,7 @@ export const AerRadioGroup = forwardRef(
               ...typedChild.props,
               onChange: onChange,
               checked: checked,
+              name: defaultName,
             });
 
             return clone;
@@ -154,17 +180,29 @@ export const AerRadioGroup = forwardRef(
       };
 
       return findRadioButtonsAndApplyProps(children);
-    }, []);
+    }, [selected]);
 
     return (
-      <div
+      <fieldset
         className={cx(styles.component, className)}
         {...rest}
         role="radiogroup"
         ref={ref}
       >
+        {elementIsHideableTextShape(groupLabel) ? (
+          <legend
+            className={cx({
+              [styles.visuallyHidden]: groupLabel.hide,
+              [styles.title]: !groupLabel.hide,
+            })}
+          >
+            {groupLabel.text}
+          </legend>
+        ) : (
+          <legend className={cx(styles.title)}>{groupLabel}</legend>
+        )}
         {trainedChildren}
-      </div>
+      </fieldset>
     );
   }
 );
