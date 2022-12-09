@@ -11,6 +11,7 @@
   "repository": "https://github.com/aerian-studios/aerated.git",
   "scripts": {
     "storybook": "start-storybook -p 6006",
+    "storybook:no-cache": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook",
     "generate": "plop",
     "dev": "vite",
