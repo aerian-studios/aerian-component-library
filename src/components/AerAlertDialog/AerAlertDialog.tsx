@@ -2,13 +2,15 @@ import React, { ForwardedRef, forwardRef, ReactElement } from "react";
 import cx from "classnames";
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 import styles from "./AerAlertDialog.module.scss";
-import { DefaultProps } from "../../types/types";
+import { DefaultProps, HideableTextShape } from "../../types/types";
+import { elementIsHideableTextShape } from "../../utils/dataStructures";
+import { AerButton } from "../AerButton";
 
 export interface AlertDialogFooterProps extends DefaultProps<"footer"> {
-  // An element (ideally a button) to cancel the alert dialog
-  cancel?: ReactElement;
-  // An element (ideally a button) to trigger the alert dialog action
-  action: ReactElement;
+  /** A button or link to cancel the alert dialog */
+  cancel?: ReactElement<HTMLButtonElement | HTMLAnchorElement>;
+  /** A button or link to trigger the alert dialog action */
+  action?: ReactElement<HTMLButtonElement | HTMLAnchorElement>;
 }
 
 export const AerAlertDialogFooter = forwardRef(
@@ -25,28 +27,15 @@ export const AerAlertDialogFooter = forwardRef(
   )
 );
 
-type TitleShape = {
-  title: ReactElement<unknown> | string;
-  hideTitle: boolean;
-};
-
-const elementIsTitleShape = (element: any): element is TitleShape => {
-  return (
-    typeof element === "object" &&
-    !Array.isArray(element) &&
-    "hideTitle" in element
-  );
-};
-
 export interface AerAlertDialogProps extends DefaultProps<"div"> {
-  // The trigger should be an `AlertDialogTrigger`
+  /** A button to trigger the alert dialog to open */
   trigger: ReactElement<HTMLButtonElement>;
-  // `dialogTitle` is an object of the title and whether to hide the title (this defaults to true). NOTE: This is placed in an `<h2>`.
-  title: string | ReactElement<unknown> | TitleShape;
-  // The body content of the alert. NOTE: This will take the form of the element that you pass in.
-  content: ReactElement;
-  // An element that displays in the dialog footer that contains an action and an optional cancel button
-  footer: ReactElement;
+  /** The title and whether to hide it (this defaults to `false`). NOTE: This is placed in an `<h2>`. */
+  dialogTitle: string | ReactElement<unknown> | HideableTextShape;
+  /** The body content of the alert. NOTE: This will take the form of the element that you pass in. */
+  children: ReactElement<unknown>;
+  /** An element that will handle layout and content (an action and an optional cancel button) for the dialog's footer */
+  footer?: ReactElement<AlertDialogFooterProps>;
 }
 /**
  * The AlertDialog interrupts a user's workflow to communicate an important message that requires a response. *NOTE:* This is different from the Dialog component
@@ -54,34 +43,39 @@ export interface AerAlertDialogProps extends DefaultProps<"div"> {
 export const AerAlertDialog = ({
   className,
   trigger,
-  title,
+  dialogTitle,
   footer,
-  content,
+  children,
+  ...rest
 }: AerAlertDialogProps) => {
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger asChild>{trigger}</AlertDialog.Trigger>
       <AlertDialog.Portal>
-        <div className={className}>
+        <div className={className} {...rest}>
           <AlertDialog.Overlay className={styles.overlay} />
           <AlertDialog.Content className={cx(styles.content)}>
-            {!elementIsTitleShape(title) ? (
-              <AlertDialog.Title className={cx(styles.title)}>
-                {title}
-              </AlertDialog.Title>
-            ) : (
+            {elementIsHideableTextShape(dialogTitle) ? (
               <AlertDialog.Title
                 className={cx(styles.title, {
-                  [styles.visuallyHidden]: title.hideTitle,
+                  [styles.visuallyHidden]: dialogTitle.hide,
                 })}
               >
-                {title.title}
+                {dialogTitle.text}
+              </AlertDialog.Title>
+            ) : (
+              <AlertDialog.Title className={cx(styles.title)}>
+                {dialogTitle}
               </AlertDialog.Title>
             )}
             <AlertDialog.Description className={styles.description} asChild>
-              {content}
+              {children}
             </AlertDialog.Description>
-            {footer}
+            {footer ? (
+              footer
+            ) : (
+              <AerAlertDialogFooter cancel={<AerButton>Close</AerButton>} />
+            )}
           </AlertDialog.Content>
         </div>
       </AlertDialog.Portal>

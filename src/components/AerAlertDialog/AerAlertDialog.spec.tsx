@@ -13,7 +13,7 @@ describe("AlertDialog", () => {
     const { baseElement } = render(
       <AerAlertDialog
         trigger={<button>Open the dialog</button>}
-        title={<>This is important!</>}
+        dialogTitle={<>This is important!</>}
         footer={
           <AerAlertDialogFooter
             cancel={<button>Cancel</button>}
@@ -38,7 +38,7 @@ describe("AlertDialog", () => {
     const { baseElement } = render(
       <AerAlertDialog
         trigger={<button>Open the dialog</button>}
-        title={{ title: <>This is important!</>, hideTitle: true }}
+        dialogTitle={{ title: <>This is important!</>, hideTitle: true }}
         footer={
           <AerAlertDialogFooter
             cancel={<button>Cancel</button>}
@@ -63,7 +63,7 @@ describe("AlertDialog", () => {
     const { baseElement } = render(
       <AerAlertDialog
         trigger={<button>Open the dialog</button>}
-        title={<>This is important!</>}
+        dialogTitle={<>This is important!</>}
         footer={
           <AerAlertDialogFooter
             cancel={<button onClick={cancelCb}>Cancel</button>}
@@ -89,7 +89,7 @@ describe("AlertDialog", () => {
     const { baseElement } = render(
       <AerAlertDialog
         trigger={<button>Open the dialog</button>}
-        title={"This is important!"}
+        dialogTitle={"This is important!"}
         footer={
           <AerAlertDialogFooter
             cancel={<button>Cancel</button>}

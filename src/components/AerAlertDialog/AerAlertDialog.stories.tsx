@@ -1,27 +1,27 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { AerAlertDialog, AerAlertDialogFooter } from "./index";
+import { AerAlertDialog } from "./index";
 import { AerButton } from "../AerButton";
 
-const Meta: ComponentMeta<typeof AerAlertDialog> = {
+const Meta: ComponentMeta<typeof AerAlertDialog.Root> = {
   title: "Components/AerAlertDialog",
-  component: AerAlertDialog,
-  subcomponents: { AerAlertDialogFooter },
+  component: AerAlertDialog.Root,
+  subcomponents: { "AerAlertDialog.Footer": AerAlertDialog.Footer },
 };
 
 export default Meta;
 
-const Template: ComponentStory<typeof AerAlertDialog> = (args) => (
-  <AerAlertDialog {...args} />
+const Template: ComponentStory<typeof AerAlertDialog.Root> = (args) => (
+  <AerAlertDialog.Root {...args} />
 );
 export const Default = Template.bind({});
 
 Default.args = {
   trigger: <AerButton>Open the dialog</AerButton>,
-  title: "This is important!",
-  content: <p>Are you sure about all of that stuff?</p>,
+  dialogTitle: "This is important!",
+  children: <p>Are you sure about all of that stuff?</p>,
   footer: (
-    <AerAlertDialogFooter
+    <AerAlertDialog.Footer
       style={{ justifyContent: "space-between", display: "flex" }}
       cancel={<AerButton variant="important">Cancel</AerButton>}
       action={<AerButton variant="primary">Yes, do it!</AerButton>}
@@ -61,10 +61,10 @@ export const VisuallyHiddenTitle = Template.bind({});
 
 VisuallyHiddenTitle.args = {
   trigger: <AerButton>Open the dialog</AerButton>,
-  title: { title: "This is important!", hideTitle: true },
-  content: <p>Are you sure about all of that stuff?</p>,
+  dialogTitle: { text: "This is important!", hide: true },
+  children: <p>Are you sure about all of that stuff?</p>,
   footer: (
-    <AerAlertDialogFooter
+    <AerAlertDialog.Footer
       style={{ justifyContent: "space-between", display: "flex" }}
       cancel={<AerButton variant="important">Cancel</AerButton>}
       action={<AerButton variant="primary">Yes, do it!</AerButton>}

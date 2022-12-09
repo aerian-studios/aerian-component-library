@@ -3,7 +3,7 @@ import { AerRadioGroup } from "./AerRadioGroup";
 import { AerDropdownMenu } from "./AerDropdownMenu";
 import { AerCheckbox } from "./AerCheckbox";
 import { AerAccordion } from "./AerAccordion";
-import { AerAlertDialog, AerAlertDialogFooter } from "./AerAlertDialog";
+import { AerAlertDialog } from "./AerAlertDialog";
 
 export {
   /* PLOP_INJECT_EXPORT */
@@ -12,5 +12,4 @@ export {
 	AerCheckbox,
 	AerAccordion,
 	AerAlertDialog,
-	AerAlertDialogFooter,
 }

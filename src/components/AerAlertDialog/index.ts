@@ -1,3 +1,3 @@
-import { AerAlertDialog, AerAlertDialogFooter } from "./AerAlertDialog";
+import { AerAlertDialog as Root, AerAlertDialogFooter } from "./AerAlertDialog";
 
-export { AerAlertDialog, AerAlertDialogFooter };
+export const AerAlertDialog = { Root, Footer: AerAlertDialogFooter };
