@@ -1,4 +1,4 @@
-import { ElementType } from "react";
+import { ElementType, ReactElement } from "react";
 
 /**
  * Default component props, it expects to be passed a type of HTMLElement
@@ -8,3 +8,8 @@ import { ElementType } from "react";
      className?: string;
      children?: React.ReactNode;
  };
+
+ export type HideableTextShape<ElementType = ReactElement<unknown> | string> = {
+    text: ElementType;
+    hide: boolean;
+  };

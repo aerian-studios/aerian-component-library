@@ -1,3 +1,5 @@
+import { HideableTextShape } from "../types/types";
+
 export const removeEmptyObjectKVs = (orignalObject: Record<string | number | symbol, unknown | undefined>): Record<string | number | symbol, unknown> => {
     const obj = JSON.parse(JSON.stringify(orignalObject));
 
@@ -13,6 +15,13 @@ export const removeEmptyObjectKVs = (orignalObject: Record<string | number | sym
 
     return obj;
 }
+
+export const elementIsHideableTextShape = (element: any): element is HideableTextShape => {
+    return (
+      isObject(element) &&
+      "hide" in element && "text" in element
+    );
+  };
 
 export function isReactElement(obj: unknown): obj is React.ReactElement {
     return (
