@@ -1,8 +1,18 @@
-import React, { forwardRef, ReactElement, useState } from "react";
+import React, {
+  FormEvent,
+  FormEventHandler,
+  forwardRef,
+  ReactElement,
+  ReactNode,
+  useCallback,
+  useMemo,
+  useState,
+} from "react";
 import cx from "classnames";
 import styles from "./AerRadioGroup.module.scss";
 import { DefaultProps } from "../../types/types";
 import { DotFilledIcon } from "@radix-ui/react-icons";
+import { isObject, isReactElement } from "../../utils/dataStructures";
 
 export const isLabelProps = (
   props: string | ReactElement | LabelProps
@@ -10,13 +20,19 @@ export const isLabelProps = (
 
 export type LabelProps = { name: string | ReactElement; hidden: boolean };
 
-export interface AerRadioButtonProps extends DefaultProps<"input"> {
+export type Selectable = {
+  value: string;
+  checked?: boolean;
+  onChange?: (event: Event) => void;
+};
+
+export interface AerRadioButtonProps extends DefaultProps<"input">, Selectable {
   // Required label for the radio. NOTE: you can hide the label using the `LabelProps` API, but must provide a label to make the field accessible
   label: string | ReactElement | LabelProps;
   // Value is what is returned from form submissions when the item is checked, so should ideally be set
   value: string;
   // The default state of the radio.
-  defaultChecked?: boolean;
+  checked?: boolean;
   // The element to use as the radio background. NOTE: to hide the box altogether, please provide an empty element
   radioBackground?: ReactElement;
   // The element to use for the checked state
@@ -33,16 +49,14 @@ export const AerRadioButton = forwardRef(
       className,
       value,
       label,
-      defaultChecked,
       radioBackground,
-      checkedIcon = <DotFilledIcon className={styles.checkedIcon} />,
       checked,
+      checkedIcon = <DotFilledIcon className={styles.checkedIcon} />,
+      onChange,
       ...rest
     }: AerRadioButtonProps,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
-    const [state, setState] = useState(defaultChecked || checked);
-
     const dataDisabled: Record<string, true | never> = {};
     if ("disabled" in rest) {
       dataDisabled["data-disabled"] = true;
@@ -53,10 +67,11 @@ export const AerRadioButton = forwardRef(
           <input
             role="radio"
             type="radio"
-            checked={state === true}
-            ref={ref}
             {...rest}
-            className={styles.input}
+            checked={checked}
+            ref={ref}
+            className={cx(styles.input, className)}
+            onChange={onChange}
           />
           <span
             aria-hidden
@@ -65,7 +80,7 @@ export const AerRadioButton = forwardRef(
             })}
           >
             {radioBackground}
-            {state === true && checkedIcon}
+            {checked && checkedIcon}
           </span>
         </span>
         <span
@@ -80,15 +95,67 @@ export const AerRadioButton = forwardRef(
   }
 );
 
-export interface AerRadioGroupProps extends DefaultProps<"div"> {}
+const implementsTheSelectableInterface = (obj: unknown): obj is Selectable =>
+  isObject(obj) &&
+  "value" in obj &&
+  ("label" in obj || "checked" in obj || "defaultChecked" in obj);
+
+export interface AerRadioGroupProps extends DefaultProps<"div"> {
+  // the value of the default selected radio
+  value: string;
+}
 /**
  * AerRadioGroup allows automatic control of accessible radio buttons
  */
 export const AerRadioGroup = forwardRef(
   (
-    { className, children, ...rest }: AerRadioGroupProps,
+    { className, children, value, ...rest }: AerRadioGroupProps,
     ref: React.ForwardedRef<HTMLDivElement>
   ) => {
+    const [selected, setSelected] = useState<string>(value);
+
+    console.log(selected);
+
+    const getHandleChange =
+      (value: string, cb?: ((ev: Event) => any) | null) => (ev: Event) => {
+        setSelected(() => value);
+
+        cb && cb(ev);
+      };
+
+    const trainedChildren = useMemo(() => {
+      const findRadioButtonsAndApplyProps = (node: ReactNode): ReactNode => {
+        return React.Children.map(node, (child): ReactNode => {
+          if (!isReactElement(child) || typeof child.props !== "object") {
+            return child;
+          }
+
+          if (implementsTheSelectableInterface(child.props)) {
+            const typedChild: ReactElement<Selectable> = child;
+
+            const onChange = getHandleChange(
+              typedChild.props.value,
+              typedChild.props.onChange
+            );
+
+            const checked = selected === typedChild.props.value;
+
+            const clone = React.cloneElement(typedChild, {
+              ...typedChild.props,
+              onChange: onChange,
+              checked: checked,
+            });
+
+            return clone;
+          } else {
+            return findRadioButtonsAndApplyProps(child.props.children);
+          }
+        });
+      };
+
+      return findRadioButtonsAndApplyProps(children);
+    }, []);
+
     return (
       <div
         className={cx(styles.component, className)}
@@ -96,7 +163,7 @@ export const AerRadioGroup = forwardRef(
         role="radiogroup"
         ref={ref}
       >
-        {children}
+        {trainedChildren}
       </div>
     );
   }

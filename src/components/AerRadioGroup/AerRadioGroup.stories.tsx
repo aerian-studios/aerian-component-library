@@ -16,8 +16,9 @@ const Template: ComponentStory<typeof AerRadioGroup.Root> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
+  value: "pr",
   children: (
-    <>
+    <div>
       <AerRadioGroup.Item label="Testing" value="testing" checked />
       <AerRadioGroup.Item label="Writing docs" value="docs" />
       <AerRadioGroup.Item label="Code reviews" value="pr" />
@@ -26,7 +27,7 @@ Default.args = {
         disabled={true}
         value="new"
       />
-    </>
+    </div>
   ),
 };
 

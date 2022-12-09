@@ -13,3 +13,17 @@ export const removeEmptyObjectKVs = (orignalObject: Record<string | number | sym
 
     return obj;
 }
+
+export function isReactElement(obj: unknown): obj is React.ReactElement {
+    return (
+        typeof obj === "object" &&
+        !!obj &&
+        "props" in obj &&
+        "type" in obj &&
+        !!Object.keys(obj).length
+    );
+}
+
+export function isObject(obj: unknown): obj is Object {
+    return !!obj && typeof obj === 'object' && obj.constructor === Object;
+  }
