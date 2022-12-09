@@ -40,7 +40,7 @@
   margin-top: var(--c-cmp-accordion-separator-height, 1px);
 }
 
-.accordionItem:first-child {
+.accordionItem:first-of-type {
   margin-top: 0;
   border-top-left-radius: var(
     --s-cmp-accordion-border-radius,
@@ -52,7 +52,7 @@
   );
 }
 
-.accordionItem:last-child {
+.accordionItem:last-of-type {
   border-bottom-left-radius: var(
     --s-cmp-accordion-border-radius,
     var(--s-border-radius-xs)
