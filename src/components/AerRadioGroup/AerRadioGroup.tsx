@@ -161,7 +161,10 @@ export const AerRadioGroup = forwardRef(
           if (implementsTheSelectableInterface(child.props)) {
             const typedChild: ReactElement<AerRadioButtonProps> = child;
 
-            const onChange = getHandleChange(typedChild.props.value);
+            const onChange = getHandleChange(
+              typedChild.props.value,
+              typedChild.props.onChange
+            );
 
             const checked = selected === typedChild.props.value;
 
@@ -193,7 +196,7 @@ export const AerRadioGroup = forwardRef(
           <legend
             className={cx({
               [styles.visuallyHidden]: groupLabel.hide,
-              [styles.title]: !groupLabel.hide,
+              [styles.title]: groupLabel.hide,
             })}
           >
             {groupLabel.text}

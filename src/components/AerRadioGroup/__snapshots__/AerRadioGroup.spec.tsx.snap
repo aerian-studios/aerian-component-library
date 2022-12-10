@@ -1,0 +1,125 @@
+// Vitest Snapshot v1
+
+exports[`AerRadioGroup > should render correctly 1`] = `
+<div>
+  <fieldset
+    class="_component_61bd41"
+    role="radiogroup"
+  >
+    <legend
+      class="_title_61bd41"
+    >
+      Subject under test
+    </legend>
+    <label
+      class="_radioInput_61bd41"
+    >
+      <span
+        class="_indicator_61bd41"
+      >
+        <input
+          class="_input_61bd41"
+          name="Subject-under-test"
+          role="radio"
+          type="radio"
+        />
+        <span
+          aria-hidden="true"
+          class="_imgWrapper_61bd41 _radioBackground_61bd41"
+        />
+      </span>
+      <span
+        class="_label_61bd41"
+      >
+        Testing
+      </span>
+    </label>
+    <label
+      class="_radioInput_61bd41"
+    >
+      <span
+        class="_indicator_61bd41"
+      >
+        <input
+          checked=""
+          class="_input_61bd41"
+          name="Subject-under-test"
+          role="radio"
+          type="radio"
+        />
+        <span
+          aria-hidden="true"
+          class="_imgWrapper_61bd41 _radioBackground_61bd41"
+        >
+          <svg
+            class="_checkedIcon_61bd41"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.875 7.5C9.875 8.81168 8.81168 9.875 7.5 9.875C6.18832 9.875 5.125 8.81168 5.125 7.5C5.125 6.18832 6.18832 5.125 7.5 5.125C8.81168 5.125 9.875 6.18832 9.875 7.5Z"
+              fill="currentColor"
+            />
+          </svg>
+        </span>
+      </span>
+      <span
+        class="_label_61bd41"
+      >
+        Writing docs
+      </span>
+    </label>
+    <label
+      class="_radioInput_61bd41"
+    >
+      <span
+        class="_indicator_61bd41"
+      >
+        <input
+          class="_input_61bd41"
+          name="Subject-under-test"
+          role="radio"
+          type="radio"
+        />
+        <span
+          aria-hidden="true"
+          class="_imgWrapper_61bd41 _radioBackground_61bd41"
+        />
+      </span>
+      <span
+        class="_label_61bd41"
+      >
+        Code reviews
+      </span>
+    </label>
+    <label
+      class="_radioInput_61bd41"
+      data-disabled="true"
+    >
+      <span
+        class="_indicator_61bd41"
+      >
+        <input
+          class="_input_61bd41"
+          disabled=""
+          name="Subject-under-test"
+          role="radio"
+          type="radio"
+        />
+        <span
+          aria-hidden="true"
+          class="_imgWrapper_61bd41 _radioBackground_61bd41"
+        />
+      </span>
+      <span
+        class="_label_61bd41"
+      >
+        Writing new features
+      </span>
+    </label>
+  </fieldset>
+</div>
+`;
