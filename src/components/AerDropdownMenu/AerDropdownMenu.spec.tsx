@@ -2,16 +2,8 @@ import React from "react";
 import { describe, it, expect, afterEach } from "vitest";
 import { render, cleanup, screen, findAllByRole } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import {
-  AerCheckboxMenuItem,
-  AerDropdownMenu,
-  AerMenuItem,
-  AerMenuItemWithSubDropdown,
-  AerMenuRadioGroup,
-  AerMenuSectionHeading,
-  AerMenuSeparator,
-} from "./index";
-import { ChevronRightIcon } from "@radix-ui/react-icons";
+import { AerDropdownMenu } from "./index";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 
 describe("AerDropdownMenu", () => {
   afterEach(() => {
@@ -21,15 +13,25 @@ describe("AerDropdownMenu", () => {
   // todo The test fails on `Error: Uncaught [ReferenceError: ResizeObserver is not defined]`, which seems like an issue with radix perhaps
   it.skip("should render correctly", async () => {
     const { baseElement } = render(
-      <AerDropdownMenu open={true}>
-        <AerMenuItem>This is a menu item</AerMenuItem>
-        <AerMenuItem>This too</AerMenuItem>
-        <AerCheckboxMenuItem checked>Checkbox menu item</AerCheckboxMenuItem>
-      </AerDropdownMenu>
+      <AerDropdownMenu.Root
+        open={true}
+        defaultOpen={true}
+        trigger={
+          <button aria-label="Options">
+            <HamburgerMenuIcon />
+          </button>
+        }
+      >
+        <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+        <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+        <AerDropdownMenu.CheckboxMenuItem checked>
+          Checkbox menu item
+        </AerDropdownMenu.CheckboxMenuItem>
+      </AerDropdownMenu.Root>
     );
 
     const menuButton = screen.getByRole("button", {
-      name: "Customise options",
+      name: "Options",
     });
     expect(menuButton.getAttribute("aria-expanded")).toBe("true");
 

@@ -1,3 +1,3 @@
-import { AerCheckboxMenuItem, AerDropdownMenu, AerMenuItem, AerMenuRadioGroup, AerMenuSectionHeading, AerMenuSeparator, AerMenuItemWithSubDropdown } from "./AerDropdownMenu";
+import { AerCheckboxMenuItem, AerDropdownMenu as Root, AerMenuItem, AerMenuRadioGroup, AerMenuSectionHeading, AerMenuSeparator, AerMenuItemWithSubDropdown } from "./AerDropdownMenu";
 
-export { AerDropdownMenu, AerMenuItem, AerCheckboxMenuItem, AerMenuRadioGroup, AerMenuSeparator, AerMenuSectionHeading, AerMenuItemWithSubDropdown };
+export const AerDropdownMenu = { Root, MenuItem: AerMenuItem, CheckboxMenuItem:AerCheckboxMenuItem, RadioGroup:AerMenuRadioGroup, Separator:AerMenuSeparator, SectionHeading:AerMenuSectionHeading, MenuItemWithSubDropdown: AerMenuItemWithSubDropdown };

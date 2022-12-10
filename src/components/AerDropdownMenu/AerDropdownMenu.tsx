@@ -1,15 +1,20 @@
 import React, { forwardRef, ReactElement, useRef } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import {
-  HamburgerMenuIcon,
-  DotFilledIcon,
-  CheckIcon,
-} from "@radix-ui/react-icons";
+import { DotFilledIcon, CheckIcon } from "@radix-ui/react-icons";
 
 import cx from "classnames";
 import styles from "./AerDropdownMenu.module.scss";
 import { DefaultProps } from "../../types/types";
 import { removeEmptyObjectKVs } from "../../utils/dataStructures";
+
+const dialogContainer = document.getElementById("dialog-container");
+
+if (!dialogContainer) {
+  const dialogContainer = document.createElement("div");
+  dialogContainer.id = "dialog-container";
+
+  document.body.appendChild(dialogContainer);
+}
 
 /**
  * AerMenuItem is used for normal menu items. It implements [the same API as the Radix component](https://www.radix-ui.com/docs/primitives/components/dropdown-menu#item)
@@ -61,14 +66,15 @@ export const AerCheckboxMenuItem = forwardRef(
 );
 
 export type RadioGroupItem = {
-  // Unique value of the item
-  value: string;
-  // The visible text content of the item
-  content: string | ReactElement;
   className?: string;
   disabled?: boolean;
+  /** Unique value of the item */
+  value: string;
+  /** The visible text content of the item */
+  content: string | ReactElement;
+  /** A function to call when this specific radio item is checked (as well as the AerRadioGroup's `onValueChange` function) */
   onSelect?: (event: Event) => void;
-  // Custom indicator for the radio item
+  /** Custom indicator for the radio item. This defaults to a round bullet */
   indicator?: ReactElement;
 };
 export type DropdownMenuRadioGroupItems = { radioItems: RadioGroupItem[] };
@@ -191,18 +197,12 @@ export interface AerDropdownMenuProps
     DropdownMenu.DropdownMenuContentProps,
     Omit<DefaultProps<"div">, "dir"> {
   children: React.ReactNode;
-  // A button to trigger the opening of the dropdown. *Please ensure the button has accessible text*
-  trigger?: ReactElement;
-  // Include an arrow onto the dropdown
+  /** A button to trigger the opening of the dropdown. *Please ensure the button has accessible text* */
+  trigger: ReactElement;
+  /** Include an arrow on the dropdown panel */
   includeArrow?: boolean;
 }
-const dialogContainer = document.getElementById("dialog-container");
-if (!dialogContainer) {
-  const dialogContainer = document.createElement("div");
-  dialogContainer.id = "dialog-container";
 
-  document.body.appendChild(dialogContainer);
-}
 /**
  * AerDropdownMenu provides a flexible menu dropdown that can have submenus, checkbox and radio menu items. *NOTE:* This is `modal` by default.
  */
@@ -210,11 +210,7 @@ export const AerDropdownMenu = forwardRef(
   (
     {
       className,
-      trigger = (
-        <button className={styles.iconButton} aria-label="Customise options">
-          <HamburgerMenuIcon />
-        </button>
-      ),
+      trigger,
       children,
       includeArrow,
       ...rest
