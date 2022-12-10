@@ -54,8 +54,9 @@ Checked.args = {
 };
 Checked.parameters = {
   docs: {
-    storyDescription:
-      "This is the dark variant of the component and it displays...",
+    description: {
+      story: "This is the dark variant of the component and it displays...",
+    },
   },
 };
 
@@ -67,8 +68,10 @@ Indeterminate.args = {
 };
 Indeterminate.parameters = {
   docs: {
-    storyDescription:
-      "Indeterminate is only settable (and unsettable) via the `checked` prop; local state changes will not affect it",
+    description: {
+      story:
+        "Indeterminate is only settable (and unsettable) via the `checked` prop; local state changes will not affect it",
+    },
   },
 };
 
@@ -81,8 +84,10 @@ Invalid.args = {
 };
 Invalid.parameters = {
   docs: {
-    storyDescription:
-      "Invalid elements will show an error message. To trigger the error on this required field, deselect the checkbox and tab or click outside",
+    description: {
+      story:
+        "Invalid elements will show an error message. To trigger the error on this required field, deselect the checkbox and tab or click outside",
+    },
   },
 };
 
@@ -98,8 +103,10 @@ CustomCheckIcons.args = {
 };
 CustomCheckIcons.parameters = {
   docs: {
-    storyDescription:
-      "CustomCheckIcons give you complete control over the look of the check box UI. The `checkBox` relates to the background; the `checkedIcon` relates to the icon to show when checked; and the `indeterminateIcon`, what to show when indeterminate",
+    description: {
+      story:
+        "CustomCheckIcons give you complete control over the look of the check box UI. The `checkBox` relates to the background; the `checkedIcon` relates to the icon to show when checked; and the `indeterminateIcon`, what to show when indeterminate",
+    },
   },
 };
 
@@ -113,7 +120,9 @@ CustomInvalidMessage.args = {
 };
 CustomInvalidMessage.parameters = {
   docs: {
-    storyDescription:
-      "It is possible to override the validity by providing a custom `errorMessage` prop. NOTE: The component will remain invalid until the `errorMessage` prop is `falsy`",
+    description: {
+      story:
+        "It is possible to override the validity by providing a custom `errorMessage` prop. NOTE: The component will remain invalid until the `errorMessage` prop is `falsy`",
+    },
   },
 };

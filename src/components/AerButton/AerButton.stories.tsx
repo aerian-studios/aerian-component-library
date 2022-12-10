@@ -76,7 +76,9 @@ export const PrimaryVariant: ComponentStory<typeof AerButton> = () => (
 );
 PrimaryVariant.parameters = {
   docs: {
-    storyDescription: "This variant is used for the main (primary) action.",
+    description: {
+      story: "This variant is used for the main (primary) action.",
+    },
   },
 };
 
@@ -90,8 +92,10 @@ export const TertiaryVariant: ComponentStory<typeof AerButton> = () => (
 );
 TertiaryVariant.parameters = {
   docs: {
-    storyDescription:
-      "This variant is used where the button should not stand out, or if it should look like a link but it does not navigate.",
+    description: {
+      story:
+        "This variant is used where the button should not stand out, or if it should look like a link but it does not navigate.",
+    },
   },
 };
 
@@ -105,7 +109,9 @@ export const ImportantVariant: ComponentStory<typeof AerButton> = () => (
 );
 ImportantVariant.parameters = {
   docs: {
-    storyDescription:
-      "This variant is for important potentially destructive operations.",
+    description: {
+      story:
+        "This variant is for important potentially destructive operations.",
+    },
   },
 };

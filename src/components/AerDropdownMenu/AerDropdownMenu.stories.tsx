@@ -129,7 +129,7 @@ WithArrow.args = {
 };
 WithArrow.parameters = {
   docs: {
-    storyDescription: "Include an arrow indicator on the dropdown",
+    description: { story: "Include an arrow indicator on the dropdown" },
   },
 };
 
@@ -145,6 +145,6 @@ CustomSide.args = {
 };
 CustomSide.parameters = {
   docs: {
-    storyDescription: "Include an arrow indicator on the dropdown",
+    description: { story: "Include an arrow indicator on the dropdown" },
   },
 };
