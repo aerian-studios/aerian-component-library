@@ -1,12 +1,8 @@
 import React from "react";
 import { describe, it, expect, afterEach } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { AerAccordion } from "./index";
-import {
-  AerAccordionContent,
-  AerAccordionHeader,
-  AerAccordionItem,
-} from "./AerAccordion";
 
 describe("AerAccordion", () => {
   afterEach(() => {
@@ -15,26 +11,26 @@ describe("AerAccordion", () => {
 
   it("should render correctly", () => {
     const { container } = render(
-      <AerAccordion type="multiple">
-        <AerAccordionItem value="item-1">
-          <AerAccordionHeader>Header 1</AerAccordionHeader>
-          <AerAccordionContent>
+      <AerAccordion.Root type="multiple">
+        <AerAccordion.Item value="item-1">
+          <AerAccordion.Header>Header 1</AerAccordion.Header>
+          <AerAccordion.Content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </AerAccordionContent>
-        </AerAccordionItem>
-        <AerAccordionItem value="item-2">
-          <AerAccordionHeader>Header 2</AerAccordionHeader>
-          <AerAccordionContent>
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-2">
+          <AerAccordion.Header>Header 2</AerAccordion.Header>
+          <AerAccordion.Content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </AerAccordionContent>
-        </AerAccordionItem>
-        <AerAccordionItem value="item-3">
-          <AerAccordionHeader>Header 3</AerAccordionHeader>
-          <AerAccordionContent>
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-3">
+          <AerAccordion.Header>Header 3</AerAccordion.Header>
+          <AerAccordion.Content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </AerAccordionContent>
-        </AerAccordionItem>
-      </AerAccordion>
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+      </AerAccordion.Root>
     );
     expect(container).toMatchSnapshot();
 
@@ -49,16 +45,110 @@ describe("AerAccordion", () => {
     ).toBeDefined();
   });
 
+  it("should render the multiple variant by default", async () => {
+    const { container } = render(
+      <AerAccordion.Root>
+        <AerAccordion.Item value="item-1">
+          <AerAccordion.Header>Header 1</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-2">
+          <AerAccordion.Header>Header 2</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-3">
+          <AerAccordion.Header>Header 3</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+      </AerAccordion.Root>
+    );
+    expect(container).toMatchSnapshot();
+
+    const headder1Trigger = screen.getByRole("button", { name: "Header 1" });
+    const headder2Trigger = screen.getByRole("button", { name: "Header 2" });
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+
+    await userEvent.click(headder1Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+
+    await userEvent.click(headder2Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("true");
+
+    await userEvent.click(headder2Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+  });
+
+  it("should render the single variant when passed as a prop", async () => {
+    const { container } = render(
+      <AerAccordion.Root type="single">
+        <AerAccordion.Item value="item-1">
+          <AerAccordion.Header>Header 1</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-2">
+          <AerAccordion.Header>Header 2</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+        <AerAccordion.Item value="item-3">
+          <AerAccordion.Header>Header 3</AerAccordion.Header>
+          <AerAccordion.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+      </AerAccordion.Root>
+    );
+    expect(container).toMatchSnapshot();
+
+    const headder1Trigger = screen.getByRole("button", { name: "Header 1" });
+    const headder2Trigger = screen.getByRole("button", { name: "Header 2" });
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+
+    await userEvent.click(headder1Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+
+    await userEvent.click(headder2Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("false");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("true");
+
+    await userEvent.click(headder1Trigger);
+
+    expect(headder1Trigger.getAttribute("aria-expanded")).toBe("true");
+    expect(headder2Trigger.getAttribute("aria-expanded")).toBe("false");
+  });
+
   it("should render heading overrides correctly", () => {
     const { container } = render(
-      <AerAccordion type="multiple">
-        <AerAccordionItem value="item-1">
-          <AerAccordionHeader headingLevel="h2">Header 1</AerAccordionHeader>
-          <AerAccordionContent>
+      <AerAccordion.Root type="multiple">
+        <AerAccordion.Item value="item-1">
+          <AerAccordion.Header headingLevel="h2">Header 1</AerAccordion.Header>
+          <AerAccordion.Content>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </AerAccordionContent>
-        </AerAccordionItem>
-      </AerAccordion>
+          </AerAccordion.Content>
+        </AerAccordion.Item>
+      </AerAccordion.Root>
     );
 
     expect(
