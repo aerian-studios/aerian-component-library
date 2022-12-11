@@ -19,7 +19,7 @@ Default.args = {
 	value: "t&c",
 };
 
-export const LocalTheme: ComponentStory<any> = () => (
+export const LocalTheme = () => (
 	<>
 		<p>The AerCheckbox component implements the following local theme</p>
 		<p>
@@ -97,7 +97,7 @@ CustomCheckIcons.args = {
 	label: "Accept the terms and conditions",
 	value: "t&c",
 	defaultState: false,
-	checkBox: <span style={{ border: "2px solid green" }}></span>,
+	checkBox: <span style={{ border: "2px solid green" }} />,
 	checkedIcon: (
 		<span style={{ display: "flex", justifyContent: "center" }}>💝</span>
 	),

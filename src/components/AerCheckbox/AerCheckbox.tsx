@@ -85,7 +85,7 @@ export const AerCheckbox = forwardRef(
         }
       }
 
-      rest.onChange && rest.onChange(event);
+      rest.onChange?.(event);
     };
 
     const handleChildBlur = (
@@ -98,7 +98,7 @@ export const AerCheckbox = forwardRef(
         setError("This field is required");
       }
       // let parents know
-      rest.onBlur && rest.onBlur(event);
+      rest.onBlur?.(event);
     };
 
     return (
