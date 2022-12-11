@@ -80,7 +80,7 @@ export const LocalTheme: ComponentStory<any> = () => (
       content: box-shadow: var(--sh-box-l);
       content: animation-duration: var(--ease-cmp-duration, 400ms);
 
-      menuitem: font-size: var(--t-cmp-item, var(--t-body-sm));
+      menuitem: font-size: var(--t-cmp-item, var(--t-body-s));
       menuitem: color: var(--c-cmp-dropmenu-item, var(--c-body));
       menuitem: border-radius: var(--s-cmp-dropmenu-item-border-radius, var(--s-border-radius-xs));
       menuitem: padding: var(--s-cmp-item-padding, 0 calc(var(--s-1)0.5) 0 var(--s-3));

@@ -5,7 +5,7 @@
  * content: box-shadow: var(--sh-box-l);
  * content: animation-duration: var(--ease-cmp-duration, 400ms);
  *
- * menuitem: font-size: var(--t-cmp-item, var(--t-body-sm));
+ * menuitem: font-size: var(--t-cmp-item, var(--t-body-s));
  * menuitem: color: var(--c-cmp-dropmenu-item, var(--c-body));
  * menuitem: border-radius: var(--s-cmp-dropmenu-item-border-radius, var(--s-border-radius-xs));
  * menuitem: padding: var(--s-cmp-item-padding, 0 calc(var(--s-1) * 0.5) 0 var(--s-3));
@@ -68,7 +68,7 @@
 }
 
 .menuItem {
-  font-size: var(--t-cmp-dropmenu-item, var(--t-body-sm));
+  font-size: var(--t-cmp-dropmenu-item, var(--t-body-s));
   line-height: 1;
   color: var(--c-cmp-dropmenu-item, var(--c-body));
   border-radius: var(

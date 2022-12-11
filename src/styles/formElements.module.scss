@@ -1,6 +1,6 @@
 .label {
   margin-bottom: 0;
-  line-height: var(--lh-body-sm);
+  line-height: var(--lh-body-s);
 }
 
 .hiddenLabel {
@@ -12,7 +12,7 @@
   width: 100%;
   align-self: stretch;
   font-size: var(--t-body-m);
-  line-height: var(--lh-body-sm);
+  line-height: var(--lh-body-s);
   border-width: var(--s-border-width);
   border-radius: var(--s-border-radius-xs);
   border-color: var(--c-input-border);
@@ -56,8 +56,8 @@
 }
 
 .helpTextBase {
-  font-size: var(--t-body-sm);
-  line-height: var(--lh-body-sm);
+  font-size: var(--t-body-s);
+  line-height: var(--lh-body-s);
   margin: 0;
 }
 
