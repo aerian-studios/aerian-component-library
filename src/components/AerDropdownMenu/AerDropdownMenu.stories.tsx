@@ -5,75 +5,75 @@ import { ChevronRightIcon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import styles from "./AerDropdownMenu.module.scss";
 
 const Meta: ComponentMeta<typeof AerDropdownMenu.Root> = {
-  title: "Components/AerDropdownMenu",
-  component: AerDropdownMenu.Root,
-  subcomponents: {
-    MenuItem: AerDropdownMenu.MenuItem,
-    CheckboxMenuItem: AerDropdownMenu.CheckboxMenuItem,
-    RadioGroup: AerDropdownMenu.RadioGroup,
-    Separator: AerDropdownMenu.Separator,
-    SectionHeading: AerDropdownMenu.SectionHeading,
-    MenuItemWithSubDropdown: AerDropdownMenu.MenuItemWithSubDropdown,
-  },
+	title: "Components/AerDropdownMenu",
+	component: AerDropdownMenu.Root,
+	subcomponents: {
+		MenuItem: AerDropdownMenu.MenuItem,
+		CheckboxMenuItem: AerDropdownMenu.CheckboxMenuItem,
+		RadioGroup: AerDropdownMenu.RadioGroup,
+		Separator: AerDropdownMenu.Separator,
+		SectionHeading: AerDropdownMenu.SectionHeading,
+		MenuItemWithSubDropdown: AerDropdownMenu.MenuItemWithSubDropdown,
+	},
 };
 
 export default Meta;
 
 export const Default: ComponentStory<typeof AerDropdownMenu.Root> = (args) => (
-  <AerDropdownMenu.Root {...args}>
-    <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.CheckboxMenuItem checked>
-      Checkbox menu item
-    </AerDropdownMenu.CheckboxMenuItem>
-    <AerDropdownMenu.Separator />
-    <AerDropdownMenu.SectionHeading>
-      Some related content
-    </AerDropdownMenu.SectionHeading>
-    <AerDropdownMenu.RadioGroup
-      value="3"
-      radioItems={[
-        { value: "1", content: "First radio" },
-        { value: "2", content: "Second radio", disabled: true },
-        { value: "3", content: "Third radio" },
-        { value: "4", content: "Fourth radio" },
-      ]}
-    />
-    <AerDropdownMenu.MenuItemWithSubDropdown
-      subMenuParentContent={
-        <>
-          Menu item & sub-menu{" "}
-          <div>
-            <ChevronRightIcon />
-          </div>
-        </>
-      }
-    >
-      <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-      <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-      <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-      <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-    </AerDropdownMenu.MenuItemWithSubDropdown>
-  </AerDropdownMenu.Root>
+	<AerDropdownMenu.Root {...args}>
+		<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.CheckboxMenuItem checked>
+			Checkbox menu item
+		</AerDropdownMenu.CheckboxMenuItem>
+		<AerDropdownMenu.Separator />
+		<AerDropdownMenu.SectionHeading>
+			Some related content
+		</AerDropdownMenu.SectionHeading>
+		<AerDropdownMenu.RadioGroup
+			value="3"
+			radioItems={[
+				{ value: "1", content: "First radio" },
+				{ value: "2", content: "Second radio", disabled: true },
+				{ value: "3", content: "Third radio" },
+				{ value: "4", content: "Fourth radio" },
+			]}
+		/>
+		<AerDropdownMenu.MenuItemWithSubDropdown
+			subMenuParentContent={
+				<>
+					Menu item & sub-menu{" "}
+					<div>
+						<ChevronRightIcon />
+					</div>
+				</>
+			}
+		>
+			<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+			<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+			<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+			<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+		</AerDropdownMenu.MenuItemWithSubDropdown>
+	</AerDropdownMenu.Root>
 );
 
 Default.args = {
-  defaultOpen: true,
-  trigger: (
-    <button className={styles.iconButton} aria-label="Options">
-      <HamburgerMenuIcon />
-    </button>
-  ),
+	defaultOpen: true,
+	trigger: (
+		<button className={styles.iconButton} aria-label="Options">
+			<HamburgerMenuIcon />
+		</button>
+	),
 };
 
 export const LocalTheme: ComponentStory<any> = () => (
-  <>
-    <p>
-      The AerDropdownMenu.DropdownMenu component implements the following local
-      theme
-    </p>
-    <pre>
-      {`
+	<>
+		<p>
+			The AerDropdownMenu.DropdownMenu component implements the following local
+			theme.
+		</p>
+		<pre>
+			{`
       content: background-color: var(--c-cmp-dropmenu-bg, var(--c-white));
       content: border-radius: var(--s-cmp-dropmenu-border-radius, var(--s-border-radius-xs));
       content: padding: var(--s-cmp-padding, calc(var(--s-1)0.5));
@@ -104,47 +104,47 @@ export const LocalTheme: ComponentStory<any> = () => (
       iconbutton:hover: background-color: var(--c-cmp-menubutton-hover-bg, var(--c-gray-200));
       iconbutton: focus: box-shadow: 0 0 0 2px var(--c-focus);
       `}
-    </pre>
-  </>
+		</pre>
+	</>
 );
 
 const Template: ComponentStory<typeof AerDropdownMenu.Root> = (args) => (
-  <AerDropdownMenu.Root {...args}>
-    <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
-    <AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
-  </AerDropdownMenu.Root>
+	<AerDropdownMenu.Root {...args}>
+		<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This is a menu item</AerDropdownMenu.MenuItem>
+		<AerDropdownMenu.MenuItem>This too</AerDropdownMenu.MenuItem>
+	</AerDropdownMenu.Root>
 );
 export const WithArrow = Template.bind({});
 WithArrow.args = {
-  includeArrow: true,
-  trigger: (
-    <button className={styles.iconButton} aria-label="Options">
-      <HamburgerMenuIcon />
-    </button>
-  ),
+	includeArrow: true,
+	trigger: (
+		<button className={styles.iconButton} aria-label="Options">
+			<HamburgerMenuIcon />
+		</button>
+	),
 };
 WithArrow.parameters = {
-  docs: {
-    description: { story: "Include an arrow indicator on the dropdown" },
-  },
+	docs: {
+		description: { story: "Include an arrow indicator on the dropdown" },
+	},
 };
 
 export const CustomSide = Template.bind({});
 CustomSide.args = {
-  side: "right",
-  includeArrow: true,
-  trigger: (
-    <button className={styles.iconButton} aria-label="Options">
-      <ChevronRightIcon />
-    </button>
-  ),
+	side: "right",
+	includeArrow: true,
+	trigger: (
+		<button className={styles.iconButton} aria-label="Options">
+			<ChevronRightIcon />
+		</button>
+	),
 };
 CustomSide.parameters = {
-  docs: {
-    description: { story: "Include an arrow indicator on the dropdown" },
-  },
+	docs: {
+		description: { story: "Include an arrow indicator on the dropdown" },
+	},
 };
