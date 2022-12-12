@@ -1,0 +1,433 @@
+// Vitest Snapshot v1
+
+exports[`AerAccordion > should render correctly 1`] = `
+<div>
+  <div
+    class="_accordionRoot_d92853"
+  >
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r1:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r0:"
+          type="button"
+        >
+          Header 1
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r0:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:r1:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r3:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r2:"
+          type="button"
+        >
+          Header 2
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r2:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:r3:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r5:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r4:"
+          type="button"
+        >
+          Header 3
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r4:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:r5:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AerAccordion > should render the multiple variant by default 1`] = `
+<div>
+  <div
+    class="_accordionRoot_d92853"
+  >
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r7:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r6:"
+          type="button"
+        >
+          Header 1
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r6:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:r7:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:r9:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:r8:"
+          type="button"
+        >
+          Header 2
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:r8:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:r9:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:rb:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:ra:"
+          type="button"
+        >
+          Header 3
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:ra:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:rb:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AerAccordion > should render the single variant when passed as a prop 1`] = `
+<div>
+  <div
+    class="_accordionRoot_d92853"
+  >
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:rd:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:rc:"
+          type="button"
+        >
+          Header 1
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:rc:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:rd:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:rf:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:re:"
+          type="button"
+        >
+          Header 2
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:re:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:rf:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+    <div
+      data-state="closed"
+    >
+      <h3
+        class="_accordionHeader_d92853"
+        data-state="closed"
+      >
+        <button
+          aria-controls="radix-:rh:"
+          aria-expanded="false"
+          class="_accordionTrigger_d92853"
+          data-radix-collection-item=""
+          data-state="closed"
+          id="radix-:rg:"
+          type="button"
+        >
+          Header 3
+          <svg
+            aria-hidden="true"
+            class="_accordionChevron_d92853"
+            fill="none"
+            height="15"
+            viewBox="0 0 15 15"
+            width="15"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+      </h3>
+      <div
+        aria-labelledby="radix-:rg:"
+        class="_accordionContent_d92853"
+        data-state="closed"
+        hidden=""
+        id="radix-:rh:"
+        role="region"
+        style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+      />
+    </div>
+  </div>
+</div>
+`;

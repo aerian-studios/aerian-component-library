@@ -1,0 +1,109 @@
+/** Local theme
+ * input: gap: var(--s-cmp-checkbox, var(--s-1));
+ * input:icon: color: var(--c-cmp-checkbox-icon, var(--c-body));
+ * input:icon: width/height: var(--s-cmp-checkbox-icon, var(--s-icon));
+ * input:icon: padding: var(--s-cmp-checkbox-padding, 1px);
+ * input:icon: border-radius: var(--s-cmp-checkbox-icon-br, var(--s-border-radius-xs));
+ * input:icon:hover: background-color: var(--c-cmp-checkbox-icon-bg-hover, var(--c-gray-200));
+ * input:icon:border: border: 2px solid var(--c-cmp-checkbox-icon-border, currentColor);
+ *
+ * label: color: var(--c-cmp-checkbox-label, var(--c-body));
+ * label: padding: var(--s-cmp-checkbox-padding, 0 0 0 var(--s-1));
+ * label: font-size: var(--t-cmp-checkbox, var(--c-body-m));
+ */
+
+.visuallyHidden {
+  composes: visuallyHidden from "../../styles/utils.module.scss";
+}
+
+.noPointer {
+  composes: noPointer from "../../styles/utils.module.scss";
+}
+
+.wrapper {
+  display: flex;
+  flex-flow: column wrap;
+  gap: calc(var(--s-1) * 0.5);
+}
+
+.component {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: var(--s-cmp-checkbox, var(--s-1));
+  color: var(--c-cmp-checkbox-label, var(--c-body));
+}
+
+.indicator {
+  position: relative;
+  color: var(--c-cmp-checkbox-icon, currentColor);
+  padding: var(--s-cmp-checkbox-padding, 1px);
+  width: var(--s-cmp-checkbox-icon, var(--s-icon));
+  height: var(--s-cmp-checkbox-icon, var(--s-icon));
+  border-radius: var(--s-cmp-checkbox-icon-br, var(--s-border-radius-xs));
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.imgWrapper {
+  composes: noPointer;
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--s-cmp-checkbox-icon, var(--s-icon));
+  grid-template-rows: var(--s-cmp-checkbox-icon, var(--s-icon));
+  justify-content: stretch;
+  align-items: stretch;
+
+  & > * {
+    grid-column: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.checkBox {
+  border: 2px solid var(--c-cmp-checkbox-icon-border, currentColor);
+  border-radius: var(--s-cmp-checkbox-icon-br, var(--s-border-radius-xs));
+
+  & > * {
+    width: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
+    height: calc(var(--s-cmp-checkbox-icon, var(--s-icon)) - 4px);
+  }
+}
+
+.input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  // must be slightly visible for screen reader to read
+  opacity: 0.01;
+  z-index: 1;
+
+  &:hover + * {
+    background-color: var(--c-cmp-checkbox-icon-bg-hover, var(--c-gray-200));
+  }
+
+  &:focus-visible + * {
+    box-shadow: 0 0 0 2px var(--c-focus);
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: var(--s-cmp-checkbox-padding, 0 0 0 var(--s-1));
+  font-size: var(--t-cmp-checkbox, var(--c-body-m));
+}
+
+.invalid {
+  color: var(--c-negative);
+}
+
+.errorMessage {
+  color: var(--c-negative);
+}
