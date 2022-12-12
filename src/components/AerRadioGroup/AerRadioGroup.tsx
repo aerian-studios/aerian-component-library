@@ -176,9 +176,13 @@ export const AerRadioGroup = forwardRef(
 						});
 
 						return clone;
-					} else {
-						return findRadioButtonsAndApplyProps(child.props.children);
 					}
+
+					// check the children as well
+					return React.cloneElement(child, {
+						...child.props,
+						children: findRadioButtonsAndApplyProps(child.props.children),
+					});
 				});
 			};
 
