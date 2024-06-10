@@ -309,17 +309,16 @@ export const ControlledElement = React.forwardRef(({
   label,
   defaultValue,
   ...rest
-}: WrapComponentProps, ref: React.ForwardedRef<any>) => {
+}: WrapComponentProps, ref: React.ForwardedRef<unknown>) => {
   const { control } = useFormContext(name);
   return (
     <Controller
       control={control}
-      render={Component}
+      render={({field}) => <Component {...field} ref={ref} />}
       name={name}
       label={label}
       defaultValue={defaultValue}
       {...rest}
-      ref
     />
   );
 });

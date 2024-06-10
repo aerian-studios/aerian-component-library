@@ -66,7 +66,7 @@ export function Form<T extends DefaultValues<Record<string, string | object>>>({
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
   const [defaultValues, setDefaultValues] = React.useState<
-    DefaultValues<T>
+    T
   >();
 
   const methods = useForm<T>({
