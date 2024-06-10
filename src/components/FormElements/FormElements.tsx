@@ -314,11 +314,12 @@ export const ControlledElement = React.forwardRef(({
   return (
     <Controller
       control={control}
-      render={() => <Component />}
+      render={Component}
       name={name}
       label={label}
       defaultValue={defaultValue}
       {...rest}
+      ref
     />
   );
 });
