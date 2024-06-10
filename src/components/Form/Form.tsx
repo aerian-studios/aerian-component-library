@@ -1,14 +1,14 @@
-import React, { HTMLAttributes } from "react";
+import React, { type HTMLAttributes } from "react";
 import * as yup from "yup";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers";
+import { useForm, type SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import cx from "classnames";
 
 import { FormContext } from "./useFormContext";
 
 import styles from "./Form.module.scss";
-import { UnpackNestedValue } from "react-hook-form/dist/types/form";
-import { DeepPartial } from "react-hook-form/dist/types/utils";
+import type { UnpackNestedValue } from "react-hook-form/dist/types/form";
+import type { DeepPartial } from "react-hook-form/dist/types/utils";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
@@ -57,7 +57,7 @@ export const FormControls: React.FC<FormControlsProps> = ({
   </div>
 );
 
-export function Form<T extends object>({
+export function Form<T extends Record<string, string | {}>>({
   children,
   className,
   onSubmitFn,
@@ -78,7 +78,7 @@ export function Form<T extends object>({
   // on reset use reset to the intial values
   const handleReset = () => {
     methods.reset(defaultValues);
-    onResetFn && onResetFn();
+    onResetFn?.();
   };
 
   // when form loads set its initial values as defaults
