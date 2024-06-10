@@ -296,10 +296,10 @@ export const FormSelect: React.FC<SelectProps> = ({
   );
 };
 
-interface WrapComponentProps extends Record<string, any> {
+interface WrapComponentProps extends Record<string, unknown> {
   name: string;
   label: string;
-  Component: React.FC<any>;
+  Component: React.FC<Record<string, unknown>>;
 }
 
 // typings - pass in component props
@@ -314,7 +314,7 @@ export const ControlledElement = React.forwardRef(({
   return (
     <Controller
       control={control}
-      render={({field}) => <Component {...field} ref={ref} />}
+      as={Component}
       name={name}
       label={label}
       defaultValue={defaultValue}
