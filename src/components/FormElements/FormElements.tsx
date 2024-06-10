@@ -303,13 +303,13 @@ interface WrapComponentProps extends Record<string, any> {
 }
 
 // typings - pass in component props
-export const ControlledElement: React.FC<WrapComponentProps> = ({
+export const ControlledElement = React.forwardRef(({
   Component,
   name,
   label,
   defaultValue,
   ...rest
-}) => {
+}: WrapComponentProps, ref: React.ForwardedRef<any>) => {
   const { control } = useFormContext(name);
   return (
     <Controller
@@ -321,7 +321,7 @@ export const ControlledElement: React.FC<WrapComponentProps> = ({
       {...rest}
     />
   );
-};
+});
 
 interface TagSelectorProps extends Props {
   tagClassName?: string;
