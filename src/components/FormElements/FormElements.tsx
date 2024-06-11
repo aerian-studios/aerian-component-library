@@ -282,7 +282,6 @@ export const FormSelect: React.FC<SelectProps> = ({
   const calculatedDefaultValue =
     defaultValue === null || defaultValue ? defaultValue : options[0];
 
-    console.log("form select", rest)
 
   return (
     <ControlledElement
