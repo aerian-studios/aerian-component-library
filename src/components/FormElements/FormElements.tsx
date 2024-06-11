@@ -310,6 +310,8 @@ export const ControlledElement = ({
   name,
   label,
   defaultValue,
+  // extract out ref so it doesn't get passed to the Controller, which can't handle refs
+  ref: _ref,
   ...rest
 }: WrapComponentProps) => {
   const { control } = useFormContext(name);
