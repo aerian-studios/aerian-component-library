@@ -7,6 +7,8 @@ import cx from "classnames";
 import { FormContext } from "./useFormContext";
 
 import styles from "./Form.module.scss";
+import { UnpackNestedValue } from "react-hook-form/dist/types/form";
+import { DeepPartial } from "react-hook-form/dist/types/utils";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
@@ -55,7 +57,7 @@ export const FormControls: React.FC<FormControlsProps> = ({
   </div>
 );
 
-export function Form<T extends DefaultValues<Record<string, string | object>>>({
+export function Form<T extends object>({
   children,
   className,
   onSubmitFn,
@@ -66,7 +68,7 @@ export function Form<T extends DefaultValues<Record<string, string | object>>>({
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
   const [defaultValues, setDefaultValues] = React.useState<
-    T
+    UnpackNestedValue<DeepPartial<T>>
   >();
 
   const methods = useForm<T>({
@@ -76,7 +78,7 @@ export function Form<T extends DefaultValues<Record<string, string | object>>>({
   // on reset use reset to the intial values
   const handleReset = () => {
     methods.reset(defaultValues);
-    onResetFn?.();
+    onResetFn && onResetFn();
   };
 
   // when form loads set its initial values as defaults
