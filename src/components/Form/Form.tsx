@@ -1,7 +1,7 @@
 import React, { type HTMLAttributes } from "react";
 import * as yup from "yup";
 import { type DefaultValues, useForm, type SubmitHandler } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { yupResolver } from "@hookform/resolvers";
 import cx from "classnames";
 
 import { FormContext } from "./useFormContext";
