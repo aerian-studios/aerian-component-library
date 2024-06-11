@@ -282,6 +282,8 @@ export const FormSelect: React.FC<SelectProps> = ({
   const calculatedDefaultValue =
     defaultValue === null || defaultValue ? defaultValue : options[0];
 
+    console.log("form select", rest)
+
   return (
     <ControlledElement
       Component={Select}
@@ -292,7 +294,7 @@ export const FormSelect: React.FC<SelectProps> = ({
       controlledDefault={calculatedDefaultValue}
       className={className}
       {...rest}
-    ></ControlledElement>
+    />
   );
 };
 
@@ -303,13 +305,13 @@ interface WrapComponentProps extends Record<string, unknown> {
 }
 
 // typings - pass in component props
-export const ControlledElement = React.forwardRef(({
+export const ControlledElement = ({
   Component,
   name,
   label,
   defaultValue,
   ...rest
-}: WrapComponentProps, ref: React.ForwardedRef<unknown>) => {
+}: WrapComponentProps) => {
   const { control } = useFormContext(name);
   return (
     <Controller
@@ -321,7 +323,7 @@ export const ControlledElement = React.forwardRef(({
       {...rest}
     />
   );
-});
+};
 
 interface TagSelectorProps extends Props {
   tagClassName?: string;
