@@ -313,6 +313,8 @@ export const ControlledElement = ({
   ...rest
 }: WrapComponentProps) => {
   const { control } = useFormContext(name);
+
+  console.log("as controlled element", rest)
   return (
     <Controller
       control={control}
