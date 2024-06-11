@@ -1,4 +1,4 @@
-# Aerian Component Library
+# !DEPRECATED! Aerian Component Library
 
 # Installation
 
