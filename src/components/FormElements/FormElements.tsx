@@ -301,7 +301,7 @@ export const FormSelect: React.FC<SelectProps> = ({
 interface WrapComponentProps extends Record<string, unknown> {
   name: string;
   label: string;
-  Component: React.FC<Record<string, unknown>>;
+  Component: React.FC<unknown>;
 }
 
 // typings - pass in component props
@@ -313,8 +313,6 @@ export const ControlledElement = ({
   ...rest
 }: WrapComponentProps) => {
   const { control } = useFormContext(name);
-
-  console.log("as controlled element", rest)
   return (
     <Controller
       control={control}
