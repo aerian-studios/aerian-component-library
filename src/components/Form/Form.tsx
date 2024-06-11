@@ -1,12 +1,14 @@
 import React, { type HTMLAttributes } from "react";
 import * as yup from "yup";
-import { type DefaultValues, useForm, type SubmitHandler } from "react-hook-form";
+import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import cx from "classnames";
 
 import { FormContext } from "./useFormContext";
 
 import styles from "./Form.module.scss";
+import type { UnpackNestedValue } from "react-hook-form/dist/types/form";
+import type { DeepPartial } from "react-hook-form/dist/types/utils";
 
 export interface FormProps<T extends object>
   extends HTMLAttributes<HTMLElement> {
@@ -55,7 +57,7 @@ export const FormControls: React.FC<FormControlsProps> = ({
   </div>
 );
 
-export function Form<T extends DefaultValues<Record<string, string | object>>>({
+export function Form<T extends object>({
   children,
   className,
   onSubmitFn,
@@ -66,7 +68,7 @@ export function Form<T extends DefaultValues<Record<string, string | object>>>({
   const wrappedValidationSchema = yup.object().shape(validationSchema);
 
   const [defaultValues, setDefaultValues] = React.useState<
-    T
+    UnpackNestedValue<DeepPartial<T>>
   >();
 
   const methods = useForm<T>({
