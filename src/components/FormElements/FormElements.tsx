@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, HTMLAttributes } from "react";
+import React, { useCallback, useEffect, type HTMLAttributes } from "react";
 import { Controller } from "react-hook-form";
 import cx from "classnames";
 import { ErrorMessage } from "@hookform/error-message";
@@ -282,6 +282,7 @@ export const FormSelect: React.FC<SelectProps> = ({
   const calculatedDefaultValue =
     defaultValue === null || defaultValue ? defaultValue : options[0];
 
+
   return (
     <ControlledElement
       Component={Select}
@@ -292,24 +293,24 @@ export const FormSelect: React.FC<SelectProps> = ({
       controlledDefault={calculatedDefaultValue}
       className={className}
       {...rest}
-    ></ControlledElement>
+    />
   );
 };
 
-interface WrapComponentProps extends Record<string, any> {
+interface WrapComponentProps extends Record<string, unknown> {
   name: string;
   label: string;
-  Component: React.FC<any>;
+  Component: React.FC<unknown>;
 }
 
 // typings - pass in component props
-export const ControlledElement: React.FC<WrapComponentProps> = ({
+export const ControlledElement = ({
   Component,
   name,
   label,
   defaultValue,
   ...rest
-}) => {
+}: WrapComponentProps) => {
   const { control } = useFormContext(name);
   return (
     <Controller
@@ -361,7 +362,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
     tag: string
   ) => {
     event.preventDefault();
-    let newTags = [...tags];
+    const newTags = [...tags];
     newTags.splice(tags.indexOf(tag), 1);
     setTags(newTags);
     setValue(name, newTags);
