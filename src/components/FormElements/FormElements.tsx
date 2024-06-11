@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, HTMLAttributes } from "react";
+import React, { useCallback, useEffect, type HTMLAttributes } from "react";
 import { Controller } from "react-hook-form";
 import cx from "classnames";
 import { ErrorMessage } from "@hookform/error-message";
@@ -296,20 +296,20 @@ export const FormSelect: React.FC<SelectProps> = ({
   );
 };
 
-interface WrapComponentProps extends Record<string, any> {
+interface WrapComponentProps extends Record<string, unknown> {
   name: string;
   label: string;
-  Component: React.FC<any>;
+  Component: React.FC<Record<string, unknown>>;
 }
 
 // typings - pass in component props
-export const ControlledElement: React.FC<WrapComponentProps> = ({
+export const ControlledElement = React.forwardRef(({
   Component,
   name,
   label,
   defaultValue,
   ...rest
-}) => {
+}: WrapComponentProps, ref: React.ForwardedRef<unknown>) => {
   const { control } = useFormContext(name);
   return (
     <Controller
@@ -321,7 +321,7 @@ export const ControlledElement: React.FC<WrapComponentProps> = ({
       {...rest}
     />
   );
-};
+});
 
 interface TagSelectorProps extends Props {
   tagClassName?: string;
@@ -361,7 +361,7 @@ export const FormTagSelector: React.FC<TagSelectorProps> = ({
     tag: string
   ) => {
     event.preventDefault();
-    let newTags = [...tags];
+    const newTags = [...tags];
     newTags.splice(tags.indexOf(tag), 1);
     setTags(newTags);
     setValue(name, newTags);
