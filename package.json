@@ -43,5 +43,10 @@
     "typescript": "^3.9.6",
     "yalc": "^1.0.0-pre.37",
     "yup": "^0.29.1"
-  }
+  },
+  "volta": {
+        "node": "20.11.0",
+        "yarn": "3.7.0"
+    },
+    "packageManager": "yarn@3.7.0"
 }
