@@ -292,7 +292,7 @@ export const FormSelect: React.FC<SelectProps> = ({
       controlledDefault={calculatedDefaultValue}
       className={className}
       {...rest}
-    />
+    ></ControlledElement>
   );
 };
 
